@@ -1,0 +1,99 @@
+﻿@model Work.BL.Models.RegisterVM
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registeration </title>
+    <!-- name of website -->
+    <link href="~/assets/css/all.min.css" rel="stylesheet">
+    <!--calling file of fontawsome  -->
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <!-- calling file of css boostrap -->
+    <link rel="stylesheet" href="~/assets/css/IndexStyleCss.css">
+    <!-- calling file of style by developer -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <nav class="navbar bg-body-tertiary">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="~/assets/images/8e9f2340-cb2d-456c-9a51-7efa7001beb6.png" alt="Bootstrap" width="100" height="100">
+            </a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container py-5">
+            <div class="d-flex justify-content-center align-items-start">
+                <div class="h-50 w-75 containerOfInputsSignUp">
+                    <div class="container-fluid">
+                        <h1 class="text-center">Sign Up</h1>
+                        <div class="row py-5">
+                            <form asp-controller="Account" asp-action="Register">
+
+                                <div asp-validation-summary="All" class="text-danger"></div>
+
+                                <div class="col-lg-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text m-10 text-center justify-content-center bg-white " id="basic-addon2">Name</span>
+                                        <input type="text" class="form-control" asp-for="UserName" placeholder="Enter Your Email Name" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    </div>
+                                    <span asp-validation-for="UserName" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-lg-12 ">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text m-10 text-center justify-content-center bg-white " id="basic-addon2">Email</span>
+                                        <input type="email" class="form-control" asp-for="Email" placeholder="Enter Your Email Address" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    </div>
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text m-10 text-center justify-content-center bg-white " id="basic-addon2">Password</span>
+                                        <input type="password" class="form-control" asp-for="Password" placeholder="Enter Your Password" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    </div>
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+
+
+                                <div class="col-lg-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text m-10 text-center justify-content-center bg-white " id="basic-addon2"> Re-Password </span>
+                                        <input type="password" class="form-control" asp-for="ConfirmPassword" placeholder="Enter Your Re-Password" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    </div>
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                </div>
+
+
+                                <div class="col-lg-11 m-auto py-5">
+                                    <input class="btn text-white w-100 rounded-50 main-bg-color" type="submit" value="Create Account">
+                                    <p class="text-center text-black">Already Have an account ?<a asp-controller="Account" asp-action="Login" class="text-black">Login</a> </p>
+                                </div>
+                             </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <script src="~/assets/js/jqu.js"></script>
+    <script src="~/assets/js/action.js"></script>
+</body>
+
+</html>

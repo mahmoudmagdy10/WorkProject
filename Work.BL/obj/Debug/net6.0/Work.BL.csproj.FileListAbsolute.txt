@@ -1,0 +1,15 @@
+C:\Users\migo\source\repos\Work.BL\bin\Debug\net6.0\Work.BL.deps.json
+C:\Users\migo\source\repos\Work.BL\bin\Debug\net6.0\Work.BL.dll
+C:\Users\migo\source\repos\Work.BL\bin\Debug\net6.0\Work.BL.pdb
+C:\Users\migo\source\repos\Work.BL\bin\Debug\net6.0\Work.DAL.dll
+C:\Users\migo\source\repos\Work.BL\bin\Debug\net6.0\Work.DAL.pdb
+C:\Users\migo\source\repos\Work.BL\obj\Debug\net6.0\Work.BL.csproj.AssemblyReference.cache
+C:\Users\migo\source\repos\Work.BL\obj\Debug\net6.0\Work.BL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\migo\source\repos\Work.BL\obj\Debug\net6.0\Work.BL.AssemblyInfoInputs.cache
+C:\Users\migo\source\repos\Work.BL\obj\Debug\net6.0\Work.BL.AssemblyInfo.cs
+C:\Users\migo\source\repos\Work.BL\obj\Debug\net6.0\Work.BL.csproj.CoreCompileInputs.cache
+C:\Users\migo\source\repos\Work.BL\obj\Debug\net6.0\Work.BL.csproj.CopyComplete
+C:\Users\migo\source\repos\Work.BL\obj\Debug\net6.0\Work.BL.dll
+C:\Users\migo\source\repos\Work.BL\obj\Debug\net6.0\refint\Work.BL.dll
+C:\Users\migo\source\repos\Work.BL\obj\Debug\net6.0\Work.BL.pdb
+C:\Users\migo\source\repos\Work.BL\obj\Debug\net6.0\ref\Work.BL.dll

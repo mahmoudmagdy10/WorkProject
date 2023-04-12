@@ -1,0 +1,14 @@
+C:\Users\migo\source\repos\Work.DAL\bin\Debug\net6.0\Work.DAL.deps.json
+C:\Users\migo\source\repos\Work.DAL\bin\Debug\net6.0\Work.DAL.runtimeconfig.json
+C:\Users\migo\source\repos\Work.DAL\bin\Debug\net6.0\Work.DAL.dll
+C:\Users\migo\source\repos\Work.DAL\bin\Debug\net6.0\Work.DAL.pdb
+C:\Users\migo\source\repos\Work.DAL\obj\Debug\net6.0\Work.DAL.csproj.AssemblyReference.cache
+C:\Users\migo\source\repos\Work.DAL\obj\Debug\net6.0\Work.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\migo\source\repos\Work.DAL\obj\Debug\net6.0\Work.DAL.AssemblyInfoInputs.cache
+C:\Users\migo\source\repos\Work.DAL\obj\Debug\net6.0\Work.DAL.AssemblyInfo.cs
+C:\Users\migo\source\repos\Work.DAL\obj\Debug\net6.0\Work.DAL.csproj.CoreCompileInputs.cache
+C:\Users\migo\source\repos\Work.DAL\obj\Debug\net6.0\Work.DAL.dll
+C:\Users\migo\source\repos\Work.DAL\obj\Debug\net6.0\refint\Work.DAL.dll
+C:\Users\migo\source\repos\Work.DAL\obj\Debug\net6.0\Work.DAL.pdb
+C:\Users\migo\source\repos\Work.DAL\obj\Debug\net6.0\Work.DAL.genruntimeconfig.cache
+C:\Users\migo\source\repos\Work.DAL\obj\Debug\net6.0\ref\Work.DAL.dll
