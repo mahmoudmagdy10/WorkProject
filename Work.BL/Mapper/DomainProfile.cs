@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Work.BL.Models;
+using Work.DAL.Entity;
 
 namespace Work.BL.Mapper
 {
@@ -6,10 +8,20 @@ namespace Work.BL.Mapper
     {
         public DomainProfile()
         {
-            //CreateMap<Invoice, InvoiceVM>();
-            //CreateMap<InvoiceVM, Invoice>();
+            CreateMap<Post, PostVM>();
+            CreateMap<PostVM, Post>();
+            
+            CreateMap<Project, ProjectVM>();
+            CreateMap<ProjectVM, Project>();
+            
+            CreateMap<ProjectAttachments, ProjectAttachmentsVM>();
+            CreateMap<ProjectAttachmentsVM, ProjectAttachments>();
 
+            CreateMap<Chat ,ChatVM>();
+            CreateMap<ChatVM, Chat>();
 
+            CreateMap<Reply ,ReplyVM>();
+            CreateMap<ReplyVM, Reply>();
         }
     }
 }

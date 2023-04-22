@@ -1,107 +1,98 @@
-.m-10
-{
-    width: 12%;
+header {
+    background-image: url("../images/Land.png");
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+.nav-link {
+    margin: 0 10px;
+    color: rgb(255, 255, 255) !important;
+    position: relative;
 }
 
-.input-group.mb-3
-{
+    .nav-link::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 0px;
+        height: 1px;
+        background-color: #c59035;
+        transition: 0.5s 0.1s width;
+    }
 
-    box-shadow: 4px 9px 8px -12px black;
+    .nav-link:hover::after {
+        width: 100%;
+    }
+
+    .nav-link:hover {
+        color: rgba(0, 0, 0, 0.559) !important;
+    }
+
+.BtnSignUP {
+    background-color: rgba(72, 64, 64, 0.893) !important;
 }
 
-.rounded-50
-{
-   border-radius: 41px;
-
+.BtnLogin {
+    background-color: #c59035 !important;
 }
 
-.navbar 
-{
-height: 10%;
+.BtnSignUP, .BtnLogin {
+    color: white;
+    padding: 10px 45px;
+    border-radius: 30px;
 }
 
+    .BtnSignUP > a, .BtnLogin > a {
+        color: #ffff;
+        text-decoration: none;
+    }
 
 
 
 
-
-body
-{
-    font-family: 'Roboto Slab', serif !important;
-}
- 
-.main-bg-color 
-{
-    background:  #C58F35 !important;
-    color:white !important ;
-}
+@media only screen and (min-width: 0) and (max-width:950px ) {
 
 
-@media only screen and (max-width: 600px)
- {
-    /* .container.py-5 // for test onely
-    {
-        background-color: red;
-    } */
+    * {
+        font-size: 16px !important;
+    }
 
-
-
-    .containerOfInputsSignUp
-    {
+    .registerAccount {
         width: 100% !important;
     }
-    .navbar > .container, .navbar > .container-fluid
-    {
-        justify-content: center;
+
+    .SizeOfContainer {
+        width: 100%;
     }
 
-    .col-lg-12 .input-group
-    {
+    .ContainerHomePage {
+        flex-direction: column-reverse !important;
+    }
+
+    .containerBtn {
         flex-direction: column;
+        align-items: center;
     }
 
-    .col-lg-12 .input-group  input,
-    .col-lg-12 .input-group  span
-    {   
-        width: 100% !important;
-   
-    }
+        .containerBtn > button {
+            margin: 10px !important;
+            width: 40% !important;
+        }
+}
 
-    .col-lg-12 .input-group  span
-
-    {
-        margin: 5px 0;
+@media only screen and (min-width:950px ) {
+    .SizeOfContainer {
+        width: 50% !important;
     }
 }
 
-
-@media only screen and (min-width: 600px) and (max-width: 750px)
-{
-    .input-group-text
-    {
-        width: 30%;
+@media only screen and (min-width: 0px) and (max-width:376px) {
+    * {
+        font-size: 12px !important;
     }
 }
 
-
-@media only screen and (min-width: 750px) and (max-width: 950px)
-{
-    .input-group-text
-    {
-        width: 25%;
-    }
-}
-@media only screen and (min-width: 950px)
-{
-    .input-group-text
-    {
-        width: 20%;
-    }
-}
-@media only screen and (min-width: 1000px)
-{
-    .input-group-text
-    {
-    width: 15%;
-    }
+.ProjectFucture {
+    transform: translateY(110%);
 }

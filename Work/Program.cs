@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Serialization;
+using Work.BL.Helper.Hubs;
 using Work.BL.Interface;
 using Work.BL.Mapper;
+using Work.BL.Models;
 using Work.BL.Repository;
 using Work.DAL.Database;
 using Work.DAL.Extend;
@@ -10,7 +13,12 @@ using Work.DAL.Extend;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+builder.Services.AddControllersWithViews(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true)
+    .AddNewtonsoftJson(opt => {
+
+        opt.SerializerSettings.ContractResolver = new DefaultContractResolver();
+    });
+
 
 // DbContext Configuration
 builder.Services.AddDbContextPool<WorkContext>(opt =>
@@ -23,6 +31,12 @@ builder.Services.AddAutoMapper(x => x.AddProfile(new DomainProfile()));
 
 // Dependency Injection
 builder.Services.AddScoped<IUserRep, UserRep>();
+builder.Services.AddScoped<IRolesRep, RolesRep>();
+builder.Services.AddScoped<IPostRep,PostRep>();
+builder.Services.AddScoped<IProjectRep, ProjectRep>();
+builder.Services.AddScoped<IProjectAttachmentsRep, ProjectAttachmentsRep>();
+builder.Services.AddScoped<IChatRep,ChatRep>();
+builder.Services.AddScoped<IReplyRep,ReplyRep>();
 
 
 // ------------------------ Identity Configrations  ------------------------------------
@@ -50,8 +64,11 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 
 
 // ------------------------ Identity Configrations  ------------------------------------
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
+app.MapHub<ChatHub>("/chatHub");
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

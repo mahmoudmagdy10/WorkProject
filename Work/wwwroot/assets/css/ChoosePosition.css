@@ -1,0 +1,45 @@
+.navbar-nav.ms-auto a
+{
+    color: black;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.rounded-32
+{
+    border-bottom-left-radius: 22px !important;
+    border-bottom-right-radius: 22px !important;
+}
+
+
+
+
+.rounded-15
+{
+    border-radius: 1.1rem !important;
+}
+
+
+.nav-link
+{
+    margin: 0 10px;
+    color: rgba(0, 0, 0, 0.596) !important;
+    position: relative;
+}
+
+.nav-link::after
+{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width:0px;
+    height: 1px ;
+    background-color: #c59035;
+    transition: 0.5s 0.1s width;
+}
+.nav-link:hover::after
+{
+    width: 100%;
+}
+
+

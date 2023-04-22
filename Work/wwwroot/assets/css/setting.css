@@ -1,0 +1,15 @@
+
+.ChooseLinkOfSetting a
+{
+    color: black;
+    text-decoration: none;
+}
+.ChooseLinkOfSetting a:hover
+{
+    color: #C59035;
+}
+.ChooseLinkOfSetting li
+
+{
+    margin: 15px 0;
+}

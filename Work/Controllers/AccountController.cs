@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Work.BL.Models;
 using Microsoft.AspNetCore.Authorization;
+using Work.BL.Interface;
 
 namespace Work.Controllers
 {
@@ -11,13 +12,17 @@ namespace Work.Controllers
         #region Fields
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly IRolesRep role;
+        private readonly RoleManager<IdentityRole> roleManager;
         #endregion
 
         #region Ctor
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IRolesRep role, RoleManager<IdentityRole> roleManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.role = role;
+            this.roleManager = roleManager;
         }
         #endregion
 
@@ -25,8 +30,9 @@ namespace Work.Controllers
         #region Register
 
         [HttpGet]
-        public IActionResult Register()
+        public IActionResult Register(string role)
         {
+            ViewBag.RegisterAs = role;
             return View();
         }
 
@@ -41,15 +47,21 @@ namespace Work.Controllers
                     var user = new ApplicationUser()
                     {
 
-                        UserName = obj.Email,
+                        UserName = obj.UserName,
                         Email = obj.Email,
-                        IsAgree = obj.IsAgree
                     };
-
                     var AddUser = await userManager.CreateAsync(user, obj.Password);
 
                     if (AddUser.Succeeded)
                     {
+                        var CreatedUser = await userManager.FindByEmailAsync(obj.Email);
+                        var userVM = new UserInRoleVM()
+                        {
+                            UserId = CreatedUser.Id,
+                            RoleName = obj.RegisterAs,
+                        };
+                        await role.AddRoleToUser(userVM);
+
                         return RedirectToAction("Login");
                     }
                     else
@@ -73,8 +85,16 @@ namespace Work.Controllers
         #region LogIn
 
         [HttpGet]
-        public IActionResult Login()
+        public async Task<IActionResult> Login()
         {
+            var Auth = signInManager.IsSignedIn(User);
+            if (Auth == true) 
+            {
+                var AuthUser = await userManager.FindByEmailAsync(User.Identity.Name);
+                return RedirectToAction("HomePage", new RouteValueDictionary(new { controller = "Home", action = "HomePage", UserId = AuthUser.Id }));
+
+            }
+
             return View();
         }
 
@@ -90,7 +110,10 @@ namespace Work.Controllers
 
                     if (CheckPassword.Succeeded)
                     {
-                        return RedirectToAction("Index", "Home");
+                        TempData["UserId"] = User.Id;
+                        return RedirectToAction("HomePage", new RouteValueDictionary(new { controller = "Home", action = "HomePage", UserId = User.Id }));
+
+                        //return RedirectToAction("HomePage", "Home");
                     }
                     else
                     {
@@ -118,6 +141,7 @@ namespace Work.Controllers
 
 
         #endregion
+
 
     }
 }

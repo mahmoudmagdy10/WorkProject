@@ -1,0 +1,55 @@
+.layer {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background-image: url("../images/Student1.png");
+}
+.layer::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url("../images/Student1.png");
+    opacity: 0.1;
+    z-index: -1;
+    background-position: 100%;
+    background-size: cover;
+}
+
+
+.nav-link
+{
+    margin: 0 10px;
+    color: rgba(0, 0, 0, 0.596) !important;
+    position: relative;
+}
+
+.nav-link::after
+{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width:0px;
+    height: 1px ;
+    background-color: #c59035;
+    transition: 0.5s 0.1s width;
+}
+.nav-link:hover::after
+{
+    width: 100%;
+}
+
+
+@media only screen and (min-width: 0px) and (max-width: 950px)
+{
+    .WithGradbest
+    {
+      width: 100% !important;   
+    }
+}
+    

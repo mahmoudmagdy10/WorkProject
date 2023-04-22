@@ -1,0 +1,22 @@
+.bg-main-color ,.btn-bg-main
+{
+    background-color: #c59035;
+    border-radius: 30px;
+}
+
+
+.btn-bg-main
+ {
+
+    color: white;
+    padding: 10px 35px;
+}
+.btn-Addpost
+{
+    margin: 12px;
+    text-align: end;
+    padding: 3px 20px;
+    background: white;
+    border-radius: 33px;
+    border: none;
+}

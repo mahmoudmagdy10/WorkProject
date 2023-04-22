@@ -1,0 +1,143 @@
+.m-10
+{
+    width: 12%;
+}
+
+
+
+.input-group.mb-3
+{
+
+    box-shadow: 4px 9px 8px -12px black;
+}
+
+.rounded-50
+{
+   border-radius: 41px;
+
+}
+
+body
+{
+    font-family: 'Roboto Slab', serif !important;
+}
+ 
+.main-bg-color 
+{
+    background:  #C58F35 !important;
+    color:white !important ;
+} 
+
+
+
+
+.main-color
+{
+    color:  #C58F35;
+}
+
+
+
+
+
+@media only screen and (max-width: 600px)
+ {
+
+
+
+
+    .containerOfInputsSignUp
+    {
+        width: 100% !important;
+    }
+    .navbar > .container, .navbar > .container-fluid
+    {
+        justify-content: center;
+    }
+
+    .col-lg-12 span
+    {
+        background-color: rgba(61, 57, 57, 0.165) !important;
+        font-size: 1.3rem ;
+        font-weight: 500;
+
+    }
+
+    .col-lg-12 .input-group  input,
+    .col-lg-12 .input-group  span
+    {   
+        width: 100% !important;
+   
+    }
+
+    .col-lg-12 .input-group  span
+
+    {
+        margin: 5px 0;
+    } 
+    .row.py-5 , .container.py-5
+    {
+        padding-top:20px !important ;
+    }
+
+     .container.py-5
+    {
+        padding-bottom: 0 !important;
+
+    }
+    .col-lg-11 ,.row.py-5 
+    {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+
+    }
+    .col-lg-11 button
+    {
+        margin: 10px 0;
+    }
+
+
+
+
+}
+
+
+
+@media only screen and (min-width: 600px) and (max-width: 750px)
+{
+    .input-group-text
+    {
+        width: 30%;
+    }
+}
+
+
+@media only screen and (min-width: 750px) and (max-width: 950px)
+{
+    .input-group-text
+    {
+        width: 25%;
+    }
+}
+@media only screen and (min-width: 950px)
+{
+    .input-group-text
+    {
+        width: 20%;
+    }
+}
+
+
+@media only screen and (min-width: 1000px)
+{
+    .input-group-text
+    {
+    width: 15%;
+    }
+}
+
+a[href="Register.html"]:hover , a[href="Login.html"]:hover 
+{
+    color:  #a46d0d !important ;
+
+}

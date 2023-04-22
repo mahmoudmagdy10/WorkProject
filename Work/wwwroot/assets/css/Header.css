@@ -1,0 +1,70 @@
+.navbar a
+{
+    color: black !important;
+}
+
+.navLink
+{
+    position: relative !important;
+
+}
+.active 
+{
+    margin-top:1px ;
+    border-bottom: 2px solid #C59035;
+
+}
+
+
+
+.navLink:not(.active)::after
+{
+    content: "";
+    position: absolute !important;
+    left:0px ;
+    bottom: 0px;
+    width: 0;
+    height: 2px;
+    background-color: #C59035;
+    transition: 0.5s 0.2s width; 
+}
+.navLink:hover::after
+{
+    width: 100%;
+
+}
+
+
+.ProfilePhoto
+{
+    width: 50px !important; 
+    border-radius: 50% !important;
+
+}
+.nav-link.dropdown-toggle.show
+{
+    text-align: center !important;
+
+}
+@media screen and (max-width:991px)
+{
+.dropdown-menu.show
+{
+
+    transform: translateX(5%) !important;
+}
+    
+}
+
+@media screen and (min-width:991px) {
+    .dropdown-menu.show
+{
+    transform: translateX(-60%) !important;
+    width: 44% !important;
+}
+}
+
+.navbar-toggler 
+{
+    box-shadow: none !important;
+}

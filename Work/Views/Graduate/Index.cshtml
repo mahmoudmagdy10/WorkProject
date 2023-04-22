@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Work.BL.Models.ProjectVM>;
+
+@inject Work.BL.Interface.IProjectAttachmentsRep ProjectAttachmentsRep;
+
+@{
+    ViewData["Title"] = "Projects";
+    var UserId = TempData["UserId"];
+}
+
+@section css
+    {
+    <link rel="stylesheet" href="~/assets/css/HomePage.css">
+}
+
+<form>
+
+    @foreach (var project in Model)
+    {
+        <div style="border:1px solid; padding:10px">
+            <div class="col-lg-12">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" asp-for="@project.Title" readonly>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" asp-for="@project.Description" readonly>
+                </div>
+            </div>
+        </div>
+    }
+
+</form>
+
+@section js
+    {
+    <script src="~/assets/js/jqu.js"></script>
+    <script src="~/assets/js/action.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+}

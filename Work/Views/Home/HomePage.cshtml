@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using Work.DAL.Extend;
+@inject SignInManager<ApplicationUser> signInManager
+
+@{
+    ViewData["Title"] = "Home Page";
+    var UserId = TempData["UserId"];
+}
+
+@section css{
+
+    <link rel="stylesheet" href="~/assets/css/HomePage.css">
+}
+
+      <div class="LayerPageHome">
+
+        <div class="w-100 vh-100 d-flex align-items-center justify-content-center">
+            <div>
+              <h3>Your project is your FUTURE</h3>
+
+            @if (signInManager.IsSignedIn(User) && User.IsInRole("Student"))
+            {
+                <div class="text-center mt-4">
+                    <button class="btn-bg-main btn "><a asp-controller="Specialist" asp-action="Index" asp-route-UserId="@UserId" class="text-white text-decoration-none">Add Enquery <i class="fa-solid fa-plus fa-beat fa-lg mx-1"></i></a></button>
+                </div>
+                
+            }
+
+            @if (signInManager.IsSignedIn(User) && User.IsInRole("Graduate"))
+            {
+                <div class="text-center mt-4">
+                    <button class="btn-bg-main btn "><a asp-controller="Graduate" asp-action="CreateProject" asp-route-UserId="@UserId" class="text-white text-decoration-none">Add Project <i class="fa-solid fa-plus fa-beat fa-lg mx-1"></i></a></button>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <a asp-controller="Graduate" asp-action="Index"><button class="btn-bg-main btn">Show Projects</button></a>
+                </div>
+
+@*                <div class="text-center mt-4">
+                    <a class="btn-bg-main btn " asp-controller="Chat" asp-action="Index">Chat Page</a>
+                </div>*@
+            }
+            
+            @if (signInManager.IsSignedIn(User) && User.IsInRole("Specialist"))
+            {
+                <div class="text-center mt-4">
+                    <button class="btn-bg-main btn "><a asp-controller="Specialist" asp-action="Index" asp-route-UserId="@UserId" class="text-white text-decoration-none">Reply Enquery <i class="fa-solid fa-plus fa-beat fa-lg mx-1"></i></a></button>
+                </div>
+
+            }
+            @if (signInManager.IsSignedIn(User) && User.IsInRole("Investor"))
+            {
+                <div class="text-center mt-4">
+                    <button class="btn-bg-main btn "><a asp-controller="InvestorController" asp-action="Index" asp-route-UserId="@UserId" class="text-white text-decoration-none">Buy Project <i class="fa-solid fa-plus fa-beat fa-lg mx-1"></i></a></button>
+                </div>
+
+            }
+
+
+        </div>
+    </div>
+</div>
+

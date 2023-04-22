@@ -32,6 +32,12 @@ namespace Work.BL.Repository
             var data = await userManager.FindByIdAsync(id);
             return data;
         }
+        
+        public async Task<ApplicationUser> GetByName(string Name)
+        {
+            var data = await userManager.FindByNameAsync(Name);
+            return data;
+        }
 
         public async Task<ApplicationUser> Create(RegisterVM obj)
         {

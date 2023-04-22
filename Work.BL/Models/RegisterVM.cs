@@ -9,6 +9,9 @@ namespace Work.BL.Models
 {
     public class RegisterVM
     {
+        [Required]
+        public string RegisterAs { get; set; }
+        
         [Required(ErrorMessage = "This Field Is Required")]
         public string UserName { get; set; }
         

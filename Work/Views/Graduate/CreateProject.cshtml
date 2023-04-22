@@ -1,0 +1,61 @@
+﻿@model Work.BL.Models.ProjectVM
+
+@inject Work.BL.Interface.IProjectRep ProjectRep;
+
+@{
+    ViewData["Title"] = "Create Project";
+    var UserId = TempData["UserId"];
+}
+
+@section css
+    {
+    <link rel="stylesheet" href="~/assets/css/HomePage.css">
+}
+
+
+<form asp-controller="Graduate" asp-action="CreateProject" enctype="multipart/form-data">
+
+    <input type="hidden" class="form-control" asp-for="UserId" value="@UserId">
+
+    <div class="col-lg-12">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" asp-for="Title" autofocus>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" asp-for="Description" >
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" asp-for="Budget" >
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="input-group mb-3">
+            <bold>Project</bold>
+            <input type="file" class="form-control" asp-for="Project" >
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="input-group mb-3">
+            <bold>Paper</bold>
+            <input type="file" class="form-control" asp-for="Paper" >
+        </div>
+    </div>
+
+    <div class="col-lg-11 m-auto pt-2 pb-3">
+        <input class="btn btn-Primary" type="submit" value="Upload">
+    </div>
+</form>
+
+@section js
+    {
+    <script src="~/assets/js/jqu.js"></script>
+    <script src="~/assets/js/action.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+}

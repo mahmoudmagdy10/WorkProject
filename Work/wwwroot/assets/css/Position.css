@@ -1,0 +1,16 @@
+.rounded-32 {
+    border-bottom-left-radius: 22px !important;
+    border-bottom-right-radius: 22px !important;
+}
+
+.rounded-15 {
+    border-radius: 1.1rem !important;
+}
+
+
+
+@media screen and (min-width:750px) {
+    .layer {
+        height: 100vh;
+    }
+}

@@ -1,0 +1,72 @@
+﻿
+@model Work.BL.Models.PostVM
+
+@inject Work.BL.Interface.IPostRep PostRep;
+@inject Work.BL.Interface.IReplyRep ReplyRep;
+
+@{
+    ViewData["Title"] = "Posts";
+    var UserId = TempData["UserId"];
+}
+
+@section css
+{
+    <link rel="stylesheet" href="~/assets/css/AddPost.css">
+}
+
+
+<form asp-controller="Student" asp-action="CreatePost">
+
+    <input type="hidden" class="form-control" asp-for="UserId" value="@UserId">
+    <input type="hidden" class="form-control" asp-for="UserEmail" value="@User.Identity.Name">
+
+    <div class="addPost p-4 bg-main-color w-50 m-auto text-center">
+        <textarea asp-for="Content" class="form-control w-100"></textarea>
+        <div class="text-end">
+            <input class="btn-Addpost" type="submit" value="Post">
+        </div>
+    </div>
+
+</form>
+
+@*<div class="col-lg-12" style="border:1px solid">
+    @foreach (var post in PostRep.Get(a=>a.UserId == UserId))
+    {
+        <div style="border:1px solid">
+            <h3>@post.Title</h3>
+            <p>@post.Content</p>
+        </div>
+
+        @foreach (var reply in ReplyRep.Get(a => a.PId == post.Id))
+        {
+            <div style="color:firebrick">
+                <p>@reply.Content</p>
+            </div>
+        }
+        <div>
+            <form asp-controller="Specialist" asp-action="AddReply">
+
+                <input type="hidden" class="form-control" asp-for="UserId" value="@UserId">
+                <input type="hidden" class="form-control" asp-for="PId" value="@post.Id">
+                <input type="hidden" class="form-control" asp-for="UserEmail" value="@User.Identity.Name">
+
+                <div class="col-lg-12">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" asp-for="Content" autofocus>
+                    </div>
+                </div>
+
+                <div class="col-lg-11 m-auto pt-2 pb-3">
+                    <input class="btn btn-Primary" type="submit" value="Add">
+                </div>
+            </form>
+        </div>
+    }
+</div>
+*@
+@section js
+{
+    <script src="~/assets/js/jqu.js"></script>
+    <script src="~/assets/js/action.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+}

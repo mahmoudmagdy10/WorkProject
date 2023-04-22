@@ -1,0 +1,63 @@
+﻿@inject Work.BL.Interface.IUserRep UserRep;
+@inject Work.BL.Interface.IChatRep ChatRep;
+@{
+    ViewData["Title"] = "Chat Page";
+    var UserEmail = ViewBag.UserEmail;
+    //var UserName = ViewBag.User;
+}
+
+<div class="container">
+    <div class="row">&nbsp;</div>
+    @*<div class="row">
+    <div class="col-2">Sender</div>
+    <div class="col-4"><input type="text" id="userInput" /></div>
+    </div>*@
+    <input type="hidden" id="userId" value="@User.Identity.Name" />
+
+    <div class="row">
+        <div class="col-2">Receiver</div>
+        <input id="receiverInput" value="@UserEmail" readonly>
+    </div>
+    <div class="row">
+        <div class="col-2">Message</div>
+        <div class="col-4"><input type="text" id="messageInput" /></div>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-6">
+            <input type="button" id="sendButton" value="Send Message" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <ul id="messagesList">
+            <li><b style="color:red">Messages : - </b></li>
+            @foreach (var chat in ChatRep.Get().Where(a => a.SenderName == User.Identity.Name).Where(a => a.RecieverName == UserEmail))
+            {
+                if (chat.SenderName == User.Identity.Name)
+                {
+                    <li style="color:forestgreen">@chat.Message</li>
+                }
+                else
+                {
+                    <li style="color:blue">@chat.Message</li>
+
+                }
+            }
+        </ul>
+
+    </div>
+</div>
+@section js
+
+    {
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
+}

@@ -1,0 +1,39 @@
+header {
+    background-image: url("../images/Student1.png");
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.layer
+{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+.layer::after
+{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url("../images/Student1.png");
+    opacity: 0.1;
+    z-index: -1;
+    background-position: 100%;
+    background-size: cover;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 950px)
+{
+    .WithGradbest
+    {
+      width: 100% !important;   
+    }
+}
+    

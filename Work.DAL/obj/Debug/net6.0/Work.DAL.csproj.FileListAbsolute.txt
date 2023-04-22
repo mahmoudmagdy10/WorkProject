@@ -12,3 +12,17 @@ C:\Users\migo\source\repos\Work.DAL\obj\Debug\net6.0\refint\Work.DAL.dll
 C:\Users\migo\source\repos\Work.DAL\obj\Debug\net6.0\Work.DAL.pdb
 C:\Users\migo\source\repos\Work.DAL\obj\Debug\net6.0\Work.DAL.genruntimeconfig.cache
 C:\Users\migo\source\repos\Work.DAL\obj\Debug\net6.0\ref\Work.DAL.dll
+E:\Courses\.NET\Prijects\WorkProject\Work.DAL\bin\Debug\net6.0\Work.DAL.deps.json
+E:\Courses\.NET\Prijects\WorkProject\Work.DAL\bin\Debug\net6.0\Work.DAL.runtimeconfig.json
+E:\Courses\.NET\Prijects\WorkProject\Work.DAL\bin\Debug\net6.0\Work.DAL.dll
+E:\Courses\.NET\Prijects\WorkProject\Work.DAL\bin\Debug\net6.0\Work.DAL.pdb
+E:\Courses\.NET\Prijects\WorkProject\Work.DAL\obj\Debug\net6.0\Work.DAL.csproj.AssemblyReference.cache
+E:\Courses\.NET\Prijects\WorkProject\Work.DAL\obj\Debug\net6.0\Work.DAL.GeneratedMSBuildEditorConfig.editorconfig
+E:\Courses\.NET\Prijects\WorkProject\Work.DAL\obj\Debug\net6.0\Work.DAL.AssemblyInfoInputs.cache
+E:\Courses\.NET\Prijects\WorkProject\Work.DAL\obj\Debug\net6.0\Work.DAL.AssemblyInfo.cs
+E:\Courses\.NET\Prijects\WorkProject\Work.DAL\obj\Debug\net6.0\Work.DAL.csproj.CoreCompileInputs.cache
+E:\Courses\.NET\Prijects\WorkProject\Work.DAL\obj\Debug\net6.0\Work.DAL.dll
+E:\Courses\.NET\Prijects\WorkProject\Work.DAL\obj\Debug\net6.0\refint\Work.DAL.dll
+E:\Courses\.NET\Prijects\WorkProject\Work.DAL\obj\Debug\net6.0\Work.DAL.pdb
+E:\Courses\.NET\Prijects\WorkProject\Work.DAL\obj\Debug\net6.0\Work.DAL.genruntimeconfig.cache
+E:\Courses\.NET\Prijects\WorkProject\Work.DAL\obj\Debug\net6.0\ref\Work.DAL.dll

@@ -1,0 +1,47 @@
+
+header
+{
+    background-image: url("../Image/Web\ 1920\ –\ 1.png"); 
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+
+.nav-link
+{
+    margin: 0 10px;
+    color: rgb(255, 255, 255) !important;
+    position: relative;
+}
+
+.nav-link::after
+{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width:0px;
+    height: 1px ;
+    background-color: #c59035;
+    transition: 0.5s 0.1s width;
+}
+.nav-link:hover::after
+{
+    width: 100%;
+}
+.nav-link:hover
+{
+    color: rgba(0, 0, 0, 0.559) !important;
+}
+
+.btn-bg-main
+{
+    background-color:#c59035;
+    color: white;
+    padding: 10px 35px ;
+    border-radius: 30px;
+}
+.btn-bg-main:hover
+{
+    color: white;
+}

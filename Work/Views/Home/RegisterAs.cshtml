@@ -1,0 +1,122 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register As </title>
+    <!-- name of website -->
+    <link href="~/assets/css/all.min.css" rel="stylesheet">
+    <!--calling file of fontawsome  -->
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <!-- calling file of css boostrap -->
+    <link rel="stylesheet" href="~/assets/css/Position.css">
+    <!-- calling file of style by developer -->
+
+    <link rel="stylesheet" href="~/assets/css/SharedFile.css">
+
+    <!-- shared file  -->
+    <!-- Link Of Fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+    <header>
+        <div class="d-flex justify-content-center align-items-center layer">
+
+            <div class="container">
+                <div class="row">
+                    <div class="d-flex justify-content-center align-items-center layer">
+
+                        <div class="container">
+                            <div class="row">
+
+                                <div class=" col-sm-6 col-md-4 col-lg-3">
+                                    <div class="card rounded-15">
+                                        <a href="" class="text-decoration-none text-black">
+                                            <div class="imgPositionToLogin">
+                                                <a asp-controller="Account" asp-action="Register" asp-route-role="Student">
+                                                    <img src="~/assets/images/student.jpg" class="card-img-top w-100 rounded-32" alt="...">
+                                                </a>
+
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">Student</h5>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class=" col-sm-6 col-md-4 col-lg-3">
+                                    <div class="card rounded-15">
+                                        <a class="text-decoration-none text-black" asp-controller="Account" asp-action="Register" asp-route-role="Specialist">
+                                            <div class="imgPositionToLogin">
+                                                <a href="Register.html">
+                                                    <img src="~/assets/images/Speacial.png"
+                                                         class="card-img-top w-100 rounded-32" alt="...">
+                                                </a>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">Specialist</h5>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class=" col-sm-6 col-md-4 col-lg-3">
+                                    <div class="card rounded-15">
+                                        <a href="" class="text-decoration-none text-black">
+                                            <div class="imgPositionToLogin">
+                                                <a asp-controller="Account" asp-action="Register" asp-route-role="Graduate">
+                                                    <img src="~/assets/images/Graduated.png"
+                                                         class="card-img-top w-100 rounded-32" alt="...">
+                                                </a>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">Graduate</h5>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class=" col-sm-6 col-md-4 col-lg-3">
+                                    <div class="card rounded-15">
+                                        <a asp-controller="Account" asp-action="Register" asp-route-role="Investor" class="text-decoration-none text-black">
+                                            <div class="imgPositionToLogin">
+                                                <a href="Register.html">
+                                                    <img src="~/assets/images/investore.png"
+                                                         class="card-img-top w-100 rounded-32" alt="...">
+                                                </a>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">Investor</h5>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <script src="~/assets/js/jqu.js"></script>
+    <script src="~/assets/js/action.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

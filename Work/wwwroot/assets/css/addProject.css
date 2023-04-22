@@ -1,0 +1,84 @@
+
+    
+    
+.bg-main-color {
+    background-color: #C59035;
+    border-radius: 32px;
+}
+
+.form-control {
+    border-radius: 32px;
+}
+
+.Decsc-TesctArea {
+    width: 100%;
+    height: 90%;
+}
+
+
+.UploadFile {
+    width: 100%;
+    background-color: aliceblue;
+    border-radius: 30px;
+    height: 45% !important;
+}
+
+.Post {
+    border: none;
+    padding: 5px 30px;
+    background-color: white;
+    border-radius: 30px;
+
+}
+
+.vh-50 {
+    height: 25vh;
+    display: flex;
+    align-items: start;
+    width: 100%;
+    border-radius: 30px;
+    padding: 40px 0;
+}
+
+.vh-50>div {
+    width: 100%;
+}
+
+
+
+
+@media screen and (min-width:0px) and (max-width:750px) {
+    .vh-50 
+    {
+        height: 70vh;
+    }
+
+    .UploadFile {
+        width: 100%;
+        height: 126px;
+    }
+
+
+    .Decsc-TesctArea
+    {
+        height: 40%;
+    }
+    
+    .UploadFile 
+    {
+        height: 45% !important;
+    }
+}
+
+@media screen and (min-width:900px)
+ {
+    .vh-50 
+    {
+
+        padding: 20px 0;
+        align-items: start;
+    }
+
+    
+
+}

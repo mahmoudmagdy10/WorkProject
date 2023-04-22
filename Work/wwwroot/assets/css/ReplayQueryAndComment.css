@@ -1,0 +1,90 @@
+.containerEnquery
+{
+    width: 100%;
+    min-height: 100px;
+    color: #ffff;
+    background-color:#C59035 ;
+    border-radius: 32px;
+}
+.btn-main-bg-white
+{
+    padding: 10px 20px;
+    background-color: rgb(242, 242, 242);
+    border-radius: 30px;
+    border: none;
+}
+.DataOfPersoneOfGraduated
+{
+    top: 0;
+    left: 50% !important;
+    transform: translate(-50%,-50%);
+}
+.col-lg-12
+{
+    margin: 30px 0;
+}
+
+@media screen and (min-width:0px) and (max-width:749px)
+{
+    .text-black.mx-2
+    {
+        font-size: 14px;
+    }
+    .input-group
+    {
+        flex-direction: column;
+    }
+    .input-group input,.input-group button
+    {
+        width: 100% !important;
+        margin: 5px 0;
+    }
+    #ButtonChat
+    {
+        margin: auto;
+        width: 50% !important ;
+    }
+
+
+}
+
+@media screen and (min-width:0px) and (max-width:750px)
+{
+    .containerEnquery
+    {
+        text-align: center;
+    }
+    .containerEnquery .col-lg-3
+    {
+        text-align: center !important;
+        margin-top: 17px;
+    }
+
+    .DataOfPersoneOfGraduated
+    {
+        transform: translate(-50%,-50%);
+
+    }
+
+}
+
+.btn-main-color
+{
+
+    background-color: #986102 !important;
+    color: white;
+}
+.btn-main-color:hover
+{
+
+    background-color: #d89117 !important;
+}
+.radius-32
+{
+    border-radius: 32px;
+}
+#commentConatiner,
+.btn-chat
+{
+    background-color: #333456 !important;
+}
