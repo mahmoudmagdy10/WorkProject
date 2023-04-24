@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using Work.BL.Interface;
 using Work.BL.Models;
 
 namespace Work.Controllers
 {
+    [Authorize(Roles = "Student,Specialist")]
     public class SpecialistController : Controller
     {
         #region Fields
@@ -32,6 +35,7 @@ namespace Work.Controllers
             TempData["UserId"] = UserId;
             return View();
         }
+
         [HttpPost]
         public IActionResult AddReply(PostVM model)
         {

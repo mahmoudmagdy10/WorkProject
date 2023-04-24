@@ -72,7 +72,7 @@ if(targetEmail.value=='' ||targetPassword.value==''||targetEmail.classList.conta
 else 
 {   
     
-    LoginBtn.setAttribute("href","Profile.html")
+    LoginBtn.setAttribute("href","GraduitedHomePage.html")
     LoginBtn.click();
 
 }

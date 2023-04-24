@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\Files\\PaperAttachments\\18de5083-920a-490c-96a7-966b25ee5655cv (1).pdf",
+      "PackagePath": "staticwebassets\\Files\\PaperAttachments\\18de5083-920a-490c-96a7-966b25ee5655cv (1).pdf"
+    },
+    {
       "Id": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\Files\\PaperAttachments\\3ffc0ed0-ec63-4640-b9a9-65696f3db9ffimages.png",
       "PackagePath": "staticwebassets\\Files\\PaperAttachments\\3ffc0ed0-ec63-4640-b9a9-65696f3db9ffimages.png"
     },
@@ -9,8 +13,28 @@
       "PackagePath": "staticwebassets\\Files\\PaperAttachments\\7a014ac3-dc01-4471-aee0-87629b9a7f4cimages.png"
     },
     {
+      "Id": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\Files\\PaperAttachments\\a95ef2d8-d9b2-4c8e-92f3-5a90196f05a0cv (1).pdf",
+      "PackagePath": "staticwebassets\\Files\\PaperAttachments\\a95ef2d8-d9b2-4c8e-92f3-5a90196f05a0cv (1).pdf"
+    },
+    {
+      "Id": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\Files\\PaperAttachments\\ffdfbe22-f261-4758-b8b5-fb5cd152e1abimages.png",
+      "PackagePath": "staticwebassets\\Files\\PaperAttachments\\ffdfbe22-f261-4758-b8b5-fb5cd152e1abimages.png"
+    },
+    {
+      "Id": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\Files\\ProjectAttachments\\0e23d29d-1fbc-4496-9e14-e81b684f4135d.png",
+      "PackagePath": "staticwebassets\\Files\\ProjectAttachments\\0e23d29d-1fbc-4496-9e14-e81b684f4135d.png"
+    },
+    {
+      "Id": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\Files\\ProjectAttachments\\a1c19225-b853-4472-8572-3904a6961a30cv (1).pdf",
+      "PackagePath": "staticwebassets\\Files\\ProjectAttachments\\a1c19225-b853-4472-8572-3904a6961a30cv (1).pdf"
+    },
+    {
       "Id": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\Files\\ProjectAttachments\\b8ea8072-a674-47aa-ab6f-66b480402d9dcv (1).pdf",
       "PackagePath": "staticwebassets\\Files\\ProjectAttachments\\b8ea8072-a674-47aa-ab6f-66b480402d9dcv (1).pdf"
+    },
+    {
+      "Id": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\Files\\ProjectAttachments\\cac2fa67-96e8-4e8c-a673-44290c4b3f87mm.jpg",
+      "PackagePath": "staticwebassets\\Files\\ProjectAttachments\\cac2fa67-96e8-4e8c-a673-44290c4b3f87mm.jpg"
     },
     {
       "Id": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\assets\\css\\AddPost.css",
@@ -161,8 +185,8 @@
       "PackagePath": "staticwebassets\\assets\\images\\student.jpg"
     },
     {
-      "Id": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\assets\\js\\Login.JS",
-      "PackagePath": "staticwebassets\\assets\\js\\Login.JS"
+      "Id": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\assets\\js\\Login.js",
+      "PackagePath": "staticwebassets\\assets\\js\\Login.js"
     },
     {
       "Id": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\assets\\js\\Register.js",
@@ -173,8 +197,12 @@
       "PackagePath": "staticwebassets\\assets\\js\\action.js"
     },
     {
-      "Id": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\assets\\js\\addPost",
-      "PackagePath": "staticwebassets\\assets\\js"
+      "Id": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\assets\\js\\addPost.js",
+      "PackagePath": "staticwebassets\\assets\\js\\addPost.js"
+    },
+    {
+      "Id": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\assets\\js\\addProject.js",
+      "PackagePath": "staticwebassets\\assets\\js\\addProject.js"
     },
     {
       "Id": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\assets\\js\\bootstrap.bundle.min.js",

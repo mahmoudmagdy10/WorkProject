@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "UWnBPS/47YEbLZFJzz6+/p2/8OYzCDy41Z5J0COattzq5B/GbqUqlMqDjnxqEq/W7YR2aWAohJao0ATEqX+zbg==",
+  "dgSpecHash": "cOvSylxYyWmfZ4WUZINQZn6o9Qu6dCksQ+KHZL0dfGpFvE9D3MNkdj2JQ0gftJ/4oXJ34cHY+fNpR7YNh2jwQg==",
   "success": true,
   "projectFilePath": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\Work.csproj",
   "expectedPackageFiles": [
@@ -36,6 +36,7 @@
     "C:\\Users\\migo\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
     "C:\\Users\\migo\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\migo\\.nuget\\packages\\microsoft.extensions.dependencymodel\\7.0.0\\microsoft.extensions.dependencymodel.7.0.0.nupkg.sha512",
+    "C:\\Users\\migo\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\7.0.0\\microsoft.extensions.fileproviders.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\migo\\.nuget\\packages\\microsoft.extensions.identity.core\\6.0.16\\microsoft.extensions.identity.core.6.0.16.nupkg.sha512",
     "C:\\Users\\migo\\.nuget\\packages\\microsoft.extensions.identity.stores\\6.0.16\\microsoft.extensions.identity.stores.6.0.16.nupkg.sha512",
     "C:\\Users\\migo\\.nuget\\packages\\microsoft.extensions.logging\\7.0.0\\microsoft.extensions.logging.7.0.0.nupkg.sha512",

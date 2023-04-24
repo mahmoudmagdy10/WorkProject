@@ -20,9 +20,25 @@
     width: 100%;
     background-color: aliceblue;
     border-radius: 30px;
-    height: 45% !important;
+    height: 120px;
+}
+@media screen and (min-width:0) and (max-width:750px)
+{
+     .col-lg-6:first-child .UploadFile
+    {
+        max-height: 50px !important;
+    } 
+    .UploadFile>div
+    {
+        padding: 0;
+    } 
+
 }
 
+.UploadFile textarea
+{
+    height: 100% !important;
+}
 .Post {
     border: none;
     padding: 5px 30px;
@@ -31,54 +47,43 @@
 
 }
 
-.vh-50 {
-    height: 25vh;
-    display: flex;
-    align-items: start;
-    width: 100%;
-    border-radius: 30px;
-    padding: 40px 0;
+
+
+
+
+@media screen and (min-width:0px) and (max-width:750px) 
+{
+    .UploadFile.UploadFile.h-75
+    {
+        padding: 10px !important;
+    }
+    .UploadFile.h-75>div
+    {
+        flex-direction: column;
+        padding:10px 0;
+    }
+
+.Budeget
+{
+    width: 100% !important;
 }
 
-.vh-50>div {
-    width: 100%;
 }
 
 
 
-
-@media screen and (min-width:0px) and (max-width:750px) {
-    .vh-50 
-    {
-        height: 70vh;
-    }
-
-    .UploadFile {
-        width: 100%;
-        height: 126px;
-    }
-
-
-    .Decsc-TesctArea
-    {
-        height: 40%;
-    }
-    
-    .UploadFile 
-    {
-        height: 45% !important;
-    }
+.bg-BlueDark
+{
+    background-color:#333456;
 }
 
-@media screen and (min-width:900px)
- {
-    .vh-50 
-    {
+i[class~="fa-solid"]
+{
+    cursor: pointer;
+}
 
-        padding: 20px 0;
-        align-items: start;
-    }
-
-    
-
+.SizeCutomize
+{
+    width: fit-content;
+    margin: auto;
 }

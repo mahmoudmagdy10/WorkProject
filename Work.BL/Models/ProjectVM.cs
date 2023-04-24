@@ -21,6 +21,7 @@ namespace Work.BL.Models
         public string Description { get; set; }
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
+
         public IFormFile Paper { get; set; }
         public IFormFile Project { get; set; }
         public int Budget { get; set; }

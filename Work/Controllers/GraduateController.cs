@@ -29,6 +29,8 @@ namespace Work.Controllers
         public IActionResult Index()
         {
             var data = project.Get();
+            var attachments = projectAttachments.Get();
+            ViewBag.attachments = attachments;
             return View(data);
         }
         
@@ -56,6 +58,41 @@ namespace Work.Controllers
                 return RedirectToAction("CreateProject", new RouteValueDictionary(new { controller = "Graduate", action = "CreateProject", UserId = model.UserId }));
 
             }
+        }
+
+
+        public async Task<IActionResult> DownloadFile(string fileName, string type)
+        {
+            if (string.IsNullOrEmpty(fileName) || fileName == null)
+            {
+                return Content("File Name is Empty...");
+            }
+
+            string filePath;
+
+            if (type == "Paper")
+            {
+                // get the filePath
+                filePath = Path.Combine(Directory.GetCurrentDirectory(), "/wwwroot/Files/PaperAttachments", fileName);
+            }
+            else
+            {
+                filePath = Path.Combine(Directory.GetCurrentDirectory(), "/wwwroot/Files/ProjectAttachments", fileName);
+
+            }
+
+            // create a memorystream
+            var memoryStream = new MemoryStream();
+
+            using (var stream = new FileStream(filePath, FileMode.Open))
+            {
+                await stream.CopyToAsync(memoryStream);
+            }
+            // set the position to return the file from
+            memoryStream.Position = 0;
+
+            return File(memoryStream, Path.GetFileName(filePath));
+
         }
         #endregion
 

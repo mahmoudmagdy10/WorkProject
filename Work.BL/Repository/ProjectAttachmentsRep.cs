@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using Work.BL.Helper;
@@ -27,31 +26,6 @@ namespace Work.BL.Repository
             this.db = db;
             this.mapper = mapper;
         }
-        #endregion
-
-        #region Methods
-        public IEnumerable<ProjectAttachmentsVM> Get(Expression<Func<ProjectAttachments, bool>> filter = null)
-        {
-            try
-            {
-                if (filter == null)
-                {
-                    var data = GetProjectAttachments();
-                    var projects = mapper.Map<IEnumerable<ProjectAttachmentsVM>>(data);
-                    return projects;
-                }
-                else
-                {
-                    var data = db.ProjectAttachments.Where(filter);
-                    var Projects = mapper.Map<IEnumerable<ProjectAttachmentsVM>>(data);
-                    return Projects;
-                }
-            }
-            catch
-            {
-                return Enumerable.Empty<ProjectAttachmentsVM>();
-            }
-        }
 
         public void Create(ProjectVM obj, int ProjectId)
         {
@@ -68,19 +42,42 @@ namespace Work.BL.Repository
             var data = mapper.Map<ProjectAttachments>(AttachmentObj);
             db.ProjectAttachments.Add(data);
             db.SaveChanges();
+                
         }
 
         public void Delete(ProjectAttachmentsVM obj)
         {
             var data = mapper.Map<ProjectAttachments>(obj);
 
-            UploadingService.RemoveFile("/wwwroot/Files/ProjectAttachments",obj.ProjectName);
+            UploadingService.RemoveFile("/wwwroot/Files/ProjectAttachments", obj.ProjectName);
             UploadingService.RemoveFile("/wwwroot/Files/PaperAttachments", obj.PaperName);
-            
+
             db.ProjectAttachments.Remove(data);
             db.SaveChanges();
         }
 
+        public IEnumerable<ProjectAttachmentsVM> Get(Expression<Func<ProjectAttachments, bool>> filter = null)
+        {
+            try
+            {
+                if (filter == null)
+                {
+                    var data = db.ProjectAttachments.Select(a => a);
+                    var projects = mapper.Map<IEnumerable<ProjectAttachmentsVM>>(data);
+                    return projects;
+                }
+                else
+                {
+                    var data = db.ProjectAttachments.Where(filter);
+                    var Projects = mapper.Map<IEnumerable<ProjectAttachmentsVM>>(data);
+                    return Projects;
+                }
+            }
+            catch
+            {
+                return Enumerable.Empty<ProjectAttachmentsVM>();
+            }
+        }
 
         public ProjectAttachmentsVM GetById(int id)
         {
@@ -88,15 +85,11 @@ namespace Work.BL.Repository
             var model = mapper.Map<ProjectAttachmentsVM>(data);
             return model;
         }
+        #endregion
+
+        #region Methods
 
         #endregion
 
-        #region Refactory Methods
-        private IQueryable<ProjectAttachments> GetProjectAttachments()
-        {
-            return db.ProjectAttachments.Select(a => a);
-        }
-
-        #endregion
     }
 }

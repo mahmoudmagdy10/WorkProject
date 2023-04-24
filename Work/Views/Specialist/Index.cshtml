@@ -23,12 +23,15 @@
 
 <div class="container " style="background-color: #f7f7f7; padding: 60px;position:relative">
     <div class="container py-5">
+
+        @if (signInManager.IsSignedIn(User) && User.IsInRole("Student"))
+        {
         <div style="position:absolute; top:20px">
             <button type="button" class="btn btn-outline-warning btn-lg btn-block" data-toggle="modal" data-target="#AddPost">
                 Add Post
             </button>
         </div>
-
+        }
         @* -------------- Show Posts --------------*@
         <div id="PostsContainer" class="row">
             @foreach (var post in Posts)
@@ -45,29 +48,29 @@
                             </div>
 
                             <div class="col-lg-3 text-end">
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Student"))
-                                {
+
                                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                   <div class="btn-group mr-2" role="group" aria-label="First group">
 
-                                    <button type="button" id="EditPostShow" class="btn btn-warning EditPostShow" style="background-color: #FF9800;" data-toggle="modal" data-target="#EditPost"
-                                        data-user_id="@post.UserId" data-post_id="@post.Id" data-post_content="@post.Content" href="#EditPost">
-                                        <i class="fa-solid fa-pen-to-square"></i> Edit
-                                    </button>
+                                        @if (signInManager.IsSignedIn(User) && User.IsInRole("Student") && post.UserEmail == User.Identity.Name)
+                                        {
+                                            <button type="button" id="EditPostShow" class="btn btn-warning EditPostShow" style="background-color: #FF9800;" data-toggle="modal" data-target="#EditPost"
+                                                data-user_id="@post.UserId" data-post_id="@post.Id" data-post_content="@post.Content" href="#EditPost">
+                                                <i class="fa-solid fa-pen-to-square"></i> Edit
+                                            </button>
 
-                                    <button type="button" id="DeletePostShow" class="btn btn-warning DeletePostShow" style="background-color: #FF9800;" data-toggle="modal" data-target="#DeletePost"
-                                            data-user_id="@post.UserId" data-post_id="@post.Id" data-post_content="@post.Content">
-                                            <i class="fa-solid fa-trash"></i> Remove
-                                    </button>
-
-                                            <button type="button" class="btn btn-warning" style="background-color: #FF9800;">
-                                        <a asp-controller="Student" asp-action="ShowPost" asp-route-PostId="@post.Id" asp-route-UserId="@UserId"> Replay</a>
-                                    </button>
+                                            <button type="button" id="DeletePostShow" class="btn btn-warning DeletePostShow" style="background-color: #FF9800;" data-toggle="modal" data-target="#DeletePost"
+                                                data-user_id="@post.UserId" data-post_id="@post.Id" data-post_content="@post.Content">
+                                                <i class="fa-solid fa-trash"></i> Remove
+                                            </button>
+                                        }
+                                        <button type="button" class="btn btn-warning" style="background-color: #FF9800;">
+                                            <a asp-controller="Student" asp-action="ShowPost" asp-route-PostId="@post.Id" asp-route-UserId="@UserId"> Replay</a>
+                                        </button>
 
                                   </div>
                                 </div>
 
-                                }
                             </div>
                         </div>
                     </div>
@@ -189,7 +192,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    @*<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>*@
     <script src="~/lib/jquery/dist/jquery.js"></script>
 
 
@@ -217,60 +219,6 @@
         });
 
     </script>
-
-
-
-@*
-    <script>
-        $(document).on('click', '#add-comment', function (e) {
-            e.preventDefault();
-            let form = this.closest("form");
-            var CommentData = new FormData(form);
-            console.log(CommentData);
-            let myUrl = 'http://localhost:5226/Student/CreatePost';
-            $.ajax({
-                type: 'POST',
-                enctype: 'multipart/form-data',
-                url: myUrl,
-                data: CommentData,
-                processData: false,
-                contentType: false,
-                cache: false,
-                success: function (data) {
-
-                    console.log(data);
-
-                    var PostsContainer = $("#PostsContainer");
-                    var ajaxPost = `
-                              <div class="col-lg-12 d-flex align-items-center containerEnquery position-relative">
-                                <div class="DataOfPersoneOfGraduated position-absolute start-0 d-flex">
-                                  <img src="~/assets/images/student.jpg" alt="" class="rounded-circle" width="50" height="50">
-                                  <h5 class="text-black mx-2">${data.UserEmail}</h5>
-                                </div>
-                                <div class="container-fluid  ">
-                                  <div class="row w-100">
-                                    <div class="col-lg-9">
-                                      ${data.Content}
-                                    </div>
-                                    <div class="col-lg-3 text-end">
-                                        <button class="btn-main-bg-white"> <a  asp-controller="Student" asp-action="ShowPost" asp-route-PostId="${data.Id}" asp-route-UserId="${data.UserId}"> Replay</a></button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                                        `;
-                    PostsContainer.prepend(ajaxPost);
-                    $("#textarea").val("");
-                },
-                error: function (reject) {
-                    console.log("No Response");
-                }
-            })
-        });
-    </script>
-
-*@
-
 
 }
 

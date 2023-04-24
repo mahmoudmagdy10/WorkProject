@@ -195,3 +195,4 @@ E:\Courses\.NET\Prijects\WorkProject\Work\bin\Debug\net6.0\Newtonsoft.Json.dll
 E:\Courses\.NET\Prijects\WorkProject\Work\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
 E:\Courses\.NET\Prijects\WorkProject\Work\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 E:\Courses\.NET\Prijects\WorkProject\Work\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+E:\Courses\.NET\Prijects\WorkProject\Work\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Newtonsoft.Json.Serialization;
 using Work.BL.Helper.Hubs;
 using Work.BL.Interface;
@@ -61,9 +62,9 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     .AddEntityFrameworkStores<WorkContext>()
     .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>(TokenOptions.DefaultProvider);
 
-
-
 // ------------------------ Identity Configrations  ------------------------------------
+
+
 builder.Services.AddSignalR();
 
 var app = builder.Build();

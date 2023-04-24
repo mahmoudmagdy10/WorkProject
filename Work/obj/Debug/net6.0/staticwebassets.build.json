@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "oEaU6XSdF0sdkwuOZIZh8Tc+Fx80yTwa4epui+x/u4Y=",
+  "Hash": "O8GZayxJFXhGa4fb9+G208N5zBils5LkeYsdil1d1jk=",
   "Source": "Work",
   "BasePath": "_content/Work",
   "Mode": "Default",
@@ -663,12 +663,12 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\action.js"
     },
     {
-      "Identity": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\assets\\js\\addPost",
+      "Identity": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\assets\\js\\addPost.js",
       "SourceId": "Work",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\",
       "BasePath": "_content/Work",
-      "RelativePath": "assets/js/addPost",
+      "RelativePath": "assets/js/addPost.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -677,7 +677,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\js\\addPost"
+      "OriginalItemSpec": "wwwroot\\assets\\js\\addPost.js"
+    },
+    {
+      "Identity": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\assets\\js\\addProject.js",
+      "SourceId": "Work",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\",
+      "BasePath": "_content/Work",
+      "RelativePath": "assets/js/addProject.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\js\\addProject.js"
     },
     {
       "Identity": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\assets\\js\\bootstrap.bundle.min.js",
@@ -714,12 +731,12 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\jqu.js"
     },
     {
-      "Identity": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\assets\\js\\Login.JS",
+      "Identity": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\assets\\js\\Login.js",
       "SourceId": "Work",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\",
       "BasePath": "_content/Work",
-      "RelativePath": "assets/js/Login.JS",
+      "RelativePath": "assets/js/Login.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -728,7 +745,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\js\\Login.JS"
+      "OriginalItemSpec": "wwwroot\\assets\\js\\Login.js"
     },
     {
       "Identity": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\assets\\js\\modal.js",
@@ -10761,6 +10778,23 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\Files\\PaperAttachments\\18de5083-920a-490c-96a7-966b25ee5655cv (1).pdf",
+      "SourceId": "Work",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\",
+      "BasePath": "_content/Work",
+      "RelativePath": "Files/PaperAttachments/18de5083-920a-490c-96a7-966b25ee5655cv (1).pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Files\\PaperAttachments\\18de5083-920a-490c-96a7-966b25ee5655cv (1).pdf"
+    },
+    {
       "Identity": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\Files\\PaperAttachments\\3ffc0ed0-ec63-4640-b9a9-65696f3db9ffimages.png",
       "SourceId": "Work",
       "SourceType": "Discovered",
@@ -10795,6 +10829,74 @@
       "OriginalItemSpec": "wwwroot\\Files\\PaperAttachments\\7a014ac3-dc01-4471-aee0-87629b9a7f4cimages.png"
     },
     {
+      "Identity": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\Files\\PaperAttachments\\a95ef2d8-d9b2-4c8e-92f3-5a90196f05a0cv (1).pdf",
+      "SourceId": "Work",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\",
+      "BasePath": "_content/Work",
+      "RelativePath": "Files/PaperAttachments/a95ef2d8-d9b2-4c8e-92f3-5a90196f05a0cv (1).pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Files\\PaperAttachments\\a95ef2d8-d9b2-4c8e-92f3-5a90196f05a0cv (1).pdf"
+    },
+    {
+      "Identity": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\Files\\PaperAttachments\\ffdfbe22-f261-4758-b8b5-fb5cd152e1abimages.png",
+      "SourceId": "Work",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\",
+      "BasePath": "_content/Work",
+      "RelativePath": "Files/PaperAttachments/ffdfbe22-f261-4758-b8b5-fb5cd152e1abimages.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Files\\PaperAttachments\\ffdfbe22-f261-4758-b8b5-fb5cd152e1abimages.png"
+    },
+    {
+      "Identity": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\Files\\ProjectAttachments\\0e23d29d-1fbc-4496-9e14-e81b684f4135d.png",
+      "SourceId": "Work",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\",
+      "BasePath": "_content/Work",
+      "RelativePath": "Files/ProjectAttachments/0e23d29d-1fbc-4496-9e14-e81b684f4135d.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Files\\ProjectAttachments\\0e23d29d-1fbc-4496-9e14-e81b684f4135d.png"
+    },
+    {
+      "Identity": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\Files\\ProjectAttachments\\a1c19225-b853-4472-8572-3904a6961a30cv (1).pdf",
+      "SourceId": "Work",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\",
+      "BasePath": "_content/Work",
+      "RelativePath": "Files/ProjectAttachments/a1c19225-b853-4472-8572-3904a6961a30cv (1).pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Files\\ProjectAttachments\\a1c19225-b853-4472-8572-3904a6961a30cv (1).pdf"
+    },
+    {
       "Identity": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\Files\\ProjectAttachments\\b8ea8072-a674-47aa-ab6f-66b480402d9dcv (1).pdf",
       "SourceId": "Work",
       "SourceType": "Discovered",
@@ -10810,6 +10912,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Files\\ProjectAttachments\\b8ea8072-a674-47aa-ab6f-66b480402d9dcv (1).pdf"
+    },
+    {
+      "Identity": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\Files\\ProjectAttachments\\cac2fa67-96e8-4e8c-a673-44290c4b3f87mm.jpg",
+      "SourceId": "Work",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\",
+      "BasePath": "_content/Work",
+      "RelativePath": "Files/ProjectAttachments/cac2fa67-96e8-4e8c-a673-44290c4b3f87mm.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Files\\ProjectAttachments\\cac2fa67-96e8-4e8c-a673-44290c4b3f87mm.jpg"
     },
     {
       "Identity": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\wwwroot\\js\\chat.js",
