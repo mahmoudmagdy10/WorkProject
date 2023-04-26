@@ -102,7 +102,7 @@ namespace Work.BL.Repository
         {
             return db.Project.Include(p => p.ProjectAttachments).Select(a=>a);
         }
-
+        //
         #endregion
 
     }

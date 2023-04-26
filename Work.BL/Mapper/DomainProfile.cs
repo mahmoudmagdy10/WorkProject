@@ -13,10 +13,10 @@ namespace Work.BL.Mapper
             
             CreateMap<Project, ProjectVM>();
             CreateMap<ProjectVM, Project>();
-            
+
             CreateMap<ProjectAttachments, ProjectAttachmentsVM>();
             CreateMap<ProjectAttachmentsVM, ProjectAttachments>();
-            
+
 
             CreateMap<Chat ,ChatVM>();
             CreateMap<ChatVM, Chat>();
