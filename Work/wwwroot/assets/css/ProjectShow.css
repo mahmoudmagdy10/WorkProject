@@ -1,0 +1,222 @@
+:root {
+    --main-color-purble: #333456;
+    --main-color-yellow: #C59035;
+}
+/* nav var position  */
+nav
+{
+    position: fixed !important;
+}
+
+
+
+@media screen and (max-width:990px)
+{
+    nav
+    {
+        position: static !important;
+    }
+}
+
+/* layer show Project make  */
+@media screen and (min-width:991px)
+{
+    .layer
+    {
+        height: 100vh;
+    }
+}
+
+
+
+
+
+
+
+
+.Project {
+    background-color: var(--main-color-yellow)!important;
+    box-shadow: 0 7px 13px -7px black;
+}
+
+.Content {
+    color: white;
+}
+
+.description h5,
+.ShowLegal {
+    font-weight: 900;
+}
+.description h5
+{
+    color: var(--main-color-purble);
+
+}
+.ShowLegal a
+{
+    color: #a7a7a7;
+    
+}
+
+.ShowLegal a:hover {
+    color: var(--main-color-purble);
+}
+
+.ShowLegal,
+.Project,
+.btn-chat {
+    border-radius: 32px;
+}
+
+.image-container {
+    /* set the width of the container */
+    width: 100%;
+    height: 250px;
+    /* set the height of the container */
+    overflow: hidden;
+    /* hide any overflow from the container */
+    border-radius: 32px;
+}
+
+.image-container img {
+    display: block;
+    /* make the image a block element */
+    max-width: 100%;
+    /* make the image fit within the container */
+    max-height: 100%;
+    /* make the image fit within the container */
+    margin: auto;
+    /* center the image horizontally */
+}
+
+
+
+/* investore */
+.btn-chat
+{
+    background-color:var(--main-color-purble) ;
+}
+.btn-chat a
+
+{
+    color: white;
+}
+
+@media screen and (min-width:0) and (max-width:991px) 
+{
+
+            .Btns
+            {
+                justify-content: center;
+                margin: 10px;
+            }
+}
+
+
+
+
+
+
+
+
+
+    .sample-slider{
+        width:100%;
+        border-radius: 32px !important;
+    }
+    .sample-slider img{
+        width: 100%;
+    }
+
+
+    .swiper-button-prev
+    {
+        left: 3% !important;
+    }
+    .swiper-button-next
+    {
+        right: 3% !important;
+    }
+    .swiper-button-prev
+    ,
+    .swiper-button-next
+      {
+                top: 46%;
+     }
+
+
+
+
+
+
+
+@media screen and (min-width:0) and (max-width:750px)
+{
+    .swiper-pagination
+    {
+        top: 0;
+    }
+    .AddProject
+    {
+        position: absolute;
+        bottom: 0;
+    }
+    
+}
+
+
+
+.DataOfMakersProject
+{
+    top: -10px !important;
+}
+
+
+
+/* by persone  */
+.PersoneHaveProject
+{
+    transform: translateY(-50%);
+}
+.PersoneHaveProject .imageGratedOfProject 
+{
+    width: 40px !important;
+    height: 40px !important;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.PersoneHaveProject .imageGratedOfProject img
+{
+    width: 100%;
+    height: 100%;
+}
+.PersoneHaveProject h6
+
+{
+    color: #383957;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.TitleProject
+{
+    font-size: 1.7rem;
+}
+
+.btn-chat-Project
+{
+    background-color: var(--main-color-purble) !important;
+    transition: 0.5s background-color;
+}
+.btn-chat-Project:hover
+{
+    background-color: var(--main-color-purble) !important;
+}
+.ShowLegal a i
+{
+    transition:0.9s 0.5s color;
+}
+.ShowLegal a:hover i
+{
+    color:var(--main-color-purble) !important;
+}

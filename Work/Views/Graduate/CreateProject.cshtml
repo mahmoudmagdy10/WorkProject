@@ -1,27 +1,111 @@
-﻿@model Work.BL.Models.ProjectVM
+﻿@using Microsoft.AspNetCore.Identity;
+@using Work.DAL.Extend;
+
+@model Work.BL.Models.ProjectVM
 
 @inject Work.BL.Interface.IProjectRep ProjectRep;
+@inject UserManager<ApplicationUser> userManager
 
 @{
     ViewData["Title"] = "Create Project";
-    var UserId = TempData["UserId"];
+    var UserId = userManager.GetUserId(User);
 }
 
 @section css
-    {
-    <link rel="stylesheet" href="~/assets/css/AddProject.css">
-    <link rel="stylesheet" href="~/assets/css/Bookservices.css">
+{
+    <link rel="stylesheet" href="~/assets/css/addProject.css">
 }
 
+
+<div class="container d-flex align-items-center h-100">
+    <div class="container py-3 ">
+        <h4 class="text-center">Add project</h4>
+        <div class="border-radius-32 bg-main-yellow pt-5 pb-2 shadowContainer ">
+            <div class="rounded-3">
+                <div class="container-fluid">
+                    <h6>Project Title</h6>
+
+                    <form  asp-controller="Graduate" asp-action="CreateProject" enctype="multipart/form-data">
+                        <input type="hidden" class="form-control" asp-for="UserId" value="@UserId">
+                        <input type="hidden" class="form-control" asp-for="UserEmail" value="@User.Identity.Name">
+
+                        <input type="text" asp-for="Title"class="form-control">
+                        <div class="row py-3">
+                            <div class="col-lg-6">
+                                <h5>Description</h5>
+                                <div class="UploadFile ">
+                                    <textarea asp-for="Description" class="form-control h-100"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <h5>Upload Legal Papers</h5>
+                                <div class="UploadFile h-75">
+
+                                    <div class="d-flex justify-content-center align-items-center h-100 p-lg-0 ">
+                                        <div class="Papper d-flex justify-content-center align-items-center h-100 mx-3  mt-2 text-center">
+                                            <div>
+                                                <div class="bg-BlueDark py-3 px-4 rounded-3 text-center SizeCutomize" id="ClickPaperFile">
+                                                    <i class="fa-solid fa-plus fa-lg" style="color: #ffffff;"></i>
+                                                    <div>
+                                                        <input type="file" asp-for="Paper" accept="application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword" hidden id="InputeFilePaper">
+                                                    </div>
+                                                </div>
+                                                <p class="m-0"> legal papers</p>
+                                                <p class="AllowUpload"> Allow pdf and word</p>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="Archive d-flex justify-content-center align-items-center h-100 mx-3 mt-2 text-center">
+                                            <div>
+                                                <div class="bg-BlueDark py-3 px-4 rounded-3 text-center SizeCutomize">
+                                                    <i class="fa-solid fa-plus fa-lg" style="color: #ffffff;" id="ClickArchiveFile"></i>
+                                                    <div>
+                                                        <input type="file" asp-for="Project" accept="image/*" hidden id="InputeFileArchive">
+                                                    </div>
+                                                </div>
+                                                <p class="m-0">Images</p>
+                                                <p class="AllowUpload"> Allow png and jpg</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="d-flex justify-content-center align-items-end">
+                                    <div class="w-50">
+                                        <h5>Budget</h5>
+                                        <input type="number" asp-for="Budget" class="form-control w-50 Budeget">
+                                    </div>
+                                    <div class="w-50 text-end">
+                                        <input type="submit" style="background-color:#333456;color: white; width: 103px; padding: 8px; border-radius: 10px; " value="Post">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*
 <div class="container ">
     <div class="container py-3">
-        <h4 class="text-center">Add project</h4>
+        <h4 class="text-center">Add Project</h4>
         <div class="bg-main-color pt-5 pb-2">
             <div class="rounded-3">
                 <div class="container-fluid">
 
                     <form asp-controller="Graduate" asp-action="CreateProject" enctype="multipart/form-data">
                         <input type="hidden" class="form-control" asp-for="UserId" value="@UserId">
+                        <input type="hidden" class="form-control" asp-for="UserEmail" value="@User.Identity.Name">
 
                         <h6>Project Title</h6>
                         <input type="text" asp-for="Title" class="form-control">
@@ -50,10 +134,7 @@
                                                 </div>
                                                 <p>legal papers (Optional) </p>
                                             </div>
-
-
                                         </div>
-
 
                                         <div class="Archive d-flex justify-content-center align-items-center h-100 mx-3 mt-2 text-center">
                                             <div>
@@ -65,9 +146,7 @@
                                                 </div>
                                                 <p> UpLoad Files </p>
                                             </div>
-
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -95,8 +174,8 @@
     </div>
 </div>
 
-
+*@
 @section js
 {
-    <script src="~/assets/js/addProject.js"></script>
+  <script src="~/assets/js/addProject.js"></script>
 }

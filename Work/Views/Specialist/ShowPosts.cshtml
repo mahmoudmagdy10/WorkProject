@@ -1,0 +1,78 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using Work.DAL.Extend;
+
+@model Work.BL.Models.PostVM
+
+@inject SignInManager<ApplicationUser> signInManager
+@inject Work.BL.Interface.IPostRep PostRep;
+@inject UserManager<ApplicationUser> userManager
+
+@{
+    ViewData["Title"] = "Posts";
+    var UserId = userManager.GetUserId(User);
+}
+
+@section css
+{
+    <link rel="stylesheet" href="~/assets/css/ShowPosts.css">
+    <link rel="stylesheet" href="~/assets/css/InqueryReplaySpecialiest.css">
+
+}
+
+<div class="container ">
+    <div class="container">
+
+        <div class="row">
+            @foreach (var post in PostRep.Get().OrderByDescending(a => a.CreatedAt))
+            {
+                @foreach (var user in userManager.Users.Where(a => a.Id == post.UserId))
+                {
+            
+                    <div class="col-lg-12 d-flex align-items-center containerEnquery shadowBox position-relative">
+                        <div class="w-100 position-absolute start-0 hambozo">
+                            <div class="DataOfPersoneOfGraduated d-flex w-100">
+                                @if (user.PicName != null)
+                                {
+                                    <img src="~/Files/ProfilesPictures/@user.PicName" class="rounded-circle PicPersonHavePost">
+                                }
+                                @if (user.PicName == null)
+                                {
+                                    <img src="http://i.pravatar.cc/500?img=7 " class="rounded-circle PicPersonHavePost">
+                                }
+                                <h5 class="mx-2 bg-main-colorDarkLogo text-main-purble">@user.FirstName @user.LastName</h5>
+                            </div>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="row w-100">
+                                <div class="col-lg-9">
+                                    <div class="textPost ps-3">
+                                        <p class="contentPost">
+                                            @post.Content
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 text-end BtnsReplayAndChat">
+                                    <button class="btn btn-main border-radius-32 mx-2 bg-white">
+                                        <a asp-controller="Student" asp-action="ShowPost" asp-route-PostId="@post.Id"
+                                           class="text-main-purble fonts-Bolder text-decoration-none">Reply</a>
+                                    </button>
+
+                                    <button class="btn btn-main border-radius-32 bg-main-purple SendRequest" data-receiver_email="@user.Email" data-sender_email="@User.Identity.Name">
+                                        Request Chat
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+
+@section js
+{
+    <script src="~/assets/js/InqueryReplySpecialiest.js"></script>
+}

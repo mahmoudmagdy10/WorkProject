@@ -26,11 +26,8 @@ namespace Work.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Student")]
-        public IActionResult CreatePost(string UserId)
+        public IActionResult CreatePost()
         {
-            //var model = post.Get();
-
-            TempData["UserId"] = UserId;
             return View();
         }
         
@@ -41,15 +38,18 @@ namespace Work.Controllers
             try
             {
                 post.Create(model);
-                return RedirectToAction("Index", new RouteValueDictionary(new { controller = "Specialist", action = "Index", UserId = model.UserId }));
+                return View();
+                //return RedirectToAction("Index", new RouteValueDictionary(new { controller = "Specialist", action = "Index", UserId = model.UserId }));
                 //return Json(PostData);
 
             }
             catch (Exception)
             {
                 TempData["CreatePost"] = "Faild to Create";
+                return View();
+
                 //return Json("Faild to Create");
-                return RedirectToAction("Index", new RouteValueDictionary(new { controller = "Specialist", action = "Index", UserId = model.UserId }));
+                //return RedirectToAction("Index", new RouteValueDictionary(new { controller = "Specialist", action = "Index", UserId = model.UserId }));
 
 
             }
@@ -57,10 +57,9 @@ namespace Work.Controllers
 
         [HttpGet]
         [Authorize(Roles = ("Student,Specialist"))]
-        public IActionResult ShowPost(int PostId, string UserId)
+        public IActionResult ShowPost(int PostId)
         {
             var model = post.GetById(PostId);
-            TempData["UserId"] = UserId;
             ViewBag.PostId = PostId;
             return View(model);
         }
@@ -98,6 +97,14 @@ namespace Work.Controllers
                 return RedirectToAction("Index", new RouteValueDictionary(new { controller = "Specialist", action = "Index", UserId = model.UserId }));
 
             }
+        }
+
+
+        [HttpGet]
+        [Authorize(Roles = "Student")]
+        public IActionResult Search()
+        {
+            return View();
         }
         #endregion
     }

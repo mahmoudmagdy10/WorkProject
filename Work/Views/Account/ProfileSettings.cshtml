@@ -1,0 +1,148 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using Work.DAL.Extend;
+
+@model ApplicationUser;
+@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager
+
+@{
+    ViewData["Title"] = "Profile Settings";
+    var UserId = @userManager.GetUserId(User);
+}
+
+@section css
+{
+    <!-- calling file of css boostrap -->
+    <link rel="stylesheet" href="~/assets/css/setting.css">
+    <link rel="stylesheet" href="~/assets/css/SharedFile.css">
+
+}
+
+
+<div class="container-fluid main" style="height:100vh;padding-left:0px;" id="navbar-nav">
+    <div class="d-block d-md-none menu">
+        <i class="fa-sharp fa-solid fa-arrow-right fa-2xl"></i>
+    </div>
+    <div class="expand-menu nav flex-column">
+        <a asp-controller="Account" asp-action="ProfileSettings" asp-route-UserId="@UserId" class="nav-link  mt-auto active">
+            <i class="far fa-user-circle"></i>
+            Profile
+        </a>
+        <a asp-controller="Account" asp-action="ChangePassword" class="nav-link  mb-auto">
+            <i class="fa-solid fa-key fa-lg text-white"></i> Password
+        </a>
+        @if (signInManager.IsSignedIn(User) && User.IsInRole("Investor"))
+        {
+            <a asp-controller="Investor" asp-action="BillingInfo" class="nav-link  mb-auto">
+                <i class="far fa-file-alt"></i> Billing Info
+            </a>
+        }
+    </div>
+    <div class="row align-items-center" style="height:100%">
+
+        <div class="col-md-3 d-none d-md-block" style="height:100%">
+
+            <div class="container-fluid nav sidebar flex-column">
+
+                <a asp-controller="Account" asp-action="ProfileSettings" asp-route-UserId="@UserId" class="nav-link  mt-auto active">
+                    <i class="far fa-user-circle"></i>
+                    Profile
+                </a>
+                <a asp-controller="Account" asp-action="ChangePassword" class="nav-link  mb-auto"><i class="far fa-bell"></i> Password</a>
+
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Investor"))
+                {
+                    <a asp-controller="Investor" asp-action="BillingInfo" class="nav-link  mb-auto">
+                        <i class="far fa-file-alt"></i> Billing Info
+                    </a>
+                }
+
+            </div>
+        </div>
+
+
+        <div class="col-md-9">
+
+            <div class="container content clear-fix">
+
+                <h2 class="mt-5 mb-5">Profile Settings</h2>
+
+                <div class="row" style="height:100%">
+
+
+                    <div class="col-md-12">
+
+                        @if(ViewData["FailedEditing"] != null)
+                        {
+                            <div class="alert alert-danger">@ViewData["FailedEditing"]</div>
+                        }
+
+                        <div class="container">
+
+                            @foreach(var user in userManager.Users.Where(a=>a.Id == UserId))
+                            {
+                                <form class="w-100" asp-controller="Account" asp-action="Edit" method="POST">
+                                    <div class="modal-body">
+
+                                        <input type="hidden" id="Id" name="Id" value="@UserId" />
+
+
+                                        <div class="w-100 d-flex">
+                                            <div class="form-group w-50 pe-5">
+                                                <label for=FirstName>First Name </label>
+                                                <input type="text" class="form-control" id="FirstName" name="FirstName" value="@user.FirstName">
+                                            </div>
+
+                                            <div class="form-group w-50 pe-2">
+                                                <label for="LastName">Last Name </label>
+                                                <input type="text" class="form-control" id="LastName" name="LastName" value="@user.LastName">
+                                            </div>
+                                        </div>
+
+                                        <div class="w-100 d-flex mt-3">
+                                            <div class="form-group w-50 pe-5">
+                                                <label for="Email">Email Address</label>
+                                                <input type="email" class="form-control" id="Email" name="Email" value="@user.Email" readonly>
+                                            </div>
+
+                                            <div class="form-group w-50 pe-2">
+                                                <label for="PhoneNumber">Phone Number</label>
+                                                <input type="number" maxlength=11 class="form-control" id="PhoneNumber" name="PhoneNumber" value="@user.PhoneNumber">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group w-100  mt-3">
+                                            <label for="Job">Educational level</label>
+                                            <input type="text" class="form-control" id="Job" name="Job" value="@user.Job">
+                                        </div>
+
+                                        <div class="form-group w-100  mt-3">
+                                            <label for=Bio>Bio</label>
+                                            <textarea class="form-control" id="Bio" name="Bio" value="@user.Bio" cols="5"
+                                                  rows="3">@user.Bio</textarea>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn ripple btn-primary" type="submit">Save changes</button>
+                                    </div>
+                                </form>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                                    
+@section js
+{
+    <script src="~/assets/js/setting.js"></script>
+
+
+
+}

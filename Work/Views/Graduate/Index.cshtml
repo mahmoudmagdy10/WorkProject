@@ -1,1 +1,194 @@
-﻿
+﻿@model IEnumerable<Work.BL.Models.ProjectVM>
+
+@using Microsoft.AspNetCore.Identity;
+@using Work.BL.Models;
+@using Work.DAL.Extend;
+
+@inject Work.BL.Interface.IRequestRep requestRep
+@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager
+
+
+@{
+    var UserId = userManager.GetUserId(User);
+}
+
+@section css
+{
+    <link rel="stylesheet" href="~/assets/css/ProjectShow.css">
+    <link rel="stylesheet" href="~/assets/css/SharedFile.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+}
+
+
+
+<div class="layer vh-100  d-flex justify-content-center align-items-center">
+    <div class="container">
+        <div class="row">
+            <!-- container Big Of Project-->
+            <div class="swiper sample-slider">
+                <div class="swiper-wrapper">
+                    @foreach (var project in Model)
+                    {
+                        @foreach (var user in userManager.Users.Where(a => a.Id == project.UserId))
+                        {
+                            <div class="swiper-slide px-2">
+
+                                <div class="col-lg-12 p-1">
+                                    <div class="Project bg-main-yellow border-radius-32 p-5 ">
+                                        <!-- divesstion Container to two part First Part Of Content And Next Part That have of Imag  -->
+                                        <div class="Container-fluid">
+                                            <div class="row">
+                                                <!-- first part of content take all size if you in small page -->
+                                                <div class="col-lg-9 col-sm-12">
+                                                    <div class="Content">
+                                                        <div class="d-flex PersoneHaveProject align-items-center">
+                                                            <div class="imageGratedOfProject overflow-hidden">
+                                                                @if (user.PicName != null)
+                                                                {
+                                                                    <img src="~/Files/ProfilesPictures/@user.PicName">
+                                                                }
+                                                                @if (user.PicName == null)
+                                                                {
+                                                                    <img src="~/assets/images/BoyGratited.png" alt="">
+                                                                }
+                                                            </div>
+                                                            <h6>@user.FirstName @user.LastName </h6>
+                                                        </div>
+                                                        <h5 class="name Persione">@project.Title</h5>
+                                                        <div class="description py-2">
+                                                            <h5>Description</h5>
+                                                            <p>
+                                                                @project.Description
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-lg-flex justify-content-between ">
+                                                        <div class="Btns py-2 d-flex">
+                                                            <button class="btn bg-white text-main2 ShowLegal">Show Legal Paper </button>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- nex part of Image  -->
+                                                <div class="col-lg-3 col-sm-12">
+                                                    <div class="imageProject">
+                                                        <div class="image-container">
+                                                            <img src="~/assets/images/Robotics.jpg" alt="Your Image" class="w-100">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End part of Image  -->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+                    }
+                </div>
+
+            </div>
+            @if (signInManager.IsSignedIn(User) && User.IsInRole("Graduate"))
+            {
+                <div class="w-100 my-3 text-end  AddProject">
+                    <button class="btn btn-chat mx-3">
+                        <a asp-controller="Graduate" asp-action="CreateProject" class="text-decoration-none">Add Project</a>
+                    </button>
+                </div>
+            }
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@*<div class="container " style="background-color: #f7f7f7; padding: 60px;position:relative">
+    <div class="container py-5">
+
+        <div>
+            <ul id="PageHeader">
+            </ul>
+        </div>
+        <div id="PostsContainer" class="row">
+
+            @foreach (var project in Model)
+            {
+                var PId = project.Id.ToString();
+
+                <div class="col-lg-12 d-flex align-items-center containerEnquery position-relative">
+
+                    <div class="container-fluid  ">
+                        <div class="row w-100">
+
+                            <div class="col-lg-9">
+                                @project.Title
+                            </div>
+
+                            <div class="col-lg-9">
+                                @project.Description
+                            </div>
+
+                            <div class="col-lg-9">
+                                <a class="btn btn-primary" asp-controller="Graduate" asp-action="DownloadFile" asp-route-fileName="@project.ProjectName" asp-route-type="Project">
+                                    <i class="fa-solid fa-download"></i> Project
+                                </a>
+
+                                <a class="btn btn-success" asp-controller="Graduate" asp-action="DownloadFile" asp-route-fileName="@project.PaperName" asp-route-type="Paper">
+                                    <i class="fa-solid fa-download"></i>Legal Paper
+                                </a>
+
+                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Investor"))
+                                {
+                                    <button class="btn btn-dark SendRequest" data-receiver_email="@project.UserEmail" data-sender_email="@User.Identity.Name" data-PId="@PId" data-title="@project.Title">
+                                        Send Request
+                                    </button>
+
+                                    @foreach (var request in requestRep.Get(a => a.ProjectId == project.Id).Where(a => a.SenderEmail == User.Identity.Name))
+                                    {
+                                        @if(request.Agree == null)
+                                        {
+                                            <button id="Chat" class="btn btn-info Chat"  disabled>
+                                                <a asp-controller="Investor" asp-action="Create" asp-route-RecieverEmail="@project.UserEmail">
+                                                    <i class="fa-solid fa-comment"></i> Chat
+                                                </a>
+                                            </button>
+                                        }
+                                        @if(request.Agree == true)
+                                        {
+                                            <button id="Chat" class="btn btn-info Chat">
+                                                <a asp-controller="Investor" asp-action="Create" asp-route-RecieverEmail="@project.UserEmail">
+                                                    <i class="fa-solid fa-comment"></i> Chat
+                                                </a>
+                                            </button>
+                                        }
+                                
+                                    }
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>*@
+
+                                
+@section js
+
+{
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="~/assets/js/ProjectShow.js"></script>
+ 
+}

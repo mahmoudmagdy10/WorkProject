@@ -1,3 +1,5 @@
+
+
 .bg-main-color ,.btn-bg-main
 {
     background-color: #c59035;
@@ -19,4 +21,29 @@
     background: white;
     border-radius: 33px;
     border: none;
+}
+.navbar-collapse
+{
+    z-index: 999;
+}
+
+.containerEnqueryAdmin
+{
+background-color: #333456 !important;
+
+}
+@media screen and (min-width:0) and (max-width:991px)
+{
+    .addPost
+    {
+        width: 100% !important;
+        margin-bottom:20px !important 
+    }
+    
+}
+
+
+.DataOfPersoneOfGraduated 
+{
+    width: 100% !important;
 }

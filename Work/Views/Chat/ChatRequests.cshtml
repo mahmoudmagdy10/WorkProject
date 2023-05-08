@@ -1,0 +1,163 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using Work.DAL.Extend;
+
+@inject Work.BL.Interface.IChatRep ChatRep;
+@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager
+@inject Work.BL.Interface.IRequestRep requestRep
+@inject Work.BL.Interface.IProjectRep projectRep
+
+
+@{
+    ViewData["Title"] = "Requests Page";
+    var UserEmail = ViewBag.UserEmail;
+    var UserId = userManager.GetUserId(User);
+    var RequestsCount = requestRep.Get(a => a.ReceiverEmail == User.Identity.Name).Where(a => a.Agree is null).Count();
+
+}
+
+@section css
+{
+    <link rel="stylesheet" href="~/assets/css/chat.css">
+    <link rel="stylesheet" href="~/assets/css/SharedFile.css">
+
+}
+
+<div class="app">
+
+    <div class="header">
+        <div class="logo">
+            <a href="InvestoreProfile.html"><i class="fa-solid fa-arrow-left fa-2xl" style="color: #333456;"></i></a>
+        </div>
+
+        <div class="user-settings">
+            <img class="user-profile account-profile" src="~/assets/images/investore.jpg" >
+        </div>
+    </div>
+
+    <div class="wrapper">
+
+        <div id="conversation-area" class="conversation-area" style="width:100%;">
+            <div style="color:brown; font-weight:bold; padding:10px;">Recieved Requests</div>
+            @foreach(var request in requestRep.Get(a=>a.ReceiverEmail == User.Identity.Name))
+            {
+                @if (request is not null)
+                {
+                            
+                    var Project = projectRep.GetById(request.ProjectId);
+
+                    <div id="msg" class="msg online active">
+                        <img class="msg-profile" src="~/assets/images/Graduted.jpg" alt="" />
+                        <div class="msg-detail">
+                            <div class="msg-username">@request.SenderEmail</div>
+                            <div class="msg-content">
+                                <span class="msg-message">Want To chat With You </span>
+                            </div>
+                            <div style="display: flex; justify-content: center; gap: 50px;">
+                                @if (request.Agree is null)
+                                {
+                                    <form asp-controller="Request" asp-action="Edit">
+                                        <input type="hidden" name="Id" value="@request.Id" />
+                                        <input type="hidden" name="SenderEmail" value="@request.SenderEmail" />
+                                        <input type="hidden" name="ReceiverEmail" value="@request.ReceiverEmail" />
+                                        <input type="hidden" name="ProjectId" value="@(request.ProjectId == 0 ? 0 : request.ProjectId)" />
+                                        <input type="hidden" name="Agree" value="true" />
+                                        <input type="submit" class="btn btn-success" value="Accept" />
+                                    </form>
+
+                                    <form asp-controller="Request" asp-action="Delete">
+                                        <input type="hidden" name="Id" value="@request.Id" />
+                                        <input type="hidden" name="SenderEmail" value="@request.SenderEmail" />
+                                        <input type="hidden" name="ReceiverEmail" value="@request.ReceiverEmail" />
+                                        <input type="hidden" name="ProjectId" value="@(request.ProjectId == 0 ? 0 : request.ProjectId)" />
+                                        <input type="hidden" name="Agree" value="false" />
+                                        <input type="submit" class="btn btn-danger" value="Reject" />
+                                    </form>
+                                }
+                                @if (request.Agree == true)
+                                {
+                                    <button id="Chat" class="btn btn-info Chat">
+                                        <a class="text-decoration-none text-white" asp-controller="Chat" asp-action="CreateChat" asp-route-RecieverEmail="@request.SenderEmail">
+                                            <i class="fa-solid fa-comment"></i> Start Chat
+                                        </a>
+                                    </button>
+                                }
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+            }
+
+
+            <div style="color:brown; font-weight:bold; padding:10px;">Sent Requests</div>
+            @foreach (var request in requestRep.Get(a => a.SenderEmail == User.Identity.Name))
+            {
+                @if (request is not null)
+                {
+                            
+                    var Project = projectRep.GetById(request.ProjectId);
+
+                    <div id="msg" class="msg online active">
+                        <img class="msg-profile" src="~/assets/images/Graduted.jpg" alt="" />
+                        <div class="msg-detail">
+                            <div class="msg-username">@request.SenderEmail</div>
+                            <div class="msg-content">
+                                <span class="msg-message">Want To chat With You </span>
+                            </div>
+                            <div style="display: flex; justify-content: center; gap: 50px;">
+                                @if (request.Agree is null)
+                                {
+                                    <form asp-controller="Request" asp-action="Edit">
+                                        <input type="hidden" name="Id" value="@request.Id" />
+                                        <input type="hidden" name="SenderEmail" value="@request.SenderEmail" />
+                                        <input type="hidden" name="ReceiverEmail" value="@request.ReceiverEmail" />
+                                        <input type="hidden" name="ProjectId" value="@(request.ProjectId == 0 ? 0 : request.ProjectId)" />
+                                        <input type="hidden" name="Agree" value="true" />
+                                        <input type="submit" class="btn btn-success" value="Accept" />
+                                    </form>
+
+                                    <form asp-controller="Request" asp-action="Delete">
+                                        <input type="hidden" name="Id" value="@request.Id" />
+                                        <input type="hidden" name="SenderEmail" value="@request.SenderEmail" />
+                                        <input type="hidden" name="ReceiverEmail" value="@request.ReceiverEmail" />
+                                        <input type="hidden" name="ProjectId" value="@(request.ProjectId == 0 ? 0 : request.ProjectId)" />
+                                        <input type="hidden" name="Agree" value="false" />
+                                        <input type="submit" class="btn btn-danger" value="Reject" />
+                                    </form>
+                                }
+                                @if (request.Agree == true)
+                                {
+                                    <button id="Chat" class="btn btn-info Chat">
+                                        <a class="text-decoration-none text-white" asp-controller="Chat" asp-action="CreateChat" asp-route-RecieverEmail="@request.ReceiverEmail">
+                                            <i class="fa-solid fa-comment"></i> Start Chat
+                                        </a>
+                                    </button>
+                                }
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+            }
+
+        </div>
+    </div>
+
+</div>
+
+
+@section js
+{
+    <script src="~/assets/js/Chat.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/notification.js"></script>
+}

@@ -1,0 +1,82 @@
+:root {
+    --main-color-purble: #333456;
+    --main-color-yellow: #C59035;
+}
+
+.nav
+{
+    position: static;
+}
+/* photo of Persone Have Upload The Posts */
+.PicPersonHavePost,.DataOfPersoneOfGraduated 
+{
+    width: 50px;
+    height: 50px;
+}
+
+
+
+
+.containerEnquery
+{
+    width: 100%;
+    color: #ffff;
+    background-color:var(--main-color-yellow) ;
+    border-radius: 32px;
+    min-height: 100px ;
+}
+
+
+.DataOfPersoneOfGraduated ,.hambozo
+{
+    top: calc(0px - 1.5rem);
+}
+.col-lg-12
+{
+    margin: 30px 0;
+}
+
+
+
+@media screen and (min-width:500px) and (max-width:750px)
+{
+    .text-black.mx-2
+    {
+        font-size: 15.5px;
+    }
+    .containerEnquery
+    {
+        text-align: center;
+    }
+    .containerEnquery .col-lg-3
+    {
+        text-align: center !important;
+        margin-top: 17px;
+    }
+
+    .DataOfPersoneOfGraduated
+    {
+        top: -2rem;
+        width: 100% !important;
+    }
+    .DataOfPersoneOfGraduated h5
+    {
+        transform: translateY(30%);
+    }
+    .textPost
+    {
+        max-width: auto !important;
+    }
+
+
+
+}
+
+
+h5.bg-main-colorDarkLogo
+{
+    text-transform: capitalize;
+    font-weight: bolder;
+}
+
+

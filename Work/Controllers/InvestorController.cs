@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Work.BL.Interface;
+using Work.DAL.Entity;
 using Work.DAL.Extend;
 
 namespace Work.Controllers
@@ -9,22 +11,37 @@ namespace Work.Controllers
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IUserRep user;
+        private readonly IProjectRep project;
 
-        public InvestorController(UserManager<ApplicationUser> userManager, IUserRep user)
+        public InvestorController(UserManager<ApplicationUser> userManager, IUserRep user, IProjectRep project)
         {
             this.userManager = userManager;
             this.user = user;
+            this.project = project;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        [Authorize(Roles = "Investor")]
+
+        public IActionResult BuyProject()
+        {
+            var data = project.Get();
+            return View(data);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Investor")]
+        public IActionResult Payment()
         {
             return View();
         }
-        public IActionResult Create(string RecieverEmail)
+
+        [HttpGet]
+        [Authorize(Roles = "Investor")]
+        public IActionResult BillingInfo()
         {
-            ViewBag.UserEmail = RecieverEmail;
-            //ViewBag.User = User.Identity.Name;
             return View();
         }
+
     }
 }

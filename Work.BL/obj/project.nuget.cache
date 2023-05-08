@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UQL+0nvyXGtm98yBeEiwCmfzoG9t9FhVGZsabo8d1exbGpcBgbeB+04DBFF4QqCSSLetRF82WGJDDYo80Q08+g==",
+  "dgSpecHash": "p9Cbn+cYDcmNKkv94ft0/kSp8LmNFtEOSCfEmqVGkNROjK8i0ewpaT5EoizBxgwUbxXOSBSsUkVxL1WbB3nv/Q==",
   "success": true,
-  "projectFilePath": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work.BL\\Work.BL.csproj",
+  "projectFilePath": "E:\\WorkProject\\Work.BL\\Work.BL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\migo\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\migo\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

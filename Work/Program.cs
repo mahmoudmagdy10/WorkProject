@@ -38,6 +38,8 @@ builder.Services.AddScoped<IProjectRep, ProjectRep>();
 builder.Services.AddScoped<IProjectAttachmentsRep, ProjectAttachmentsRep>();
 builder.Services.AddScoped<IChatRep,ChatRep>();
 builder.Services.AddScoped<IReplyRep,ReplyRep>();
+builder.Services.AddScoped<IRequestRep, RequestRep>();
+builder.Services.AddScoped<IRateRep, RateRep>();
 
 
 // ------------------------ Identity Configrations  ------------------------------------
@@ -70,6 +72,7 @@ builder.Services.AddSignalR();
 var app = builder.Build();
 
 app.MapHub<ChatHub>("/chatHub");
+app.MapHub<NotificationHub>("/notificationHub");
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

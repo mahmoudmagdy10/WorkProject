@@ -13,6 +13,8 @@ namespace Work.BL.Helper.Hubs
         {
             this.chat = chat;
         }
+
+
         public override Task OnConnectedAsync()
         {
 
@@ -21,25 +23,48 @@ namespace Work.BL.Helper.Hubs
             return base.OnConnectedAsync();
         }
 
+        public Task JoinGroup(string group)
+        {
+            return Groups.AddToGroupAsync(Context.ConnectionId, group);
+        }
+
+        public Task SendToGroup(string group, string message, string sender, string receiver, string SendPhoto)
+        {
+            var ChatData = new ChatVM()
+            {
+                SenderName = sender,
+                RecieverName = receiver,
+                Message = message,
+                GroupName = group
+            };
+
+            chat.Create(ChatData);
+            return Clients.Group(group).SendAsync("ReceiveMessage", sender, message, SendPhoto);
+        }
+
         public async Task SendMessage(string user, string message)
         {
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
 
-        public Task SendMessageToGroup(string sender, string receiver, string message)
-        {
-            var ChatData = new ChatVM()
-            {
-                SenderName= sender,
-                RecieverName = receiver,
-                Message = message,
-                RecieverId = receiver,
-                SenderId = sender
-            };
+        //public Task SendMessageToGroup(string sender, string receiver, string message)
+        //{
+        //    var ChatData = new ChatVM()
+        //    {
+        //        SenderName= sender,
+        //        RecieverName = receiver,
+        //        Message = message,
+        //    };
 
-            chat.Create(ChatData);
+        //    chat.Create(ChatData);
+        //    return Clients.Group(receiver).SendAsync("ReceiveMessage", sender, message);
+        //}
+        
+        //public Task SendRequestChat(string sender, string receiver)
+        //{
 
-            return Clients.Group(receiver).SendAsync("ReceiveMessage", sender, message);
-        }
+        //    return Clients.Group(receiver).SendAsync("ReceiveRequest", sender);
+        //}
+
     }
 }

@@ -40,17 +40,6 @@
                                 <div class="row py-5">
 
 		                            <input type="hidden" asp-for="RegisterAs" value="@ViewBag.RegisterAs" />
-                                    <div class="col-lg-12">
-                                        <div class="input-group mb-3">
-                                            <span
-                                                class="input-group-text m-10 text-center justify-content-center bg-white "
-                                                id="basic-addon2">Name</span>
-                                            <input type="text" class="form-control" placeholder="Enter Your Name"
-                                                id="EmailNameInput" asp-for="UserName" 
-                                                aria-describedby="basic-addon2">
-                                        </div>
-		                                <span asp-validation-for="UserName" class="text-danger"></span>
-                                    </div>
 
                                     <div class="col-lg-12 ">
                                         <div class="input-group mb-3">
@@ -96,8 +85,7 @@
                                             id="errorsSubmite">
                                             <p class="text-light text-center ">Must Enter Data valid</p>
                                         </div>
-                                        <p class="text-center text-black my-1">Already Have an account ?<a
-                                                href="Login.html" class="text-black text-decoration-none mx-2">Login</a>
+                                        <p class="text-center text-black my-1">Already Have an account ?<a asp-controller="Account" asp-action="Login" class="text-black text-decoration-none mx-2">Login</a>
                                         </p>
                                     </div>
                                 </div>

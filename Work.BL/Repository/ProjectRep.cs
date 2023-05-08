@@ -7,6 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Work.BL.Helper;
 using Work.BL.Interface;
 using Work.BL.Models;
 using Work.DAL.Database;
@@ -37,7 +38,7 @@ namespace Work.BL.Repository
             {
                 if (filter == null)
                 {
-                    var data = GetProjects();
+                    var data = db.Project.Include(p => p.ProjectAttachments).ToList();
                     var projects = mapper.Map<IEnumerable<ProjectVM>>(data);
                     return projects;
                 }
@@ -63,6 +64,7 @@ namespace Work.BL.Repository
                 db.SaveChanges();
 
                 var AddedProject = db.Project.OrderBy(a => a.Id).Last();
+
                 return mapper.Map<ProjectVM>(AddedProject);
             }
             catch
@@ -100,7 +102,7 @@ namespace Work.BL.Repository
         #region Refactory Methods
         private IQueryable<Project> GetProjects()
         {
-            return db.Project.Include(p => p.ProjectAttachments).Select(a=>a);
+            return db.Project.Include(p => p.ProjectAttachments).Include(u => u.User).Select(a=>a);
         }
 
         #endregion

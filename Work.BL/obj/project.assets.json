@@ -3956,11 +3956,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work.BL\\Work.BL.csproj",
+      "projectUniqueName": "E:\\WorkProject\\Work.BL\\Work.BL.csproj",
       "projectName": "Work.BL",
-      "projectPath": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work.BL\\Work.BL.csproj",
+      "projectPath": "E:\\WorkProject\\Work.BL\\Work.BL.csproj",
       "packagesPath": "C:\\Users\\migo\\.nuget\\packages\\",
-      "outputPath": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work.BL\\obj\\",
+      "outputPath": "E:\\WorkProject\\Work.BL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\migo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3977,8 +3977,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work.DAL\\Work.DAL.csproj": {
-              "projectPath": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work.DAL\\Work.DAL.csproj"
+            "E:\\WorkProject\\Work.DAL\\Work.DAL.csproj": {
+              "projectPath": "E:\\WorkProject\\Work.DAL\\Work.DAL.csproj"
             }
           }
         }

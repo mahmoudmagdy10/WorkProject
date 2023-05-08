@@ -28,11 +28,18 @@ namespace Work.Controllers
         #region Reply Actions
 
         [HttpGet]
-        public IActionResult Index(string UserId)
+        public IActionResult Index()
         {
             var data = post.Get().OrderByDescending(a => a.CreatedAt);
             ViewBag.Posts = data;
-            TempData["UserId"] = UserId;
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult ShowPosts()
+        {
+            var data = post.Get().OrderByDescending(a => a.CreatedAt);
+            ViewBag.Posts = data;
             return View();
         }
 

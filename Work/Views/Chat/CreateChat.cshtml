@@ -1,0 +1,147 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using Work.DAL.Extend;
+
+@inject Work.BL.Interface.IChatRep ChatRep;
+@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager
+@inject Work.BL.Interface.IRequestRep requestRep
+@inject Work.BL.Interface.IProjectRep projectRep
+
+
+@{
+    ViewData["Title"] = "Chat Page";
+    var UserEmail = TempData["UserEmail"].ToString();
+    var UserId = userManager.GetUserId(User);
+    var CurrentUser = userManager.GetUserName(User).ToString();
+    var RequestsCount = requestRep.Get(a => a.ReceiverEmail == User.Identity.Name).Where(a => a.Agree is null).Count();
+
+}
+
+@section css
+{
+    <link rel="stylesheet" href="~/assets/css/chat.css">
+    <link rel="stylesheet" href="~/assets/css/SharedFile.css">
+
+}
+
+<div class="app">
+
+    <div class="header">
+        <div class="logo">
+            <a asp-controller="Home" asp-action="Profile"><i class="fa-solid fa-arrow-left fa-2xl" style="color: #333456;"></i></a>
+        </div>
+
+        <div class="user-settings">
+        </div>
+    </div>
+
+    <div class="wrapper">
+
+        <div class="conversation-area" id="conversation-area">
+            <input type="hidden" id="CurrentUser" value="@UserEmail" />
+            <input type="hidden" id="SenderUser" value="@CurrentUser" />
+
+            @foreach(var user in userManager.Users.Where(a => a.Email == UserEmail))
+            {                            
+                <div class="msg online active">
+                    @if (user.PicName != null)
+                    {
+                        <img src="~/Files/ProfilesPictures/@user.PicName" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 30px;">
+                    }
+                    @if (user.PicName == null)
+                    {
+                        <img src="~/assets/images/BoyGratited.png"  style="width: 50px; height: 50px; border-radius: 50%; margin-right: 30px;">
+                    }
+                    <div class="msg-detail">
+                        <div class="msg-username">@user.FirstName @user.LastName</div>
+                        <small style="color: #0000004d; font-weight: bold;">@UserEmail</small>
+                        <div style="display: flex; justify-content: center; gap: 50px;">
+                            <button id="JoinGroup" class="JoinGroup btn btn-dark" hidden>Start Chating</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            }
+
+        </div>
+
+        <div class="chat-area">
+            <div id="chat-area-main" class="chat-area-main" style="display:none">
+
+                @foreach (var chat in ChatRep.Get().Where(a => a.GroupName == "ChatGrouping").OrderBy(a => a.CreatedAt))
+                {
+                    @if ((chat.SenderName == CurrentUser && chat.RecieverName == UserEmail) || (chat.SenderName == UserEmail && chat.RecieverName == CurrentUser))
+                    {
+
+                        <div class="chat-msg" style=" flex-flow:@(chat.SenderName == CurrentUser ? "row-reverse" :"row");">
+                            <div class="chat-msg-profile">
+                                @if (@chat.SenderName == CurrentUser)
+                                {
+                                    @foreach (var user in userManager.Users.Where(a => a.Email == CurrentUser))
+                                    {
+                                        @if (user.PicName != null)
+                                        {
+                                            <img class="chat-msg-img SendPhoto" src="~/Files/ProfilesPictures/@user.PicName">
+                                        }
+                                        @if (user.PicName == null)
+                                        {
+                                            <img class="chat-msg-img DefaultPhoto" src="~/assets/images/Graduated.png" alt="">
+                                        }
+                                    }
+                                }
+                                @if (@chat.SenderName == UserEmail)
+                                {
+                                    @foreach (var user in userManager.Users.Where(a => a.Email == UserEmail))
+                                    {
+                                        @if (user.PicName != null)
+                                        {
+                                            <img class="chat-msg-img" src="~/Files/ProfilesPictures/@user.PicName">
+                                        }
+                                        @if (user.PicName == null)
+                                        {
+                                            <img class="chat-msg-img" src="~/assets/images/Graduated.png" alt="">
+                                        }
+                                    }
+                                }
+                                <div class="chat-msg-date">@chat.CreatedAt</div>
+                            </div>
+                            <div class="chat-msg-content">
+                                <div class="chat-msg-text" style="background-color:@(chat.SenderName == CurrentUser ? "#333456" :"#f1f2f6");
+                                    color:@(chat.SenderName == CurrentUser ? "#ffffff" :"#000");">
+                                    @chat.Message
+                                </div>
+
+                            </div>
+                        </div>                        
+                    }
+                }
+            </div>
+
+
+            <div class="chat-area-footer justify-content-around">
+                <input type="hidden" id="userId" value="@User.Identity.Name" />
+                <input type="hidden" id="receiverInput" value="@UserEmail" readonly>
+
+                <input type="text" id="messageInput"  placeholder="Type something here..." />
+
+                <button id="sendButton" class="btn btn-primary BtnSend">Send </button>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section js
+{
+    <script src="~/assets/js/Chat.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
+
+}

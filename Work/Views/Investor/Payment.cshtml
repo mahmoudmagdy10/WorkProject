@@ -1,0 +1,133 @@
+﻿@section css
+{
+    <link href="~/assets/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/header.css">
+    <link rel="stylesheet" href="~/assets/css/payment.css">
+    <link rel="stylesheet" href="~/assets/css/SharedFile.css">
+}
+
+<div class="container">
+    <div class="card">
+        <div class="form">
+            <div class="left-side">
+
+                <div class="left_top">
+                    <h4>Oriton Presets</h4>
+                    <p>$29.00 +</p>
+                </div>
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active"> <img src="~/assets/images/mastercard.png" class="d-block w-100" alt="..."> </div>
+                    </div>
+                </div>
+                <h4 class="mt-5">Recommendation</h4>
+
+                <div class="left_text">
+                    <input type="radio" id="collection1" name="collection">
+                    <label for="collection1">
+                        <div class="left_box">
+                            <div class="left_box_collection">
+                                <div class="radio_button">
+                                    <span></span>
+                                    <h4>Collection 01</h4>
+                                </div>
+                                <p>$29</p>
+                            </div>
+                            <p>10 * Presets.Released in 2020.</p>
+                        </div>
+                    </label>
+                    <input type="radio" id="collection2" name="collection">
+                    <label for="collection2">
+                        <div class="left_box">
+                            <div class="left_box_collection">
+                                <div class="radio_button">
+                                    <span></span>
+                                    <h4>Collection 02</h4>
+                                </div>
+                                <p>$29</p>
+                            </div>
+                            <p>10 * Presets.Released in 2021.</p>
+                        </div>
+                    </label> <input type="radio" id="collection3" name="collection"> <label for="collection3">
+                        <div class="left_box lt_bx">
+                            <div class="left_box_collection">
+                                <div class="radio_button">
+                                    <span></span>
+                                    <h4>Collection 01 + 02</h4>
+                                </div>
+                                <p>$48</p>
+                            </div>
+                            <p>Buy both collections.20 * presets in total</p>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="right-side">
+                <h3>Payment Details</h3>
+                <h5>Complete your purchase by providing your payment details.</h5>
+                <div class="input_text"> <input type="text"> <span>Email address</span> </div>
+                <div class="input_div">
+                    <div class="input_text _input">
+                        <input type="text" placeholder="0000 0000 0000 0000" data-slots="0" data-accept="\d" size="19"> <span>Card Details</span>
+                        <i class="fa fa-credit-card"></i>
+                    </div>
+                    <div class="cvv_month">
+                        <div class="input_text ">
+                            <input class="months" type="text" placeholder="mm/yyyy" data-slots="my">
+                        </div>
+                        <div class="input_text ">
+                            <input class="cvcs" type="text" placeholder="000" data-slots="0" data-accept="\d" size="3">
+                        </div>
+                    </div>
+                </div>
+                <div class="input_text"> <input type="text" placeholder="Luk"> <span>Cardholder Name</span> </div>
+                <div class="billing ">
+                    <div class="input_text">
+                        <span>Billing Address</span> <select>
+                            <option>Select Country</option>
+                            <option>China</option>
+                            <option>Thailand</option>
+                            <option>India</option>
+                            <option>Russia</option>
+                            <option>Japan</option>
+                            <option>Vatican City</option>
+                        </select>
+                    </div>
+                    <div class="zip_state my-2"> <input type="number" placeholder="ZIP"> <input type="text" placeholder="State"> </div>
+                </div>
+                <div class="input_text"> <input type="text" placeholder="GB0124589"> <span>VAT Number</span> </div>
+                <div class="bill_content">
+                    <div class="bill_content_text">
+                        <h4>Subtotal</h4>
+                        <p>$29.00</p>
+                    </div>
+                    <div class="bill_content_text">
+                        <h5>VAT (20%)</h5>
+                        <p>$5.80</p>
+                    </div>
+                    <div class="bill_content_text total">
+                        <h4>Total</h4>
+                        <p>$34.80</p>
+                    </div>
+                </div>
+                <div class="pay">
+                    <button>Pay $34.80</button>
+                    <div class="powered">
+                        <img src="../Image/LogoSmallNavBar.png">
+                        <p>Powered by Oriton <a href="#">Terms</a> <a href="#">Services</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section js
+{
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="~/assets/js/ProjectShow.js"></script>
+
+}

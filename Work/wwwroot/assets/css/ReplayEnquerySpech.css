@@ -1,45 +1,87 @@
-.containerEnquery {
-    width: 100%;
-    height: 100px;
-    color: #ffff;
-    background-color: #C59035;
-    border-radius: 32px;
+:root {
+    --main-color-purble: #333456;
+    --main-color-yellow: #C59035;
 }
 
-.btn-main-bg-white {
+
+.containerEnquery
+{
+    width: 100%;
+    color: #ffff;
+    background-color:var(--main-color-yellow) ;
+    border-radius: 32px;
+    min-height: 100px ;
+}
+.btn-main-bg-white
+{
     padding: 10px 20px;
     background-color: rgb(242, 242, 242);
     border-radius: 30px;
     border: none;
 }
-
-.DataOfPersoneOfGraduated {
-    top: -30%;
+.DataOfPersoneOfGraduated
+{
+    top: calc(0px - 1.5rem);
 }
-
-.col-lg-12 {
+.col-lg-12
+{
     margin: 30px 0;
 }
-
-@media screen and (min-width:0px) and (max-width:400px) {
-    .text-black.mx-2 {
-        font-size: 14px;
-    }
+.textPost
+{
+    overflow: hidden;
 }
 
-@media screen and (min-width:0px) and (max-width:750px) {
-    .containerEnquery {
-        height: 200px !important;
+
+@media screen and (min-width:0px) and (max-width:750px)
+{
+    .text-black.mx-2
+    {
+        font-size: 15.5px;
+    }
+    .containerEnquery
+    {
         text-align: center;
     }
-
-        .containerEnquery .col-lg-3 {
-            text-align: center !important;
-            margin-top: 17px;
-        }
-
-    .DataOfPersoneOfGraduated {
-        left: 50% !important;
-        transform: translate(-50%,50%);
+    .containerEnquery .col-lg-3
+    {
+        text-align: center !important;
+        margin-top: 17px;
     }
+
+    .DataOfPersoneOfGraduated
+    {
+        top: calc(0px - 4.5rem);
+        left: 50% !important;
+        transform: translate(-96%,70%);
+
+    }
+    .DataOfPersoneOfGraduated h5
+    {
+        transform: translateY(30%);
+    }
+    .textPost
+    {
+        max-width: auto !important;
+    }
+
+
+
+}
+
+
+
+h5.bg-main-colorDarkLogo
+{
+    text-transform: capitalize;
+    font-weight: bolder;
+}
+.bg-main-colorDarkLogo
+{
+    color: var(--main-color-purble) !important ;
+}
+.btn-chat
+{
+    background-color: var(--main-color-purble) !important ;
+    color: white !important;
 }

@@ -13,8 +13,7 @@ namespace Work.BL.Models
         public string SenderName { get; set; }
         public string RecieverName { get; set; }
         public string Message { get; set; }
-        public string SenderId { get; set; }
-        public string RecieverId { get; set; }
+        public string GroupName { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
     }

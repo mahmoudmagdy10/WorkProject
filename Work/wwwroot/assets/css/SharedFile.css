@@ -1,3 +1,63 @@
-body {
-    font-family: 'Poppins', sans-serif !important;
+
+@font-face 
+{
+    font-family:Poppins ;
+    src: url("../webfonts/Poppins-Medium.ttf");
+}
+body
+{
+    font-family: Poppins, sans-serif !important;
+}
+
+:root
+{
+    --main-color-purble:#333456;
+    --main-color-yellow:#C59035;
+}
+.bg-main-purple
+{
+    background-color:var(--main-color-purble) ;
+}
+.text-main-purble
+{
+    color:var(--main-color-purble) !important;
+}
+.bg-main-yellow
+{
+    background-color:var(--main-color-yellow) !important;
+}
+.text-main-yellow   
+{
+    color:var(--main-color-yellow) !important;
+}
+
+.border-radius-32
+{
+    border-radius: 32px !important;
+}
+
+.shadowBtn
+{
+    box-shadow: 0px 2px 5px -1px black !important;
+}
+.shadowBox
+{
+    box-shadow: 1px 5px 14px -4px black !important; 
+}
+.dropdown-divider
+{
+    opacity: 0.1 !important; 
+}
+.fonts-Bolder
+{
+    font-weight: 600;
+}
+
+@media screen and (min-width: 0) and (max-width: 991px)
+{
+    .navbar a:hover, .active:not(.nav-link .dropdown-toggle) 
+    {
+        color: var(--main-color-purble)!important;
+    }
+
 }

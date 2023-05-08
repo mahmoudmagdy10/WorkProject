@@ -1,72 +1,89 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity;
+@using Work.DAL.Extend;
+
 @model Work.BL.Models.PostVM
 
+@inject SignInManager<ApplicationUser> signInManager
 @inject Work.BL.Interface.IPostRep PostRep;
 @inject Work.BL.Interface.IReplyRep ReplyRep;
+@inject UserManager<ApplicationUser> userManager
 
 @{
     ViewData["Title"] = "Posts";
-    var UserId = TempData["UserId"];
+    var UserId = userManager.GetUserId(User);
 }
+
 
 @section css
 {
+    <link rel="stylesheet" href="~/assets/css/ShowPosts.css">
     <link rel="stylesheet" href="~/assets/css/AddPost.css">
+
 }
 
 
-<form asp-controller="Student" asp-action="CreatePost">
+<div class="container py-4 d-flex justify-content-center align-items-center h-75">
+    <div class="w-100 h-100">
 
-    <input type="hidden" class="form-control" asp-for="UserId" value="@UserId">
-    <input type="hidden" class="form-control" asp-for="UserEmail" value="@User.Identity.Name">
-
-    <div class="addPost p-4 bg-main-color w-50 m-auto text-center">
-        <textarea asp-for="Content" class="form-control w-100"></textarea>
-        <div class="text-end">
-            <input class="btn-Addpost" type="submit" value="Post">
-        </div>
-    </div>
-
-</form>
-
-@*<div class="col-lg-12" style="border:1px solid">
-    @foreach (var post in PostRep.Get(a=>a.UserId == UserId))
-    {
-        <div style="border:1px solid">
-            <h3>@post.Title</h3>
-            <p>@post.Content</p>
-        </div>
-
-        @foreach (var reply in ReplyRep.Get(a => a.PId == post.Id))
+        @if (signInManager.IsSignedIn(User) && User.IsInRole("Student"))
         {
-            <div style="color:firebrick">
-                <p>@reply.Content</p>
-            </div>
-        }
-        <div>
-            <form asp-controller="Specialist" asp-action="AddReply">
+        <div class="shadowBox p-4 bg-main-color w-100 m-auto text-center">
 
+            <form asp-controller="Student" asp-action="CreatePost">
                 <input type="hidden" class="form-control" asp-for="UserId" value="@UserId">
-                <input type="hidden" class="form-control" asp-for="PId" value="@post.Id">
                 <input type="hidden" class="form-control" asp-for="UserEmail" value="@User.Identity.Name">
-
-                <div class="col-lg-12">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" asp-for="Content" autofocus>
-                    </div>
-                </div>
-
-                <div class="col-lg-11 m-auto pt-2 pb-3">
-                    <input class="btn btn-Primary" type="submit" value="Add">
+                <input type="hidden" class="form-control" asp-for="Title" value="Title">
+                <textarea asp-for="Content" id="textPost" class="form-control w-100"></textarea>
+                <div class="text-end">
+                    <input type="submit" class="btn-Addpost" id="btnAddpost" value="Post">
                 </div>
             </form>
         </div>
-    }
+        }
+
+        <div class="ShowPost py-5">
+            <div class="container-fluid">
+                <div class="row" id="QuerisData">
+
+                    <!-- start of post -->
+                    @foreach (var post in PostRep.Get().OrderByDescending(a => a.CreatedAt))
+                    {
+
+                        @foreach (var user in userManager.Users.Where(a=>a.Id == post.UserId))
+                        {
+                        <div class="col-lg-12 d-flex align-items-center containerEnquery position-relative">
+                          <div class="DataOfPersoneOfGraduated position-absolute start-0 d-flex">
+                            @if (user.PicName != null)
+                            {
+                                <img alt="User Pic" src="~/Files/ProfilesPictures/@user.PicName" class="ProfilePhoto">
+                            }
+                            @if (user.PicName == null)
+                            {
+                                <img src="http://i.pravatar.cc/500?img=7 " alt="" class="ProfilePhoto">
+                            }
+                            <h5 class="text-black mx-2">@post.UserEmail</h5>
+                          </div>
+                          <div class="container-fluid">
+                            <div class="row w-100">
+                              <div class="col-lg-12">
+                                <p>@post.Content</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        }
+                    }
+                    <!-- End of post -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
-*@
+
+
 @section js
 {
-    <script src="~/assets/js/jqu.js"></script>
-    <script src="~/assets/js/action.js"></script>
-    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/addPost.js"></script>
 }

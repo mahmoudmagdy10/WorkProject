@@ -4330,11 +4330,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\Work.csproj",
+      "projectUniqueName": "E:\\WorkProject\\Work\\Work.csproj",
       "projectName": "Work",
-      "projectPath": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\Work.csproj",
+      "projectPath": "E:\\WorkProject\\Work\\Work.csproj",
       "packagesPath": "C:\\Users\\migo\\.nuget\\packages\\",
-      "outputPath": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work\\obj\\",
+      "outputPath": "E:\\WorkProject\\Work\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\migo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4351,8 +4351,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work.BL\\Work.BL.csproj": {
-              "projectPath": "E:\\Courses\\.NET\\Prijects\\WorkProject\\Work.BL\\Work.BL.csproj"
+            "E:\\WorkProject\\Work.BL\\Work.BL.csproj": {
+              "projectPath": "E:\\WorkProject\\Work.BL\\Work.BL.csproj"
             }
           }
         }

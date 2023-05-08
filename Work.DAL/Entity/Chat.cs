@@ -12,6 +12,7 @@ namespace Work.DAL.Entity
         public string SenderName { get; set; }
         public string RecieverName { get; set; }
         public string Message { get; set; }
+        public string GroupName { get; set; }
         public DateTime CreatedAt { get; set; }
 
     }

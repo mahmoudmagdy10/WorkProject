@@ -6,11 +6,12 @@
 @inject SignInManager<ApplicationUser> signInManager
 @inject Work.BL.Interface.IPostRep PostRep;
 @inject Work.BL.Interface.IReplyRep ReplyRep;
+@inject UserManager<ApplicationUser> userManager
 
 @{
     ViewData["Title"] = "Posts";
     var Posts = ViewBag.Posts;
-    var UserId = TempData["UserId"];
+    var UserId = userManager.GetUserId(User);
 }
 
 @section css

@@ -1,0 +1,136 @@
+﻿
+@using Microsoft.AspNetCore.Identity;
+@using Work.BL.Models;
+@using Work.DAL.Extend;
+
+@model IEnumerable<Work.BL.Models.ProjectVM>
+@inject Work.BL.Interface.IRequestRep requestRep
+@inject UserManager<ApplicationUser> userManager
+
+
+@{
+    var UserId = userManager.GetUserId(User);
+}
+
+@section css
+{
+    <link href="~/assets/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/header.css">
+    <link rel="stylesheet" href="~/assets/css/ProjectShow.css">
+    <link rel="stylesheet" href="~/assets/css/SharedFile.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+
+}
+
+
+
+<div class="layer vh-100  d-flex justify-content-center align-items-center">
+    <div class="container">
+        <div class="row">
+            <!-- container Big Of Project-->
+            <div class="swiper sample-slider">
+                <div class="swiper-wrapper">
+                    @foreach (var project in Model)
+                    {
+                        @foreach (var user in userManager.Users.Where(a => a.Id == project.UserId))
+                        {
+                            var PId = project.Id.ToString();
+                            <div class="swiper-slide px-2">
+
+                                <div class="col-lg-12 p-1">
+                                    <div class="Project bg-main-yellow border-radius-32 p-5 ">
+                                        <!-- divesstion Container to two part First Part Of Content And Next Part That have of Imag  -->
+                                        <div class="Container-fluid">
+                                            <div class="row">
+                                                <!-- first part of content take all size if you in small page -->
+                                                <div class="col-lg-9 col-sm-12">
+                                                    <div class="Content">
+                                                        <div class="d-flex PersoneHaveProject align-items-center">
+                                                            <div class="imageGratedOfProject overflow-hidden">
+                                                                @if (user.PicName != null)
+                                                                {
+                                                                    <img src="~/Files/ProfilesPictures/@user.PicName">
+                                                                }
+                                                                @if (user.PicName == null)
+                                                                {
+                                                                    <img src="~/assets/images/BoyGratited.png" alt="">
+                                                                }
+                                                            </div>
+                                                            <h6>@user.FirstName @user.LastName</h6>
+                                                        </div>
+                                                        <h5 class="name Persione">@project.Title</h5>
+                                                        <div class="description py-2">
+                                                            <h5>Description</h5>
+                                                            <p>
+                                                                @project.Description
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-lg-flex justify-content-between ">
+                                                        <div class="Btns py-2 d-flex">
+                                                            <button class="btn bg-white text-main2 ShowLegal"> <a href="Payement.html" class="text-decoration-none">Show Legal Paper <i class="fa-solid fa-lock fa-sm ms-2" style="color: #a7a7a7;"></i> | 10 <span class="px-1">$</span></a>   </button>
+                                                            
+@*                                                            <button class="btn btn-chat-Project mx-3 border-radius-32">
+                                                                <a href="" class="text-decoration-none text-white">Request Chat </a>
+                                                            </button>
+*@
+                                                            <button class="btn btn-chat-Project mx-3 border-radius-32 text-white SendRequest" data-receiver_email="@project.UserEmail" 
+                                                                    data-sender_email="@User.Identity.Name" data-PId="@PId" data-title="@project.Title">
+                                                                Request Chat
+                                                            </button>
+
+                                                        </div>
+                                                        <div class="Btns py-2 d-flex">
+                                                            <button class="btn btn-chat mx-3"><a asp-controller="Investor" asp-action="Payment" class="text-decoration-none">BuyNow</a></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- nex part of Image  -->
+                                                <div class="col-lg-3 col-sm-12">
+                                                    <div class="imageProject">
+                                                        <div class="image-container">
+                                                            <img src="~/assets/images/Robotics.jpg" alt="Your Image" class="w-100">
+                                                        </div>
+                                                        <div class="d-flex my-2 justify-content-center align-items-center">
+                                                            <h6 class="m-0 mx-2">Price</h6>
+                                                            <p class="text-white m-0">$ @project.Budget</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End part of Image  -->
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        }
+                    }
+                </div>
+
+            </div>
+
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+</div>
+
+
+@section js
+{
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/notification.js"></script>
+
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="~/assets/js/ProjectShow.js"></script>
+}

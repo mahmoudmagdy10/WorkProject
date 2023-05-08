@@ -1,9 +1,13 @@
 ﻿
 @using Microsoft.AspNetCore.Identity;
 @using Work.DAL.Extend;
+
 @inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager
 
-
+@{
+    var UserId = @userManager.GetUserId(User);
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +20,8 @@
     <!--calling file of fontawsome  -->
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
     <!-- calling file of css boostrap -->
-    <link rel="stylesheet" href="~/assets/css/Header.css">
+    <link rel="stylesheet" href="~/assets/css/header.css">
+
     <!-- calling file of style by developer -->
     <link rel="stylesheet" href="~/assets/css/SharedFile.css">
     <!-- shared file  -->
@@ -29,54 +34,72 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+
+
+    <header class="vh-100">
+        <!-- start of navbar -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary w-100">
             <div class="container-fluid">
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon">
-                  <i class="fa-solid fa-bars fa-fade" style="color: #b37a00;"></i>
+                <a class="navbar-brand" href="#">
+                    <img src="~/assets/images/LogoSmallNavBar.png">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon">
+                        <i class="fa-solid fa-bars fa-fade text-main-yellow"></i>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center" id="navbar-nav">
 
-                </span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-                  <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" asp-controller="Account" asp-action="Login">Home</a>
-                  </li>
+                        <li class="nav-item mx-4">
+                            <a class="nav-link  navLink active" aria-current="page" asp-controller="Home" asp-action="HomePage">Home</a>
+                        </li>
 
-                  <li class="nav-item">
-                    <a class="nav-link" asp-controller="Home" asp-action="HowItWork" >How it Work</a>
-                  </li>
+                        <li class="nav-item mx-4">
+                            <a class="nav-link navLink " asp-controller="Home" asp-action="About" >About Us</a>
+                        </li>
 
-                  <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="About">About US </a>
-                  </li>
+                        <li class="nav-item mx-4">
+                            <a class="nav-link navLink" asp-controller="Home" asp-action="HowItWork" >How It Work</a>
+                        </li>
 
-                  @if (signInManager.IsSignedIn(User))
-                  {
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-@*                      <p>@User.Identity.Name</p>
-*@                      <img src="~/assets/images/Eich.jpg" alt="" class="ProfilePhoto">
-                    </a>
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="StudentProfile.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    @foreach (var item in userManager.Users.Where(a => a.Id == UserId))
+                                    {
+                                        @if (item.PicName != null)
+                                        {
+                                            <img alt="User Pic" src="~/Files/ProfilesPictures/@item.PicName" class="ProfilePhoto">
+                                        }
+                                        @if (item.PicName == null)
+                                        {
+                                            <img src="http://i.pravatar.cc/500?img=7 " alt="" class="ProfilePhoto">
+                                        }
+                                    }
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item " asp-controller="Home" asp-action="Profile">My Profile </a></li>
+                                    <li><hr class="dropdown-divider"></li>
 
-                    <ul class="dropdown-menu" style="background-color: #87aaa5;">
-                      <li><a class="dropdown-item" href="#">Setting</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li>
-                        <form class="dropdown-item" asp-controller="Account" asp-action="Logout" class="nav-link">
-                            <input type="submit" value="Log Out" class="btn btn-danger" />
-                        </form>
-                      </li>
+                                    <li><a class="dropdown-item " asp-controller="Account" asp-action="ProfileSettings">Setting </a></li>
+                                    <li><hr class="dropdown-divider"></li>
+
+                                    <li>
+                                        <form class="dropdown-item" asp-controller="Account" asp-action="Logout" class="nav-link">
+                                            <input type="submit" value="Log Out" class="btn btn-light" />
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
                     </ul>
-                  </li>
-                  }
 
-                </ul>
-
-              </div>
+                </div>
             </div>
-          </nav>
+        </nav>
+        <!-- End of Navbar -->
 
         <div>
             @RenderBody()
@@ -84,8 +107,9 @@
     </header>
 
     <script src="~/assets/js/jqu.js"></script>
-    <script src="~/assets/js/action.js"></script>
+    <script src="~/assets/js/Header.js"></script>
     <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+
     @RenderSection("js",required:false)
 
 </body>

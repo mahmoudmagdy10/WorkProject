@@ -51,29 +51,29 @@ namespace Work.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b6205dc3-29bf-4c4f-8637-81d4ecf81f58",
-                            ConcurrencyStamp = "dce91aae-58f8-4827-b7b9-00888b1e046e",
+                            Id = "82985b4d-ed89-4e32-8471-3e4e050eb0e6",
+                            ConcurrencyStamp = "b1293227-9dda-4d81-9ca7-9ea0c0687453",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
-                            Id = "4a93f6ed-c5e5-49c4-a89c-4ee8d050c2a9",
-                            ConcurrencyStamp = "5b4f7b60-0714-4103-9dc9-b6dc3c3ad47d",
+                            Id = "d7cb22bf-6a26-48d9-9c3f-99540ad4c337",
+                            ConcurrencyStamp = "62f55c81-fffc-4818-a75e-c5524af728b3",
                             Name = "Specialist",
                             NormalizedName = "SPECIALIST"
                         },
                         new
                         {
-                            Id = "e10ea5ea-2a8c-4ded-874f-a5443e67d963",
-                            ConcurrencyStamp = "a24a348a-6f2d-4ada-9353-bcc4f11f912d",
+                            Id = "029bff78-5216-4df5-8f08-d6d83a1b92f1",
+                            ConcurrencyStamp = "ff17709c-035f-46e1-942f-9ffcad3abd8e",
                             Name = "Graduate",
                             NormalizedName = "GRADUATE"
                         },
                         new
                         {
-                            Id = "1917aebf-7724-4616-b573-a250db2019b3",
-                            ConcurrencyStamp = "26242a39-7190-4393-8f89-e96423dbfce2",
+                            Id = "356a612e-5511-43ef-a38b-0934b5a7764e",
+                            ConcurrencyStamp = "34db68fa-ad73-42e0-8789-e04952fd6656",
                             Name = "Investor",
                             NormalizedName = "INVESTOR"
                         });
@@ -196,6 +196,10 @@ namespace Work.DAL.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("GroupName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Message")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -266,10 +270,22 @@ namespace Work.DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("PaperName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProjectName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("UserEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -306,6 +322,32 @@ namespace Work.DAL.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("ProjectAttachments");
+                });
+
+            modelBuilder.Entity("Work.DAL.Entity.Rate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Sender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Rate");
                 });
 
             modelBuilder.Entity("Work.DAL.Entity.Reply", b =>
@@ -346,6 +388,36 @@ namespace Work.DAL.Migrations
                     b.ToTable("Reply");
                 });
 
+            modelBuilder.Entity("Work.DAL.Entity.Request", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool?>("Agree")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ReceiverEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Request");
+                });
+
             modelBuilder.Entity("Work.DAL.Extend.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -353,6 +425,9 @@ namespace Work.DAL.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<string>("Bio")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -365,8 +440,19 @@ namespace Work.DAL.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<bool>("IsAgree")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Job")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -390,6 +476,12 @@ namespace Work.DAL.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("PicName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Rate")
+                        .HasColumnType("int");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -496,6 +588,17 @@ namespace Work.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("Work.DAL.Entity.Rate", b =>
+                {
+                    b.HasOne("Work.DAL.Extend.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Work.DAL.Entity.Reply", b =>

@@ -23,6 +23,12 @@ namespace Work.BL.Mapper
 
             CreateMap<Reply ,ReplyVM>();
             CreateMap<ReplyVM, Reply>();
+
+            CreateMap<Request, RequestVM>();
+            CreateMap<RequestVM, Request>();
+
+            CreateMap<Rate, RateVM>();
+            CreateMap<RateVM, Rate>();
         }
     }
 }

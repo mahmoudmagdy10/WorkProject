@@ -15,9 +15,10 @@ namespace Work.BL.Models
         public string PaperName { get; set; }
         public string ProjectName { get; set; }
         public int ProjectId { get; set; }
-        public Project project { get; set; }
-        public IFormFile Paper { get; set; }
-        public IFormFile Project { get; set; }
+        public Project Project { get; set; }
+
+        //public IFormFile Paper { get; set; }
+        //public IFormFile Project { get; set; }
 
     }
 }

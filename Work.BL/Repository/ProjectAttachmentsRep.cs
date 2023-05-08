@@ -56,7 +56,7 @@ namespace Work.BL.Repository
             db.SaveChanges();
         }
 
-        public IEnumerable<ProjectAttachmentsVM> Get(Expression<Func<ProjectAttachments, bool>> filter = null)
+        public IEnumerable<ProjectAttachmentsVM>  Get(Expression<Func<ProjectAttachments, bool>> filter = null)
         {
             try
             {

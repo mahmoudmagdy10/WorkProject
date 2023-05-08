@@ -12,8 +12,8 @@ namespace Work.BL.Models
         [Required]
         public string RegisterAs { get; set; }
         
-        [Required(ErrorMessage = "This Field Is Required")]
-        public string UserName { get; set; }
+        //[Required(ErrorMessage = "This Field Is Required")]
+        //public string UserName { get; set; }
         
         [EmailAddress(ErrorMessage = "Invalid Mail")]
         [Required(ErrorMessage = "This Field Is Required")]

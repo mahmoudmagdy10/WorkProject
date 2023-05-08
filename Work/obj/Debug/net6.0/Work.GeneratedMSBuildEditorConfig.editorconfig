@@ -9,77 +9,121 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Work
 build_property.RootNamespace = Work
-build_property.ProjectDir = E:\Courses\.NET\Prijects\WorkProject\Work\
+build_property.ProjectDir = E:\WorkProject\Work\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = E:\Courses\.NET\Prijects\WorkProject\Work
+build_property.MSBuildProjectDirectory = E:\WorkProject\Work
 build_property._RazorSourceGeneratorDebug = 
 
-[E:/Courses/.NET/Prijects/WorkProject/Work/Views/Account/Login.cshtml]
+[E:/WorkProject/Work/Views/Account/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WorkProject/Work/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Courses/.NET/Prijects/WorkProject/Work/Views/Account/Register.cshtml]
+[E:/WorkProject/Work/Views/Account/ProfileSettings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxQcm9maWxlU2V0dGluZ3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WorkProject/Work/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Courses/.NET/Prijects/WorkProject/Work/Views/Chat/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxDcmVhdGUuY3NodG1s
+[E:/WorkProject/Work/Views/Chat/ChatRequests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxDaGF0UmVxdWVzdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Courses/.NET/Prijects/WorkProject/Work/Views/Chat/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxJbmRleC5jc2h0bWw=
+[E:/WorkProject/Work/Views/Chat/CreateChat.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxDcmVhdGVDaGF0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Courses/.NET/Prijects/WorkProject/Work/Views/Graduate/CreateProject.cshtml]
+[E:/WorkProject/Work/Views/Graduate/CreateProject.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JhZHVhdGVcQ3JlYXRlUHJvamVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Courses/.NET/Prijects/WorkProject/Work/Views/Graduate/Index.cshtml]
+[E:/WorkProject/Work/Views/Graduate/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JhZHVhdGVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Courses/.NET/Prijects/WorkProject/Work/Views/Home/About.cshtml]
+[E:/WorkProject/Work/Views/Home/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Courses/.NET/Prijects/WorkProject/Work/Views/Home/HomePage.cshtml]
+[E:/WorkProject/Work/Views/Home/HomePage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIb21lUGFnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Courses/.NET/Prijects/WorkProject/Work/Views/Home/HowItWork.cshtml]
+[E:/WorkProject/Work/Views/Home/HowItWork.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIb3dJdFdvcmsuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Courses/.NET/Prijects/WorkProject/Work/Views/Home/Index.cshtml]
+[E:/WorkProject/Work/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Courses/.NET/Prijects/WorkProject/Work/Views/Home/RegisterAs.cshtml]
+[E:/WorkProject/Work/Views/Home/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WorkProject/Work/Views/Home/RegisterAs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3RlckFzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Courses/.NET/Prijects/WorkProject/Work/Views/Layout/_Layout.cshtml]
+[E:/WorkProject/Work/Views/Home/VisitProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaXNpdFByb2ZpbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WorkProject/Work/Views/Investor/BillingInfo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZXN0b3JcQmlsbGluZ0luZm8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WorkProject/Work/Views/Investor/BuyProject.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZXN0b3JcQnV5UHJvamVjdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WorkProject/Work/Views/Investor/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZXN0b3JcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WorkProject/Work/Views/Investor/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZXN0b3JcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WorkProject/Work/Views/Investor/Payment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZXN0b3JcUGF5bWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WorkProject/Work/Views/Layout/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGF5b3V0XF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Courses/.NET/Prijects/WorkProject/Work/Views/Specialist/Index.cshtml]
+[E:/WorkProject/Work/Views/Specialist/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3BlY2lhbGlzdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Courses/.NET/Prijects/WorkProject/Work/Views/Student/CreatePost.cshtml]
+[E:/WorkProject/Work/Views/Specialist/ShowPosts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3BlY2lhbGlzdFxTaG93UG9zdHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WorkProject/Work/Views/Student/CreatePost.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxDcmVhdGVQb3N0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Courses/.NET/Prijects/WorkProject/Work/Views/Student/ShowPost.cshtml]
+[E:/WorkProject/Work/Views/Student/Search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxTZWFyY2guY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WorkProject/Work/Views/Student/ShowPost.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxTaG93UG9zdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Courses/.NET/Prijects/WorkProject/Work/Views/_ViewImports.cshtml]
+[E:/WorkProject/Work/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Courses/.NET/Prijects/WorkProject/Work/Views/_ViewStart.cshtml]
+[E:/WorkProject/Work/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

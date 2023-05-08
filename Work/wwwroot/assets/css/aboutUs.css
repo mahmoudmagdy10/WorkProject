@@ -1,62 +1,79 @@
-.name-persone-have-project
-{
-    width: 30%;
+:root {
+    --main-color-purble: #333456;
+    --main-color-yellow: #C59035;
 }
 
-.bg-main-color
- {
-    background-color: #C59035;
-    border-radius: 32px;
-}
-.Image-persone
+nav
 {
-    border-radius: 32px;
+    position: fixed !important;
 }
 
-.vh-50
-{
-    height: 50vh !important;
-}
-
-.AboutUsInLeft
-{
-    background-color: #C59035 !important;
+.AboutUsInLeft {
+    background-color: var(--main-color-yellow) !important;
     color: white;
-    padding: 10px 25px;
+    padding: 4px 25px;
+    z-index: 1;
 }
-
-.layers
+/* in small screeens */
+@media screen and (min-width:0px) and (max-width:750px) 
 {
-    background-image: url("../images/About.png");
-    height: 100vh;
-    background-size: cover;
-    opacity: 0.8;
-    position: relative;
-    z-index: -1;
-}
 
-@media screen and (min-width:0px) and (max-width:950px) 
-{
-    .containerIntro
-    {
-        width: 90% !important;
-    }
-    .AboutUsInLeft
-    {
+    .AboutUsInLeft {
         z-index: -2;
     }
-    
 }
 
+/* layers have a photo of persone in page about us */
+.layers {
+    background-image: url("../images/AboutUs.png");
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    position: relative;
+    z-index: 0;
+    width: 97%;
+}
+
+/* in screen small to make cover the size of all size  */
+@media screen and (min-width:0px) and (max-width:950px) 
+{
+    .layers {
+        width: 100%;
+    }
+}
+
+
+.IntroInAboutUS h6,
+.Mission_Statement h6,
+.Our_Vision h6 {
+    font-weight: 600 !important;
+}
+
+.containerIntro p {
+    color: black;
+}
 .containerIntro
 {
-    border-radius: 32px;
+    width: 80%;
 }
 
-.containerIntro h6
-{ 
-    color:#333456;
+/* Responsive Container Text OF in Center Page  */
+
+@media screen and (min-width:0) and (max-width:750px) 
+{
+    /* Box text in Center  */
+    .containerIntro {
+        width: 100%;
+        padding: 20px !important;
+    }
+    /* Logo OF Navbar make Hidden in small screens */
+    .navbar-brand {
+        opacity: 0;
+    }
 }
-
-
-
+@media screen and (min-width:0) and (max-width:300px) {
+    .containerIntro {
+        padding: 10px !important;
+    }
+}

@@ -11,13 +11,16 @@ namespace Work.BL.Models
     {
         [MinLength(6, ErrorMessage = "Min Length Is 6")]
         [Required(ErrorMessage = "This Field Is Required")]
-        public string Password { get; set; }
+        public string OldPassword { get; set; }
+        
+        [MinLength(6, ErrorMessage = "Min Length Is 6")]
+        [Required(ErrorMessage = "This Field Is Required")]
+        public string NewPassword { get; set; }
 
         [MinLength(6, ErrorMessage = "Min Length Is 6")]
         [Required(ErrorMessage = "This Field Is Required")]
-        [Compare("Password", ErrorMessage = "Password Not Match")]
+        [Compare("NewPassword", ErrorMessage = "Password Not Match")]
         public string ConfirmPassword { get; set; }
-        public string Email { get; set; }
-        public string Token { get; set; }
+        public string Id { get; set; }
     }
 }

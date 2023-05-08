@@ -14,15 +14,17 @@ namespace Work.Controllers
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly IRolesRep role;
         private readonly RoleManager<IdentityRole> roleManager;
+        private readonly IUserRep userRep;
         #endregion
 
         #region Ctor
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IRolesRep role, RoleManager<IdentityRole> roleManager)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IRolesRep role, RoleManager<IdentityRole> roleManager, IUserRep userRep)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.role = role;
             this.roleManager = roleManager;
+            this.userRep = userRep;
         }
         #endregion
 
@@ -47,7 +49,7 @@ namespace Work.Controllers
                     var user = new ApplicationUser()
                     {
 
-                        UserName = obj.UserName,
+                        UserName = obj.Email,
                         Email = obj.Email,
                     };
                     var AddUser = await userManager.CreateAsync(user, obj.Password);
@@ -62,7 +64,12 @@ namespace Work.Controllers
                         };
                         await role.AddRoleToUser(userVM);
 
-                        return RedirectToAction("Login");
+                        var RedirectLog = await signInManager.PasswordSignInAsync(obj.Email, obj.Password, true, false);
+
+                        if (RedirectLog.Succeeded)
+                        { 
+                            return RedirectToAction("ProfileSettings");
+                        }
                     }
                     else
                     {
@@ -141,6 +148,81 @@ namespace Work.Controllers
 
 
         #endregion
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(ApplicationUser obj) 
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    await userRep.Edit(obj);
+                    return View("ProfileSettings");
+
+                }
+                ViewData["FailedEditing"] = "Failed To Edit";
+                return View("ProfileSettings");
+            }
+            catch (Exception)
+            {
+                ViewData["FailedEditing"] = "Invalid Data";
+
+                return View("ProfileSettings");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult ProfileSettings()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ResetPasswordVM obj) 
+        {
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var user = await userManager.FindByIdAsync(obj.Id);
+                    var CheckPassword = await signInManager.PasswordSignInAsync(user, obj.OldPassword, true, false);
+
+                    if (CheckPassword.Succeeded)
+                    {
+                        var token = await userManager.GeneratePasswordResetTokenAsync(user);
+                        var result = await userManager.ResetPasswordAsync(user, token, obj.NewPassword);
+
+                        if (result.Succeeded)
+                        {
+                            return View();
+                        }
+
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError("", error.Description);
+                        }
+
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Invalid UserName or Password");
+                    }
+                }
+
+                return View();
+            }
+            catch (Exception)
+            {
+                return View();
+            }
+        }
 
 
     }

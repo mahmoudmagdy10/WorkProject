@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Work.BL.Helper;
 using Work.BL.Interface;
 using Work.BL.Models;
-using Work.DAL.Entity;
 
 namespace Work.Controllers
 {
-    [Authorize(Roles= "Graduate")]
     public class GraduateController : Controller
     {
         #region Fields
@@ -26,41 +25,45 @@ namespace Work.Controllers
         #region Actions
         
         [HttpGet]
+        [Authorize(Roles = "Graduate,Student")]
         public IActionResult Index()
         {
             var data = project.Get();
-            var attachments = projectAttachments.Get();
-            ViewBag.attachments = attachments;
             return View(data);
         }
         
         [HttpGet]
-        public IActionResult CreateProject(string UserId)
+        [Authorize(Roles = "Graduate")]
+        public IActionResult CreateProject()
         {
-            TempData["UserId"] = UserId;
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Graduate")]
         public IActionResult CreateProject(ProjectVM model)
         {
             try
             {
-                var CreatedProject = project.Create(model);
-                projectAttachments.Create(model, CreatedProject.Id);
+                var ProjectAttachmentName = UploadingService.UploadFile("/wwwroot/Files/ProjectAttachments", model.Project);
+                var PaperAttachmentName = UploadingService.UploadFile("/wwwroot/Files/PaperAttachments", model.Paper);
 
-                return RedirectToAction("CreateProject", new RouteValueDictionary(new { controller = "Graduate", action = "CreateProject", UserId = model.UserId }));
+                model.ProjectName = ProjectAttachmentName;
+                model.PaperName = PaperAttachmentName;
 
+                project.Create(model);
+
+                return View("CreateProject", "Graduate");
             }
             catch (Exception)
             {
                 TempData["CreatePost"] = "Faild to Create";
-                return RedirectToAction("CreateProject", new RouteValueDictionary(new { controller = "Graduate", action = "CreateProject", UserId = model.UserId }));
+                return View("CreateProject", "Graduate");
 
             }
         }
 
-
+        [Authorize(Roles = "Graduate,Investor")]
         public async Task<IActionResult> DownloadFile(string fileName, string type)
         {
             if (string.IsNullOrEmpty(fileName) || fileName == null)
@@ -68,30 +71,24 @@ namespace Work.Controllers
                 return Content("File Name is Empty...");
             }
 
-            string filePath;
-
-            if (type == "Paper")
-            {
-                // get the filePath
-                filePath = Path.Combine(Directory.GetCurrentDirectory(), "/wwwroot/Files/PaperAttachments", fileName);
-            }
-            else
-            {
-                filePath = Path.Combine(Directory.GetCurrentDirectory(), "/wwwroot/Files/ProjectAttachments", fileName);
-
-            }
+            
+            var ProjectPath = Directory.GetCurrentDirectory() + "/wwwroot/Files/ProjectAttachments";
+            var PaperPath = Directory.GetCurrentDirectory() + "/wwwroot/Files/PaperAttachments";
+            var filePath = (type == "Paper") ? PaperPath : ProjectPath;
+            var finalPath = Path.Combine(filePath, fileName);
 
             // create a memorystream
             var memoryStream = new MemoryStream();
 
-            using (var stream = new FileStream(filePath, FileMode.Open))
+            using (var stream = new FileStream(finalPath, FileMode.Open))
             {
                 await stream.CopyToAsync(memoryStream);
             }
             // set the position to return the file from
             memoryStream.Position = 0;
 
-            return File(memoryStream, Path.GetFileName(filePath));
+            string mimeType = "application/pdf";
+            return File(memoryStream, mimeType, Path.GetFileName(finalPath));
 
         }
         #endregion

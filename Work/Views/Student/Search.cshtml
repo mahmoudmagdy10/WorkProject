@@ -1,0 +1,144 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using Work.DAL.Extend;
+
+@inject UserManager<ApplicationUser> userManager
+@inject Work.BL.Interface.IRateRep rateRep;
+
+
+@{
+    ViewData["Title"] = "Specialists";
+}
+
+@section css
+{
+    <link rel="stylesheet" href="~/assets/css/search.css">
+
+}
+
+
+<div class="container">
+    <!-- start of filteration  -->
+    <div class="py-2 d-flex justify-content-between filteration">
+        <div class="d-flex ResulateCountFilter">
+            <p class="text-danger mx-5">Showing 1 of 10</p>
+            <p>2409 tutors available</p>
+        </div>
+
+
+        <div class="d-flex ">
+            <div class="Rate">
+                <select class="form-select" name="Rate" aria-label="Default select example">
+                    <option selected>Rate</option>
+                    <option value="Hight">Hight Rate</option>
+                    <option value="Little">Little Rate</option>
+                </select>
+
+            </div>
+
+            <div class="Gender">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Gender</option>
+                    <option value="male">Male</option>
+                    <option value="Fmale">F-male</option>
+                </select>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- End of filteration  -->
+    <!-- Container of Persone  -->
+
+    <div class="row my-5">
+        @foreach(var user in await userManager.GetUsersInRoleAsync("Specialist"))
+        {
+            var rateCount = rateRep.Get(a => a.UserId == user.Id).Count();
+            var rateVoteValue = rateRep.Get(a => a.UserId == user.Id);
+            var VoteValues = 0m;
+            var FinalRate = 0m;
+            if(rateCount > 0)
+            {                
+                foreach (var RateValue in rateVoteValue)
+                {
+                    VoteValues += RateValue.Value;
+                }
+                FinalRate = Math.Floor(VoteValues / rateCount);
+
+            }
+
+        <div class="col-lg-12 my-">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 col-sm-12 mb-4">
+                        <div class="d-lg-flex">
+                            <div class="img-persone me-2 d-flex justify-content-center">
+                                <div class="framImg ">
+                                    @if (user.PicName != null)
+                                    {
+                                        <img src="~/Files/ProfilesPictures/@user.PicName" class="w-100">
+                                    }
+                                    @if (user.PicName == null)
+                                    {
+                                        <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/138926-200.png" class="w-100">
+                                    }
+                                </div>
+                            </div>
+                            <div class="desc-persone">
+                                <h3 class="m-0 my-1">@user.FirstName @user.LastName</h3>
+                                <p class="m-0 my-2">@user.Bio</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-12 ">
+                        <!-- rate -->
+                        @if(FinalRate > 0)
+                        {
+
+                            <div class="Rating d-flex justify-content-end py-3">
+
+                                <label aria-label="1 star" for="rating-1" class="rating-label"><i class="fa-solid fa-star fa-2xl" style="color:@(FinalRate >= 1 ? "orange" : "#ddd")"></i></label>
+                                <input class="rating-input" name="Value" id="rating-1" value="1" type="radio" hidden>
+
+                                <label aria-label="2 star" for="rating-2" class="rating-label"><i class="fa-solid fa-star fa-2xl" style="color:@(FinalRate >= 2 ? "orange" : "#ddd")"></i></label>
+                                <input class="rating-input" name="Value" id="rating-2" value="2" type="radio" hidden>
+
+                                <label aria-label="3 star" for="rating-3" class="rating-label"><i class="fa-solid fa-star fa-2xl" style="color:@(FinalRate >= 3 ? "orange" : "#ddd")"></i></label>
+                                <input class="rating-input" name="Value" id="rating-3" value="3" type="radio" hidden>
+
+                                <label aria-label="4 star" for="rating-4" class="rating-label"><i class="fa-solid fa-star fa-2xl" style="color:@(FinalRate >= 4 ? "orange" : "#ddd")"></i></label>
+                                <input class="rating-input" name="Value" id="rating-4" value="4" type="radio" hidden>
+
+                                <label aria-label="5 star" for="rating-5" class="rating-label"><i class="fa-solid fa-star fa-2xl" style="color:@(FinalRate >= 5 ? "orange" : "#ddd")"></i></label>
+                                <input class="rating-input" name="Value" id="rating-5" value="5" type="radio" hidden>
+                            </div>
+                        }
+                        @if(FinalRate <= 0)
+                        {
+                            <div class="Rating d-flex justify-content-end py-3">
+                                <i class="fa-solid fa-star fa-2xl" style="color:#ddd;"></i>
+                                <i class="fa-solid fa-star fa-2xl" style="color:#ddd;"></i>
+                                <i class="fa-solid fa-star fa-2xl" style="color:#ddd;"></i>
+                                <i class="fa-solid fa-star fa-2xl" style="color:#ddd;"></i>
+                            </div>
+                        }
+                        <!-- End rate -->
+
+                        <div class="buttonsServicesOrView d-flex justify-content-end ">
+                            <button class="btn border-radius-32 bg-transparent py-2 px-3 btn-border-yellow">
+                                <a asp-controller="Home" asp-action="VisitProfile" asp-route-SpecialistId = "@user.Id" class="text-decoration-none text-black">View Profile</a>
+                            </button>
+ 
+                            <button class="btn btn-main border-radius-32 bg-main-purple SendRequest" data-receiver_email="@user.Email" data-sender_email="@User.Identity.Name">
+                                Request Chat
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+
+    </div>
+</div>

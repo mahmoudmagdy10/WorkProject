@@ -19,12 +19,17 @@ namespace Work.BL.Models
 
         [Required, StringLength(50)]
         public string Description { get; set; }
+
+        public string PaperName { get; set; }
+        public string ProjectName { get; set; }
+        public int Budget { get; set; }
+        public string UserEmail { get; set; }
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
+        public ProjectAttachments Attachments { get; set; }
 
         public IFormFile Paper { get; set; }
         public IFormFile Project { get; set; }
-        public int Budget { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 

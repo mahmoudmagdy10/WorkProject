@@ -1,0 +1,200 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using Work.DAL.Extend;
+
+@inject UserManager<ApplicationUser> userManager
+@inject Work.BL.Interface.IRateRep rateRep;
+
+@{
+    ViewData["Title"] = "Visit Profile";
+    var UserId = @userManager.GetUserId(User);
+    var SpecialistId = TempData["SpecialistId"];
+
+    var rateCount = rateRep.Get(a => a.UserId == SpecialistId).Count();
+    var rateVoteValue = rateRep.Get(a => a.UserId == SpecialistId);
+    var VoteValues = 0m;
+    var FinalRate = 0m;
+    if(rateCount > 0)
+    {                
+        foreach (var RateValue in rateVoteValue)
+        {
+            VoteValues += RateValue.Value;
+        }
+        FinalRate = Math.Floor(VoteValues / rateCount);
+
+    }
+}
+
+@section css
+{
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- calling file of css boostrap -->
+    <link rel="stylesheet" href="~/assets/css/ProfileUser.css">
+    <link rel="stylesheet" href="~/assets/css/SharedFile.css">
+
+}
+
+<div class="overflow-hidden justify-content-center align-items-center d-flex">
+    <div class="container  position-relative">
+        <div class="pt-5">
+
+            @foreach (var specialist in userManager.Users.Where(a => a.Id == SpecialistId))
+            {
+                <div class="profile-pic">
+                    <div class="UploadProfilePic">
+                        <div class="avatar-upload">
+                            <div class="avatar-preview">
+                                <div id="imagePreview">
+                                    @if (specialist.PicName != null)
+                                    {
+                                        <img src="~/Files/ProfilesPictures/@specialist.PicName" style=" width: 100%; height: 100%; border-radius: 100%; background-size: cover; background-repeat: no-repeat;
+                                                background-position: center; ">
+                                    }
+                                    @if (specialist.PicName == null)
+                                    {
+                                        <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/138926-200.png" style=" width: 100%; height: 100%; border-radius: 100%; background-size: cover; background-repeat: no-repeat;
+                                                background-position: center; ">
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="text-center">@specialist.FirstName @specialist.LastName</h3>
+                <h6 class="text-center">@specialist.Email</h6>
+
+                <div class="py-4 text-center">
+                    <h4>@specialist.Bio</h4>
+
+                    <div id="RateingSection" class="d-flex justify-content-center align-items-center p-2">
+                        <button id="RatingButton" class="btn btn-light" type="button" data-toggle="modal" data-target="#Rating" href="#Rating">
+                            <i class="fa-solid fa-star fa-xl" style="color: #FF5722;"></i> Rate |
+                        </button>
+
+                        @if (FinalRate > 0)
+                        {
+
+                            <div class="Rating d-flex justify-content-end py-3">
+                                <label aria-label="1 star" for="rating-1" class="rating-label" hidden><i class="fa-solid fa-star fa-2xl"></i></label>
+                                <input class="rating-input" id="rating-1" type="radio" hidden>
+
+                                <label aria-label="1 star" for="rating-1" class="rating-label"><i class="fa-solid fa-star fa-2xl"></i></label>
+                                <input class="rating-input" name="Value" id="rating-1" value="1" type="radio" hidden checked=@(FinalRate == 1 ? true : false)>
+
+                                <label aria-label="2 star" for="rating-2" class="rating-label"><i class="fa-solid fa-star fa-2xl"></i></label>
+                                <input class="rating-input" name="Value" id="rating-2" value="2" type="radio" hidden checked=@(FinalRate == 2 ? true : false)>
+
+                                <label aria-label="3 star" for="rating-3" class="rating-label"><i class="fa-solid fa-star fa-2xl"></i></label>
+                                <input class="rating-input" name="Value" id="rating-3" value="3" type="radio" hidden checked=@(FinalRate == 3 ? true : false)>
+
+                                <label aria-label="4 star" for="rating-4" class="rating-label"><i class="fa-solid fa-star fa-2xl"></i></label>
+                                <input class="rating-input" name="Value" id="rating-4" value="4" type="radio" hidden checked=@(FinalRate == 4 ? true : false)>
+
+                                <label aria-label="5 star" for="rating-5" class="rating-label"><i class="fa-solid fa-star fa-2xl"></i></label>
+                                <input class="rating-input" name="Value" id="rating-5" value="5" type="radio" hidden checked=@(FinalRate == 5 ? true : false)>
+                            </div>
+                        }
+                        @if (FinalRate <= 0)
+                        {
+                            <div class="Rating d-flex justify-content-end py-3">
+                                <i class="fa-solid fa-star fa-2xl" style="color:#ddd;"></i>
+                                <i class="fa-solid fa-star fa-2xl" style="color:#ddd;"></i>
+                                <i class="fa-solid fa-star fa-2xl" style="color:#ddd;"></i>
+                                <i class="fa-solid fa-star fa-2xl" style="color:#ddd;"></i>
+                            </div>
+                        }
+
+                    </div>
+
+                    @if (specialist.Job != null)
+                    {
+                        <div class="hobies py-3">
+                            <ul class="list-unstyled">
+                                <li><i class="fa-solid fa-book fa-xl mx-2" style="color: #6f798b; "></i>Job : @specialist.Job</li>
+                            </ul>
+                        </div>
+                    }
+                </div>
+                <div class="text-center btns-AddQ-ShowProject">
+                    <button class="btn btn-bg-main shadowBtn bg-main-yellow border-radius-32 SendRequest" data-receiver_email="@specialist.Email"
+                            data-sender_email="@User.Identity.Name">
+                        Request Chat
+                    </button>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <!-- ------------------------------------------------------------------------------------------ -->
+    <!-- Modal Rating Add-->
+    <div class="modal" id="Rating">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Rateing</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form asp-controller="Home" asp-action="Rate" method="POST">
+                    <div class="modal-body">
+
+                        <input type="hidden" id="Sender" name="Sender" value="@UserId" />
+                        <input type="hidden" id="UserId" name="UserId" value="@SpecialistId" />
+
+                        <div id="full-stars-example-two">
+                            <div class="rating-group">
+
+                                <label aria-label="1 star" class="rating__label" for="rating3-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                <input class="rating__input" name="Value" id="rating3-1" value="1" type="radio">
+
+                                <label aria-label="2 stars" class="rating__label" for="rating3-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                <input class="rating__input" name="Value" id="rating3-2" value="2" type="radio">
+
+                                <label aria-label="3 stars" class="rating__label" for="rating3-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                <input class="rating__input" name="Value" id="rating3-3" value="3" type="radio">
+
+                                <label aria-label="4 stars" class="rating__label" for="rating3-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                <input class="rating__input" name="Value" id="rating3-4" value="4" type="radio">
+
+                                <label aria-label="5 stars" class="rating__label" for="rating3-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                <input class="rating__input" name="Value" id="rating3-5" value="5" type="radio">
+                            </div>
+                           
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn ripple btn-primary" type="submit">Rate</button>
+                        <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal effects-->
+    <!--  ----------------------------------------------------------------------------------------- -->
+</div>
+
+@section js
+{
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/notification.js"></script>
+
+    <script src="~/assets/js/Profile.js"></script>
+    <script>
+
+        $("input[type=radio]").click(function () {
+
+            $(this).attr("checked", "checked");
+            $("input[type=radio]").not(this).removeAttr('checked');
+        });
+
+    </script>
+
+}

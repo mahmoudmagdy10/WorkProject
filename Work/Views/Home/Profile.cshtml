@@ -1,0 +1,599 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using Work.DAL.Extend;
+
+@model Work.BL.Models.ProfileVM;
+
+@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager
+@inject Work.BL.Interface.IRequestRep requestRep
+@inject Work.BL.Interface.IProjectRep projectRep
+@inject Work.BL.Interface.IRateRep rateRep;
+@inject Work.BL.Interface.IChatRep ChatRep;
+
+@{
+    ViewData["Title"] = "Profile";
+    var UserId = userManager.GetUserId(User);
+    var RequestsCount =requestRep.Get(a => a.ReceiverEmail == User.Identity.Name).Where(a => a.Agree is null).Count();
+    var rateCount = rateRep.Get(a => a.UserId == UserId).Count();
+    var rateVoteValue = rateRep.Get(a => a.UserId == UserId);
+    var VoteValues = 0m;
+    var FinalRate = 0m;
+    if (rateCount > 0)
+    {
+        foreach (var RateValue in rateVoteValue)
+        {
+            VoteValues += RateValue.Value;
+        }
+        FinalRate = Math.Floor(VoteValues / rateCount);
+
+    }
+}
+
+@section css
+{
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="~/assets/css/ProfileUser.css">
+}
+
+<div class="overflow-hidden justify-content-center align-items-center d-flex">
+    <div class="container  position-relative">
+        <div class="pt-5">
+
+            @foreach (var item in userManager.Users.Where(a => a.Id == UserId))
+            {
+                <div class="profile-pic">
+
+                    <form id="PicForm" asp-controller="Home" asp-action="Profile" enctype="multipart/form-data">
+                        <div class="UploadProfilePic">
+                            <div class="avatar-upload">
+                                <div class="avatar-edit">
+                                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" asp-for="Pic" onchange="form.submit()" />
+                                    <label for="imageUpload"></label>
+                                </div>
+                                <div class="avatar-preview">
+                                    <div id="imagePreview">
+                                        @if (item.PicName != null)
+                                        {
+                                            <img src="~/Files/ProfilesPictures/@item.PicName" style=" width: 100%; height: 100%; border-radius: 100%; background-size: cover; background-repeat: no-repeat;
+                                                background-position: center; ">
+                                        }
+                                        @if (item.PicName == null)
+                                        {
+                                            <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/138926-200.png" style=" width: 100%; height: 100%; border-radius: 100%; background-size: cover; background-repeat: no-repeat;
+                                                background-position: center; ">
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn btn-success" hidden>
+                    </form>
+                </div>
+                <h3 class="text-center">@item.FirstName @item.LastName</h3>
+
+                <div class="py-4 text-center">
+                    <p>@item.Bio</p>
+                    <div class="d-flex justify-content-center align-items-center p-2">
+                        @if (FinalRate > 0)
+                        {
+
+                            <div class="Rating d-flex justify-content-end py-3">
+                                <label aria-label="1 star" for="rating-1" class="rating-label" hidden><i class="fa-solid fa-star fa-2xl"></i></label>
+                                <input class="rating-input" id="rating-1" type="radio" hidden>
+
+                                <label aria-label="1 star" for="rating-1" class="rating-label"><i class="fa-solid fa-star fa-2xl"></i></label>
+                                <input class="rating-input" name="Value" id="rating-1" value="1" type="radio" hidden checked=@(FinalRate == 1 ? true : false)>
+
+                                <label aria-label="2 star" for="rating-2" class="rating-label"><i class="fa-solid fa-star fa-2xl"></i></label>
+                                <input class="rating-input" name="Value" id="rating-2" value="2" type="radio" hidden checked=@(FinalRate == 2 ? true : false)>
+
+                                <label aria-label="3 star" for="rating-3" class="rating-label"><i class="fa-solid fa-star fa-2xl"></i></label>
+                                <input class="rating-input" name="Value" id="rating-3" value="3" type="radio" hidden checked=@(FinalRate == 3 ? true : false)>
+
+                                <label aria-label="4 star" for="rating-4" class="rating-label"><i class="fa-solid fa-star fa-2xl"></i></label>
+                                <input class="rating-input" name="Value" id="rating-4" value="4" type="radio" hidden checked=@(FinalRate == 4 ? true : false)>
+
+                                <label aria-label="5 star" for="rating-5" class="rating-label"><i class="fa-solid fa-star fa-2xl"></i></label>
+                                <input class="rating-input" name="Value" id="rating-5" value="5" type="radio" hidden checked=@(FinalRate == 5 ? true : false)>
+                            </div>
+                        }
+                        @if (FinalRate <= 0)
+                        {
+                            <i class="fa-solid fa-star fa-2xl" style="color:#ddd;"></i>
+                            <i class="fa-solid fa-star fa-2xl" style="color:#ddd;"></i>
+                            <i class="fa-solid fa-star fa-2xl" style="color:#ddd;"></i>
+                            <i class="fa-solid fa-star fa-2xl" style="color:#ddd;"></i>
+                        }
+                    </div>
+                    @if(item.Job != null)
+                    {
+                        <div class="hobies py-3">
+                            <ul class="list-unstyled">
+                                <li><i class="fa-solid fa-book fa-xl mx-2" style="color: #6f798b; "></i>Job : @item.Job</li>
+                            </ul>
+                        </div>
+
+                    }
+                </div>
+            }
+            <div class="text-center btns-AddQ-ShowProject">
+            
+                
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Student") || User.IsInRole("Specialist"))
+                {
+                    @if (signInManager.IsSignedIn(User) && User.IsInRole("Student"))
+                    {
+                        <button class="btn btn-bg-main mx-2 shadowBtn bg-main-yellow border-radius-32"> 
+                            <a asp-controller="Student" asp-action="CreatePost" class="text-decoration-none text-white">Add Enquiry</a>
+                        </button>
+                
+                        <button class="btn btn-bg-main shadowBtn bg-main-yellow border-radius-32">
+                            <a asp-controller="Student" asp-action="Search" class="text-decoration-none text-white">Show Specialists </a>
+                        </button>
+
+                    }
+                    <button class="btn btn-bg-main shadowBtn bg-main-yellow border-radius-32">
+                        <a asp-controller="Specialist" asp-action="ShowPosts" class="text-decoration-none text-white">Show Posts</a>
+                    </button>
+                }
+      
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Student") || User.IsInRole("Graduate"))
+                {
+                    <button class="btn btn-bg-main shadowBtn bg-main-yellow border-radius-32"> 
+                        <a asp-controller="Graduate" asp-action="Index" class="text-decoration-none text-white">Show Project </a>
+                    </button>
+                }
+
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Investor"))
+                {
+                    <button class="btn btn-bg-main shadowBtn bg-main-yellow border-radius-32">
+                        <a asp-controller="Investor" asp-action="BuyProject" class="text-decoration-none text-white">Buy Project </a>
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- icones to go to chat File System  -->
+    <div class="ChatBtn position-absolute shadowBtn">
+        <div class="d-flex justify-content-center align-items-center  w-100 h-100">
+            <button type="button" class="btn" data-toggle="modal" data-target="#form">
+                <i class="fa-solid fa-bell fa-2xl" style="color:#2b84be  !important;"></i>
+            </button>
+        </div>
+        <div class="position-absolute end-0 alertNotification" style="position:relative">
+            <p style="background-color: red;color: white; padding: 3px; font-weight: bold; border-radius: 50%; text-align: center; width: 25px;">@RequestsCount</p>
+        </div>
+    </div>
+
+    <div class="Notifications position-absolute"> 
+        <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          
+                @foreach(var request in requestRep.Get(a=>a.ReceiverEmail == User.Identity.Name))
+                {
+                    @if (request is not null)
+                    {
+                        var Project = projectRep.GetById(request.ProjectId);
+
+
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
+                                <h3>Request</h3> <i class="fa fa-bell"></i>
+                                <p class="r3 px-md-5 px-sm-1"><span class="text-danger">@request.SenderEmail </span> wants to chat with  you</p>
+
+
+                                @if (request.Agree is null)
+                                {
+                                    <form asp-controller="Request" asp-action="Edit">
+                                        <input type="hidden" name="Id" value="@request.Id" />
+                                        <input type="hidden" name="SenderEmail" value="@request.SenderEmail" />
+                                        <input type="hidden" name="ReceiverEmail" value="@request.ReceiverEmail" />
+                                        <input type="hidden" name="ProjectId" value="@(request.ProjectId == 0 ? 0 : request.ProjectId)" />
+                                        <input type="hidden" name="Agree" value="true" />
+                                        <div class="text-center mb-3">
+                                            <button class="btn btn-success w-50 rounded-pill b1 accepttBtn" type="submit">Accept</button>
+                                        </div>
+                                    </form>
+
+                                    <form asp-controller="Request" asp-action="Delete">
+                                        <input type="hidden" name="Id" value="@request.Id" />
+                                        <input type="hidden" name="SenderEmail" value="@request.SenderEmail" />
+                                        <input type="hidden" name="ReceiverEmail" value="@request.ReceiverEmail" />
+                                        <input type="hidden" name="ProjectId" value="@(request.ProjectId == 0 ? 0 : request.ProjectId)" />
+                                        <input type="hidden" name="Agree" value="false" />
+                                        <div class="text-center">
+                                            <button class="btn btn-danger w-50 rounded-pill Rejectedbtn" type="submit">Reject</button>
+                                        </div>
+                                    </form>
+                                }
+                                @if (request.Agree == true)
+                                {
+                                    <div class="text-center">
+                                        <button id="Chat" class="btn btn-info w-50 rounded-pill Rejectedbtn Chat">
+                                            <a class="text-decoration-none text-white" asp-controller="Chat" asp-action="CreateChat" asp-route-RecieverEmail="@request.SenderEmail">
+                                                <i class="fa-solid fa-comment"></i> Chat
+                                            </a>
+                                        </button>
+                                    </div>
+
+                                }
+
+                            </div>
+
+                        </div>
+                    }
+                }
+
+
+        </div>
+      </div>
+
+    <!-- End chat File System  -->
+</div>
+
+
+@*
+
+<div class="container">
+    <div class="pt-5">
+        <div class="text-center TransformUP">
+
+            @if (signInManager.IsSignedIn(User) && User.IsInRole("Graduate"))
+            {
+                <div class="nav-item dropdown" style="float:left">
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-bell"></i>
+                        <span id="NotificationCount" class="badge rounded-pill badge-notification bg-danger" value="@RequestsCount">@RequestsCount</span>
+                    </a>
+                    <span style="color:darkseagreen">Chat Requests</span>
+
+                    <ul class="dropdown-menu" style="color:black" id="NotificationsList">
+
+                        @foreach(var request in requestRep.Get(a=>a.ReceiverEmail == User.Identity.Name))
+                        {
+                            @if (request is not null)
+                            {
+                            
+                                var Project = projectRep.GetById(request.ProjectId);
+
+                                <li>
+                                    <div>
+                                        <div>
+                                            <h6 class="card-title">Chat Request</h6>
+                                            <p>
+                                                @request.SenderEmail Want To chat With You About @Project.Title Project
+                                            </p>
+                                            <div style="display: flex; justify-content: center; gap: 50px;">
+                                                @if(request.Agree is null)
+                                                {
+                                                    <form asp-controller="Request" asp-action="Edit">
+                                                        <input type="hidden" name="Id" value="@request.Id"/>
+                                                        <input type="hidden" name="SenderEmail" value="@request.SenderEmail" />
+                                                        <input type="hidden" name="ReceiverEmail" value="@request.ReceiverEmail" />
+                                                        <input type="hidden" name="ProjectId" value="@request.ProjectId" />
+                                                        <input type="hidden" name="Agree" value="true" />
+                                                        <input type="submit" class="btn btn-success" value="Accept" />
+                                                    </form>
+
+                                                    <form asp-controller="Request" asp-action="Delete">
+                                                        <input type="hidden" name="Id" value="@request.Id"/>
+                                                        <input type="hidden" name="SenderEmail" value="@request.SenderEmail" />
+                                                        <input type="hidden" name="ReceiverEmail" value="@request.ReceiverEmail" />
+                                                        <input type="hidden" name="ProjectId" value="@request.ProjectId" />
+                                                        <input type="hidden" name="Agree" value="false" />
+                                                        <input type="submit" class="btn btn-danger" value="Reject" />
+                                                    </form>
+                                                }
+                                                @if (request.Agree == true)
+                                                {
+                                                    <button id="Chat" class="btn btn-info Chat">
+                                                        <a asp-controller="Investor" asp-action="Create" asp-route-RecieverEmail="@request.SenderEmail">
+                                                            <i class="fa-solid fa-comment"></i> Chat
+                                                        </a>
+                                                    </button>
+                                                }
+                                        
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            }
+
+            @foreach (var item in userManager.Users.Where(a => a.Id == UserId))
+            {
+                <div class="profile-pic">
+                    @if (item.PicName != null)
+                    {
+                        <img alt="User Pic" src="~/Files/ProfilesPictures/@item.PicName" id="profile-image1" width="300" height="300">
+                    }
+                    @if (item.PicName == null)
+                    {
+                        <img alt="User Pic" src="https://d30y9cdsu7xlg0.cloudfront.net/png/138926-200.png" id="profile-image1" height="200">
+                    }
+
+                    <form id="PicForm" asp-controller="Home" asp-action="Profile" enctype="multipart/form-data">
+                        <input id="profile-image-upload" class="hidden" type="file" asp-for="Pic" onchange="form.submit()" hidden>
+                        <input type="submit" class="btn btn-success" hidden>
+                    </form>
+                </div>
+
+                <button type="button" id="EditUserShow" class="btn btn-Info"  width="20" height="20" data-toggle="modal" data-target="#EditUser"
+                     data-user_id="@UserId" data-user_name="@item.UserName" data-first_name="@item.FirstName" data-last_name="@item.LastName" data-email="@item.Email"
+                     data-job="@item.Job" data-bio="@item.Bio" href="#EditUser">
+                    <i class="fa-solid fa-pen-to-square"></i> Info
+                </button>
+                
+                <button type="button" class="btn btn-Info"  width="20" height="20" data-toggle="modal" data-target="#ChangePassword" href="#ChangePassword">
+                    <i class="fa-solid fa-lock"></i> Change Password
+                </button>
+
+                <h3 asp-for="UserName">@item.FirstName @item.LastName </h3>
+                <h5 asp-for="Email">@item.Email</h5>
+
+                <div class="pt-4">
+
+                    <p asp-for="Bio">
+                        @item.Bio
+                    </p>
+                    <div class="hobies py-3">
+                        <ul class="list-unstyled">
+                            <li><i class="fa-solid fa-book fa-xl mx-2" style="color: #6f798b; "></i>@item.Job</li>
+
+                        </ul>
+                    </div>
+                    <div id="RateingSection" class="d-flex justify-content-center align-items-center p-2">
+                        <button id="RatingButton" class="btn btn-light" type="button" data-toggle="modal" data-target="#Rating" href="#Rating">
+                            <i class="fa-solid fa-star fa-xl" style="color: #FF5722;"></i> Rate | 
+                        </button>
+                        <i class="fa-solid fa-star fa-2xl" style="color: #f5b100;"></i>
+                        <i class="fa-solid fa-star fa-2xl" style="color: #f5b100;"></i>
+                        <i class="fa-solid fa-star fa-2xl" style="color: #f5b100;"></i>
+                        <i class="fa-solid fa-star fa-2xl" style="color: #f5b100;"></i>
+                    </div>
+
+                </div>
+            }
+
+            @if (signInManager.IsSignedIn(User) && User.IsInRole("Student"))
+            {
+                <div class="text-center mt-4">
+                    <button class="btn-bg-main btn "><a asp-controller="Specialist" asp-action="Index" class="text-white text-decoration-none">Add Enquery <i class="fa-solid fa-plus fa-beat fa-lg mx-1"></i></a></button>
+                </div>
+
+            }
+
+            @if (signInManager.IsSignedIn(User) && User.IsInRole("Graduate"))
+            {
+                <div class="text-center mt-4">
+                    <button button class="btn btn-bg-main mx-2"><a asp-controller="Graduate" asp-action="CreateProject"  class="text-decoration-none text-white">Add Project <i class="fa-solid fa-plus fa-beat fa-lg mx-1"></i></a></button>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button button class="btn btn-bg-main mx-2"><a asp-controller="Graduate" asp-action="Index" class="text-decoration-none text-white">Show Projects <i class="fa-solid fa-plus fa-beat fa-lg mx-1"></i></a></button>
+
+                </div>
+
+            }
+
+            @if (signInManager.IsSignedIn(User) && User.IsInRole("Specialist"))
+            {
+                <div class="text-center mt-4">
+                    <button button class="btn btn-bg-main mx-2"><a asp-controller="Specialist" asp-action="Index"  class="text-decoration-none text-white">Reply Enquery <i class="fa-solid fa-plus fa-beat fa-lg mx-1"></i></a></button>
+                </div>
+
+            }
+            @if (signInManager.IsSignedIn(User) && User.IsInRole("Investor"))
+            {
+                <div class="text-center mt-4">
+                    <button button class="btn btn-bg-main mx-2"><a asp-controller="InvestorController" asp-action="Index"  class="text-decoration-none text-white">Buy Project <i class="fa-solid fa-plus fa-beat fa-lg mx-1"></i></a></button>
+                </div>
+
+            }
+        </div>
+    </div>
+
+    <!-- ------------------------------------------------------------------------------------------ -->
+    <!-- Modal effects Add-->
+    <div class="modal" id="EditUser">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form asp-controller="Account" asp-action="Edit" method="POST">
+                    <div class="modal-body">
+
+                        <input type="hidden" id="Id" name="Id" value="@UserId"/>
+
+                        <div class="form-group">
+                            <label>FirstName</label>
+                            <input type="text" class="form-control" id="FirstName" name="FirstName">
+                        </div>
+                        <div class="form-group">
+                            <label>LastName</label>
+                            <input type="text" class="form-control" id="LastName" name="LastName">
+                        </div>
+                        <div class="form-group">
+                            <label>UserName</label>
+                            <input type="text" class="form-control" id="UserName" name="UserName">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" id="Email" name="Email">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Bio</label>
+                            <textarea class="form-control" id="Bio" name="Bio"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Job</label>
+                            <input type="text" class="form-control" id="Job" name="Job">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn ripple btn-primary" type="submit">Save changes</button>
+                        <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal effects-->
+    <!--  ----------------------------------------------------------------------------------------- -->
+
+
+    <!-- ------------------------------------------------------------------------------------------ -->
+    <!-- Modal effects Add-->
+    <div class="modal" id="ChangePassword">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form asp-controller="Account" asp-action="ChangePassword" method="POST">
+                    <div class="modal-body">
+
+                        <input type="hidden" id="Id" name="Id" value="@UserId"/>
+
+                        <div class="form-group">
+                            <label>Old Password</label>
+                            <input type="password" class="form-control" name="OldPassword">
+                        </div>
+
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input type="password" class="form-control" name="NewPassword">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" class="form-control" name="ConfirmPassword">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn ripple btn-primary" type="submit">Save Changes</button>
+                        <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal effects-->
+    <!--  ----------------------------------------------------------------------------------------- -->
+
+
+    <!-- ------------------------------------------------------------------------------------------ -->
+    <!-- Modal Rating Add-->
+    <div class="modal" id="Rating">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Rateing</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="POST">
+                    <div class="modal-body">
+
+                        <input type="hidden" id="Id" name="Id" value="@UserId"/>
+                        
+                        <section class='rating-widget'>
+  
+                            <form>
+                                <!-- Rating Stars Box -->
+                                <div class='rating-stars text-center'>
+                                    <ul id='stars'>
+                                        <li class='star' title='Poor' data-value='1'>
+                                            <i class='fa fa-star fa-fw'><input type="radio" name="rate" value="1" hidden/></i>
+                                        </li>
+                                        <li class='star' title='Fair' data-value='2'>
+                                            <i class='fa fa-star fa-fw'><input type="radio" name="rate" value="2" hidden /></i>
+                                        </li>
+                                        <li class='star' title='Good' data-value='3'>
+                                            <i class='fa fa-star fa-fw'><input type="radio" name="rate" value="3" hidden /></i>
+                                        </li>
+                                        <li class='star' title='Excellent' data-value='4'>
+                                            <i class='fa fa-star fa-fw'><input type="radio" name="rate" value="4" hidden /></i>
+                                        </li>
+                                        <li class='star' title='WOW!!!' data-value='5'>
+                                            <i class='fa fa-star fa-fw'><input type="radio" name="rate" value="5" hidden /></i>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </section>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn ripple btn-primary" type="submit">Rate</button>
+                        <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal effects-->
+    <!--  ----------------------------------------------------------------------------------------- -->
+
+</div>
+
+@section js
+{
+    <script src="~/assets/js/Profile.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/notification.js"></script>
+
+
+    <script>
+        $('#EditUserShow').on('click', function (event) {
+            var button = $(event.target)
+            var Id = button.attr('data-user_id')
+            var UserName = button.attr('data-user_name')
+            var FirstName = button.attr('data-first_name')
+            var LastName = button.attr('data-last_name')
+            var Bio = button.attr('data-bio')
+            var Email = button.attr('data-email')
+            var Job = button.attr('data-job')
+
+            $('#EditUser #Id').val(Id);
+            $('#EditUser #UserName').val(UserName);
+            $("#EditUser #FirstName").val(FirstName)
+            $("#EditUser #LastName").val(LastName)
+            $("#EditUser #Bio").val(Bio)
+            $("#EditUser #Email").val(Email)
+            $("#EditUser #Job").val(Job)
+        })
+    </script>
+
+
+}
+*@
+
+
+@section js
+{
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/Profile.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/notification.js"></script>
+}

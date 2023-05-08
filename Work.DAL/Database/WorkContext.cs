@@ -16,6 +16,8 @@ namespace Work.DAL.Database
         public DbSet<ProjectAttachments> ProjectAttachments { get; set; }
        public DbSet<Chat> Chat { get; set; }
         public DbSet<Reply> Reply{ get; set; }
+        public DbSet<Request> Request { get; set; }
+        public DbSet<Rate> Rate { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

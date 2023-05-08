@@ -3,6 +3,8 @@ using Work.BL.Interface;
 using Microsoft.AspNetCore.Identity;
 using Invoices.BL.Models;
 using Work.BL.Models;
+using System.Linq.Expressions;
+using AutoMapper;
 
 namespace Work.BL.Repository
 {
@@ -21,10 +23,26 @@ namespace Work.BL.Repository
 
         #region Actions
 
-        public IEnumerable<ApplicationUser> Get()
+        public IEnumerable<ApplicationUser> Get(Expression<Func<ApplicationUser, bool>> filter = null)
         {
-            var data = userManager.Users;
-            return data;
+            try
+            {
+
+                if (filter == null)
+                {
+                    var data = userManager.Users;
+                    return data;
+                }
+                else
+                {
+                    var data = userManager.Users.Where(filter);
+                    return data;
+                }
+            }
+            catch
+            {
+                return Enumerable.Empty<ApplicationUser>();
+            }
         }
 
         public async Task<ApplicationUser> GetById(string id)
@@ -43,7 +61,7 @@ namespace Work.BL.Repository
         {
 			var user = new ApplicationUser()
 			{
-				UserName = obj.UserName,
+				UserName = obj.Email,
 				Email = obj.Email,
 				IsAgree = obj.IsAgree
 			};
@@ -56,11 +74,25 @@ namespace Work.BL.Repository
         {
             var data = await userManager.FindByIdAsync(obj.Id);
 
-            data.UserName = obj.UserName;
+            data.UserName = obj.Email;
             data.Email = obj.Email;
+            data.FirstName = obj.FirstName;
+            data.LastName = obj.LastName;
+            data.Bio = obj.Bio;
+            data.PhoneNumber = obj.PhoneNumber;
+            data.Job = obj.Job;
 
             await userManager.UpdateAsync(data);
             return data;
+        }
+        public async Task<ApplicationUser> UploadProfilePic(string PicName, string UserId)
+        {
+            var data = await userManager.FindByIdAsync(UserId);
+            data.PicName = PicName;
+
+            await userManager.UpdateAsync(data);
+            return data;
+
         }
 
         public async Task<ApplicationUser> Delete(ApplicationUser obj)

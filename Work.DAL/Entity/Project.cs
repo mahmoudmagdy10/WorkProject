@@ -12,6 +12,9 @@ namespace Work.DAL.Entity
         [Required, StringLength(50)]
         public string Description { get; set; }
         public int Budget { get; set; }
+        public string PaperName { get; set; }
+        public string ProjectName { get; set; }
+        public string UserEmail { get; set; }
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
         public DateTime CreatedAt { get; set; }

@@ -1,0 +1,38 @@
+
+
+/* page Inquery OF Special */
+.btn-main
+{
+    padding: 10px 20px;
+    border: none;
+}
+
+
+@media screen and (min-width:991px)
+{
+ 
+    .BtnsReplayAndChat
+        {
+
+            transform: translateY(20%);
+        }
+}
+
+
+@media screen and (min-width:0) and (max-width:991px)
+{
+    .BtnsReplayAndChat
+    {
+        display: flex;
+        justify-content: center;
+        padding: 14px;
+    }
+    .textPost 
+    {
+        text-align: center;
+        padding-top: 10px;
+    }
+    
+}
+
+/* Replay In Post */

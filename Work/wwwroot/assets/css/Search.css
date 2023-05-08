@@ -1,29 +1,81 @@
+:root
+{
+    --main-color-purble:#333456;
+    --main-color-yellow:#C59035;
+}
 
+nav
+{
+   position: static;
+}
 .btn-bg-main:hover
 {
     color: white;
 }
-.btn-view-profile
+.btn-border-yellow
 {
-    background-color: transparent !important;
-    color: black !important;
-    border: 1px solid #c59035;
+    border: 1px solid var(--main-color-yellow) ;
 }
-.btn-view-profile:hover
+.btn-view-profile a:hover
 {
-    color: #c59035;
+    color: var(--main-color-yellow) !important;
    
 }
+.buttonsServicesOrView button
+{
+    margin-left:20px !important ;
+    box-shadow: 0px 5px 12px -10px black
 
-.btn-bg-main {
-    background-color: #c59035;
+}
+
+.btn-bg-main
+{
     color: white;
     padding: 10px 35px;
-    border-radius: 30px;
+}
+
+
+.img-persone 
+{
+    width: 30% !important;
+    padding:10px;
+
+
+}
+
+.img-persone  .framImg
+{
+    width: 300px !important;
+    overflow: hidden;
+
+    box-shadow:3px 5px 12px -10px black;
+
+}
+
+
+
+.img-persone img
+{
+width: 100%;
+    border-radius: 20px;
+
 }
 
 @media screen and (min-width:0px) and (max-width:950px)
 {
+
+    .filteration
+    {
+        flex-direction: column;
+    }
+         .ResulateCountFilter
+         {
+            justify-content: space-between;
+         }
+            .ResulateCountFilter p 
+            {
+                margin: 0 !important;
+            }
         .desc-persone
         {
             text-align: center;
@@ -40,8 +92,14 @@
         }
         .Rating
         {
+            height: auto !important;
+            padding: 0 !important;
             justify-content: center !important; 
         }
+            .img-persone 
+            {
+                width: 100%  !important;
+            }
  
 }
 
@@ -53,4 +111,19 @@
             text-align: start !important;
             padding-top:0px ;
         }
+}
+
+
+/* if any input is checked, make its following siblings grey */
+.rating-input:checked ~ .rating-label i {
+    color: #ddd;
+}
+
+
+.rating-input ~ .rating-label i {
+    color: orange;
+}
+
+.rating-input ~ .rating-label {
+    pointer-events: none;
 }

@@ -1,6 +1,5 @@
 
     
-    
 .bg-main-color {
     background-color: #C59035;
     border-radius: 32px;
@@ -41,12 +40,19 @@
 }
 .Post {
     border: none;
-    padding: 5px 30px;
+    padding: 7px 30px;
     background-color: white;
     border-radius: 30px;
 
 }
 
+.AllowUpload
+{
+    margin: 0;
+    font-weight: 900;
+    color: #7d7d7d;
+    font-size: 10px;
+}
 
 
 
@@ -86,4 +92,22 @@ i[class~="fa-solid"]
 {
     width: fit-content;
     margin: auto;
+}
+.Post
+{
+        background-color: #333456 !important;
+
+}
+.Post a
+{
+    color: white !important;
+}
+
+/* SHADOW */
+
+
+.shadowContainer
+{
+    BOX-SHADOW: 1PX 7PX 10PX -7PX BLACK;
+
 }
