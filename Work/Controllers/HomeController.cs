@@ -83,11 +83,27 @@ namespace Work.Controllers
         }
         
         [HttpPost]
-        public IActionResult Rate(RateVM model)
+        public async Task<IActionResult> Rate(RateVM model)
          {
             try
             {
                 rateRep.Create(model);
+                var RatedUser = await userManager.FindByIdAsync(model.UserId);
+                var rateCount = rateRep.Get(a => a.UserId == model.UserId).Count();
+                var rateVoteValue = rateRep.Get(a => a.UserId == model.UserId);
+                var VoteValues = 0m;
+                var FinalRate = 0m;
+                if (rateCount > 0)
+                {
+                    foreach (var RateValue in rateVoteValue)
+                    {
+                        VoteValues += RateValue.Value;
+                    }
+                    FinalRate = Math.Floor(VoteValues / rateCount);
+                    RatedUser.Rate = Convert.ToInt16(FinalRate);
+                    await userRep.Edit(RatedUser);
+
+                }
                 return RedirectToAction("VisitProfile", new RouteValueDictionary(new { controller = "Home", action = "VisitProfile", SpecialistId = model.UserId }));
             }
             catch (Exception)

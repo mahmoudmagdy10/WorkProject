@@ -28,8 +28,7 @@ namespace Work.Controllers
         [Authorize(Roles = "Graduate,Student")]
         public IActionResult Index()
         {
-            var data = project.Get();
-            return View(data);
+            return View();
         }
         
         [HttpGet]
@@ -53,12 +52,12 @@ namespace Work.Controllers
 
                 project.Create(model);
 
-                return View("CreateProject", "Graduate");
+                return View("Index");
             }
             catch (Exception)
             {
                 TempData["CreatePost"] = "Faild to Create";
-                return View("CreateProject", "Graduate");
+                return View();
 
             }
         }

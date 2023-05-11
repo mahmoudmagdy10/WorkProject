@@ -26,10 +26,10 @@ connection.on("ReceiveRequest", function (sender) {
               <h3>Request</h3> <i class="fa fa-bell"></i>
               <p class="r3 px-md-5 px-sm-1"><span class="text-danger">${sender} </span> wants to chat with  you</p>
               <div class="text-center mb-3">
-                <button class="btn btn-success w-50 rounded-pill b1 accepttBtn">Accept</button>
+                <button class="btn btn-success w-50 rounded-pill b1 accepttBtn"><a href="/Home/Profile" class="text-decoration-none text-white">Accept</a></button>
               </div>
               <div class="text-center">
-                <button class="btn btn-danger w-50 rounded-pill Rejectedbtn"><a href="#" class="text-decoration-none text-white">Reject</a></button>
+                <button class="btn btn-danger w-50 rounded-pill Rejectedbtn"><a href="/Home/Profile" class="text-decoration-none text-white">Reject</a></button>
               </div> 
             </div>
         </div>

@@ -63,24 +63,11 @@ connection.start().then(function () {
 
 });
 
-//document.getElementById("sendButton").addEventListener("click", function (event) {
-//    var user = document.getElementById("userId").value;
-//    var receiver = document.getElementById("receiverInput").value;
-//    var message = document.getElementById("messageInput").value;
-
-//    connection.invoke("SendMessageToGroup",user, receiver, message).catch(function (err) {
-//        return console.error(err.toString());
-//    });
-//    event.preventDefault();
-//});
-
 document.getElementById("sendButton").addEventListener("click", function (event) {
     var user = document.getElementById("userId").value;
     var receiver = document.getElementById("receiverInput").value;
     var message = document.getElementById("messageInput").value;
-    var SendPhoto = $(".SendPhoto").attr("src") ?? $(".DefaultPhoto").attr("src"); 
-
-    //ClickJoinGroup()
+    var SendPhoto = $(".SendPhoto").attr("src") ?? "https://d30y9cdsu7xlg0.cloudfront.net/png/138926-200.png";
 
     console.log("sendButton is clicked");
 

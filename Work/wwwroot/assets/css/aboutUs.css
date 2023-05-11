@@ -2,7 +2,10 @@
     --main-color-purble: #333456;
     --main-color-yellow: #C59035;
 }
-
+body
+{
+    font-family: Poppins, sans-serif !important;
+}
 nav
 {
     position: fixed !important;

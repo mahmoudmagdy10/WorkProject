@@ -136,7 +136,7 @@ body
     }
 }
 
-a[href="Register.html"]:hover , a[href="Login.html"]:hover 
+.Login_Register:hover
 {
     color:  #a46d0d !important ;
 

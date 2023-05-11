@@ -37,7 +37,7 @@ nav
 
 .img-persone 
 {
-    width: 30% !important;
+    width: 20% !important;
     padding:10px;
 
 
@@ -56,7 +56,8 @@ nav
 
 .img-persone img
 {
-width: 100%;
+width: 147px;
+    height: 150px;
     border-radius: 20px;
 
 }
@@ -114,16 +115,3 @@ width: 100%;
 }
 
 
-/* if any input is checked, make its following siblings grey */
-.rating-input:checked ~ .rating-label i {
-    color: #ddd;
-}
-
-
-.rating-input ~ .rating-label i {
-    color: orange;
-}
-
-.rating-input ~ .rating-label {
-    pointer-events: none;
-}

@@ -9,7 +9,8 @@ nav
 {
     position: fixed !important;
 }
-.layer::after {
+.layer::after
+{
     content: "";
     position: absolute;
     top: 0;

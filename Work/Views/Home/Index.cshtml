@@ -1,33 +1,60 @@
 ﻿
 @{
-    ViewData["Title"] = "Welcome";
-}
-
-@section css
-{
-    <link rel="stylesheet" href="~/assets/css/IndexStyleCss.css">
+    Layout = null;
 }
 
 
-<div class="d-flex ContainerHomePage">
-    <div class="SizeOfContainer registerAccount pt-lg-5 d-flex mt-lg-5">
-        <div class="text-center pt-5 mt-5">
-            <img src="~/assets/images/LogoLarge.png" alt="" class="w-50">
-            <div class=" d-flex justify-content-center containerBtn">
-                <button class="btn mx-lg-5 BtnSignUP" type="button"><a asp-controller="Home" asp-action="RegisterAs">Registeration</a></button>
-                <button class="btn mx-lg-5 BtnLogin" type="button"><a asp-controller="Account" asp-action="Login">Log In</a></button>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome </title>
+    <!-- name of website -->
+    <link href="~/assets/css/all.min.css" rel="stylesheet">
+    <!--calling file of fontawsome  -->
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <!-- calling file of css boostrap -->
+    <link rel="stylesheet" href="~/assets/css/userHomePageAll.css">
+    <!-- calling file of style by developer -->
+    <link rel="stylesheet" href="~/assets/css/SharedFile.css">
+    <!-- shared file  -->
+    <link rel="stylesheet" href="~/assets/css/IndexPage.css">
+
+</head>
+<body>
+    <header>
+        <div class="LayerPageHome">
+            <div class="d-flex ContainerHomePage">
+                <div class="SizeOfContainer registerAccount pt-lg-5 d-flex mt-lg-5 w-50">
+                    <div class="text-center pt-5 ">
+                        <img src="~/assets/images/LogoLarge.png" alt="" class="w-50">
+                        <div class=" d-flex justify-content-center containerBtn">
+                            <button class="btn mx-lg-5 bg-main-yellow border-radius-32 px-5 py-2" type="button"><a asp-controller="Home" asp-action="RegisterAs" class="text-white text-decoration-none">Sign Up</a> </button>
+                            <button class="btn mx-lg-5 bg-main-purple border-radius-32 px-5 py-2" type="button"><a asp-controller="Account" asp-action="Login" class="text-white text-decoration-none">Log In</a></button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="SizeOfContainer">
+                    <div class="text-center pt-lg-5 mt-lg-5 w-100  text-center">
+                        <div class="d-flex justify-content-center ">
+                            <h3 class="pt-5 ProjectFucture "> YOUR PROJECT IS YOUR FUTURE..</h3>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
+
+
         </div>
-    </div>
 
 
-    <div class="SizeOfContainer">
-        <div class="text-center pt-lg-5 mt-lg-5 w-100  text-center">
-            <div class="d-flex justify-content-center mt-lg-5  ">
-                <h3 class="mt-5 pt-5 ProjectFucture "> YOUR PROJECT IS YOUR FUTURE..</h3>
-            </div>
-        </div>
-    </div>
-
-
-</div>
+    </header>
+    <script src="~/assets/js/jqu.js"></script>
+</body>
+</html>

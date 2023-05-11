@@ -3,7 +3,8 @@ let EmailAddress=document.getElementById("emailAdress");
 let  Password=document.getElementById("PasswordElement");
 let rePassword =document.getElementById("Repassword");
 let errorsSubmite=document.getElementById("errorsSubmite");
-let reguxUserName=/^[a-zA-Z0-9 ]{6}/;
+let reguxUserName=/^[A-Za-z ]{6,}$/;
+// regualr experssion character onely  and min 6 
 let reguxOfEmail= /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 let BtnCreateAccount=document.getElementById("BtnAccount");
 

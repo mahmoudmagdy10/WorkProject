@@ -5,13 +5,15 @@
 @inject UserManager<ApplicationUser> userManager
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
     var UserId = userManager.GetUserId(User);
 }
 
 @section css{
 
     <link rel="stylesheet" href="~/assets/css/userHomePageAll.css">
+    <link rel="stylesheet" href="~/assets/css/SharedFile.css">
+
 
 }
 
@@ -24,28 +26,29 @@
                     @if (signInManager.IsSignedIn(User) && User.IsInRole("Student"))
                     {
                         <div class="text-center mt-4">
-                            <a asp-controller="Student" asp-action="CreatePost"><button class="btn-bg-main btn ">Add Inquery <i class="fa-solid fa-plus fa-beat fa-lg mx-1"></i></button></a>
+                            <a asp-controller="Student" asp-action="CreatePost"><button class="btn-bg-main btn " style="font-weight: 500;">Add Inquery <i class="fa-solid fa-plus fa-beat fa-lg mx-1"></i></button></a>
                         </div>
+
                     }
 
                     @if (signInManager.IsSignedIn(User) && User.IsInRole("Graduate"))
                     {
                         <div class="text-center mt-4">
-                            <a asp-controller="Graduate" asp-action="CreateProject"><button class="btn-bg-main btn ">Add Project <i class="fa-solid fa-plus fa-beat fa-lg mx-1"></i></button></a>
+                            <a asp-controller="Graduate" asp-action="CreateProject"><button class="btn-bg-main btn "style="font-weight: 500;">Add Project <i class="fa-solid fa-plus fa-beat fa-lg mx-1"></i></button></a>
                         </div>
                     }
 
                     @if (signInManager.IsSignedIn(User) && User.IsInRole("Specialist"))
                     {
                         <div class="text-center mt-4">
-                            <a asp-controller="Specialist" asp-action="ShowPosts"><button class="btn-bg-main btn ">Reply Inquery <i class="fa-solid fa-plus fa-beat fa-lg mx-1"></i></button></a>
+                            <a asp-controller="Specialist" asp-action="ShowPosts"><button class="btn-bg-main btn " style="font-weight: 500;">Reply Inquery <i class="fa-solid fa-plus fa-beat fa-lg mx-1"></i></button></a>
                         </div>
                     }
 
                     @if (signInManager.IsSignedIn(User) && User.IsInRole("Investor"))
                     {
                         <div class="text-center mt-4">
-                            <a asp-controller="Investor" asp-action="BuyProject"><button class="btn-bg-main btn ">Buy Project <i class="fa-solid fa-plus fa-beat fa-lg mx-1"></i></button></a>
+                            <a asp-controller="Investor" asp-action="BuyProject"><button class="btn-bg-main btn " style="font-weight: 500;">Buy Project <i class="fa-solid fa-plus fa-beat fa-lg mx-1"></i></button></a>
                         </div>
                     }
                 </div>
@@ -54,3 +57,6 @@
     </div>
 </div>
 
+@section js {
+
+}

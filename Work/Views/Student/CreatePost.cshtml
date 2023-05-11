@@ -6,10 +6,11 @@
 @inject SignInManager<ApplicationUser> signInManager
 @inject Work.BL.Interface.IPostRep PostRep;
 @inject Work.BL.Interface.IReplyRep ReplyRep;
+@inject Work.BL.Interface.IUserRep userRep;
 @inject UserManager<ApplicationUser> userManager
 
 @{
-    ViewData["Title"] = "Posts";
+    ViewData["Title"] = "Add Post";
     var UserId = userManager.GetUserId(User);
 }
 
@@ -29,15 +30,19 @@
         {
         <div class="shadowBox p-4 bg-main-color w-100 m-auto text-center">
 
-            <form asp-controller="Student" asp-action="CreatePost">
+            @foreach(var user in userManager.Users.Where(a=>a.Id == UserId))
+            {
+            <form id="PostForm" asp-controller="Student" asp-action="CreatePost">
                 <input type="hidden" class="form-control" asp-for="UserId" value="@UserId">
                 <input type="hidden" class="form-control" asp-for="UserEmail" value="@User.Identity.Name">
                 <input type="hidden" class="form-control" asp-for="Title" value="Title">
                 <textarea asp-for="Content" id="textPost" class="form-control w-100"></textarea>
                 <div class="text-end">
-                    <input type="submit" class="btn-Addpost" id="btnAddpost" value="Post">
+                    <button class="btn-Addpost" id="btnAddpost" data-FName="@user.FirstName" data-LName="@user.LastName" data-Pic="@user.PicName">Post</button>
+
                 </div>
             </form>
+            }
         </div>
         }
 
@@ -51,26 +56,32 @@
 
                         @foreach (var user in userManager.Users.Where(a=>a.Id == post.UserId))
                         {
-                        <div class="col-lg-12 d-flex align-items-center containerEnquery position-relative">
-                          <div class="DataOfPersoneOfGraduated position-absolute start-0 d-flex">
-                            @if (user.PicName != null)
-                            {
-                                <img alt="User Pic" src="~/Files/ProfilesPictures/@user.PicName" class="ProfilePhoto">
-                            }
-                            @if (user.PicName == null)
-                            {
-                                <img src="http://i.pravatar.cc/500?img=7 " alt="" class="ProfilePhoto">
-                            }
-                            <h5 class="text-black mx-2">@post.UserEmail</h5>
-                          </div>
-                          <div class="container-fluid">
-                            <div class="row w-100">
-                              <div class="col-lg-12">
-                                <p>@post.Content</p>
-                              </div>
+                            <div class="col-lg-12 d-flex align-items-center containerEnquery position-relative">
+                              
+                                <div class="DataOfPersoneOfGraduated position-absolute start-0 d-flex">
+                                    @if (user.PicName != null)
+                                    {
+                                        <img alt="User Pic" src="~/Files/ProfilesPictures/@user.PicName" class="ProfilePhoto">
+                                    }
+                                    @if (user.PicName == null)
+                                    {
+                                        <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/138926-200.png" alt="" class="ProfilePhoto">
+                                    }
+                                    <h5 class="text-black mx-2">@user.FirstName @user.LastName</h5>
+                                </div>
+                                <div class="container-fluid">
+
+                                    <div class="row w-100">
+
+                                        <div class="col-lg-12">
+                                        <p>@post.Content</p>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
                             </div>
-                          </div>
-                        </div>
                         }
                     }
                     <!-- End of post -->
@@ -85,5 +96,51 @@
 
 @section js
 {
-    <script src="~/assets/js/addPost.js"></script>
+@*   <script src="~/assets/js/addPost.js"></script>
+*@
+    <script>
+
+        $(document).on('click', '#btnAddpost', function (e) {
+            e.preventDefault();
+
+            var formData = new FormData($('#PostForm')[0]);
+
+            var FName = $(this).attr('data-FName');
+            var LName = $(this).attr('data-LName');
+            var Pic = $(this).attr('data-Pic');
+
+            $.ajax({
+                type:'post',
+                enctype:'multipart/form-data',
+                url: '/Student/CreatePost',
+                data:formData,
+                processData:false,
+                contentType:false,
+                cache:false,
+                success:function(data){
+                    
+                    $("#QuerisData").prepend(`
+                        <div class="col-lg-12 d-flex align-items-center containerEnquery shadowBox position-relative containerEnqueryAdmin">
+                            <div class="DataOfPersoneOfGraduated position-absolute start-0 d-flex">
+                                <img src="/Files/ProfilesPictures/${Pic}" alt="" class="rounded-circle PicPersonHavePost">
+                                <h5 class="text-black mx-2">${FName} ${LName}</h5>
+                            </div>
+                            <div class="container-fluid  ">
+                                <div class="row w-100">
+                                    <div class="col-lg-12">
+                                        <p>${data.Content}</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                },
+                error:function(reject){
+                    console.log(reject);
+
+                }
+            });
+        });
+    </script>
 }

@@ -7,6 +7,7 @@
 @inject Work.BL.Interface.IRequestRep requestRep
 @inject SignInManager<ApplicationUser> signInManager
 @inject UserManager<ApplicationUser> userManager
+@inject Work.BL.Interface.IProjectRep projectRep
 
 
 @{
@@ -28,7 +29,7 @@
             <!-- container Big Of Project-->
             <div class="swiper sample-slider">
                 <div class="swiper-wrapper">
-                    @foreach (var project in Model)
+                    @foreach (var project in projectRep.Get())
                     {
                         @foreach (var user in userManager.Users.Where(a => a.Id == project.UserId))
                         {
@@ -50,7 +51,7 @@
                                                                 }
                                                                 @if (user.PicName == null)
                                                                 {
-                                                                    <img src="~/assets/images/BoyGratited.png" alt="">
+                                                                    <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/138926-200.png" alt="">
                                                                 }
                                                             </div>
                                                             <h6>@user.FirstName @user.LastName </h6>
@@ -65,8 +66,13 @@
                                                     </div>
                                                     <div class="d-lg-flex justify-content-between ">
                                                         <div class="Btns py-2 d-flex">
-                                                            <button class="btn bg-white text-main2 ShowLegal">Show Legal Paper </button>
-
+                                                            @if (project.UserId == UserId)
+                                                            {
+                                                                <a class="btn bg-white text-main2 ShowLegal" style="text-decoration:none" asp-controller="Graduate" asp-action="DownloadFile"
+                                                                    asp-route-fileName="@project.PaperName" asp-route-type="Paper">
+                                                                    Show Legal Paper
+                                                                </a>
+                                                            }
                                                         </div>
                                                     </div>
                                                 </div>
@@ -75,7 +81,7 @@
                                                 <div class="col-lg-3 col-sm-12">
                                                     <div class="imageProject">
                                                         <div class="image-container">
-                                                            <img src="~/assets/images/Robotics.jpg" alt="Your Image" class="w-100">
+                                                            <img src="~/Files/ProjectAttachments/@project.ProjectName" alt="Your Image" class="w-100 "width="250px" height="294px">
                                                         </div>
                                                     </div>
                                                 </div>

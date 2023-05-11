@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Work.BL.Interface;
 using Work.BL.Models;
+using Work.DAL.Extend;
 
 namespace Work.Controllers
 {
@@ -10,14 +12,18 @@ namespace Work.Controllers
         #region Fields
 
         private readonly IPostRep post;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly IUserRep userRep;
 
         #endregion
 
         #region Ctor
 
-        public StudentController(IPostRep post)
+        public StudentController(IPostRep post,UserManager<ApplicationUser> userManager, IUserRep userRep)
         {
             this.post = post;
+            this.userManager = userManager;
+            this.userRep = userRep;
         }
 
         #endregion
@@ -33,12 +39,12 @@ namespace Work.Controllers
         
         [Authorize(Roles = "Student")]
         [HttpPost]
-        public IActionResult CreatePost(PostVM model)
+        public JsonResult CreatePost(PostVM model)
         {
             try
             {
                 post.Create(model);
-                return View();
+                return Json(model);
                 //return RedirectToAction("Index", new RouteValueDictionary(new { controller = "Specialist", action = "Index", UserId = model.UserId }));
                 //return Json(PostData);
 
@@ -46,9 +52,7 @@ namespace Work.Controllers
             catch (Exception)
             {
                 TempData["CreatePost"] = "Faild to Create";
-                return View();
-
-                //return Json("Faild to Create");
+                return Json("Faild to Create");
                 //return RedirectToAction("Index", new RouteValueDictionary(new { controller = "Specialist", action = "Index", UserId = model.UserId }));
 
 
@@ -107,5 +111,6 @@ namespace Work.Controllers
             return View();
         }
         #endregion
+
     }
 }

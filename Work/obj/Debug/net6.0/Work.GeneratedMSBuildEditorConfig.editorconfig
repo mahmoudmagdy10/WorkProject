@@ -32,10 +32,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/WorkProject/Work/Views/Chat/ChatRequests.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxDaGF0UmVxdWVzdHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [E:/WorkProject/Work/Views/Chat/CreateChat.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxDcmVhdGVDaGF0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -84,24 +80,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZXN0b3JcQnV5UHJvamVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/WorkProject/Work/Views/Investor/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZXN0b3JcQ3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/WorkProject/Work/Views/Investor/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZXN0b3JcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [E:/WorkProject/Work/Views/Investor/Payment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZXN0b3JcUGF5bWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/WorkProject/Work/Views/Layout/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGF5b3V0XF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/WorkProject/Work/Views/Specialist/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3BlY2lhbGlzdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/WorkProject/Work/Views/Specialist/ShowPosts.cshtml]

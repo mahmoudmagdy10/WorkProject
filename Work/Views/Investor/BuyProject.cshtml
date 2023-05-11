@@ -9,14 +9,14 @@
 
 
 @{
+    ViewData["Title"] = "Buy Project";
+
     var UserId = userManager.GetUserId(User);
 }
 
 @section css
 {
-    <link href="~/assets/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/assets/css/header.css">
+
     <link rel="stylesheet" href="~/assets/css/ProjectShow.css">
     <link rel="stylesheet" href="~/assets/css/SharedFile.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
@@ -54,7 +54,7 @@
                                                                 }
                                                                 @if (user.PicName == null)
                                                                 {
-                                                                    <img src="~/assets/images/BoyGratited.png" alt="">
+                                                                    <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/138926-200.png" alt="">
                                                                 }
                                                             </div>
                                                             <h6>@user.FirstName @user.LastName</h6>
@@ -71,10 +71,6 @@
                                                         <div class="Btns py-2 d-flex">
                                                             <button class="btn bg-white text-main2 ShowLegal"> <a href="Payement.html" class="text-decoration-none">Show Legal Paper <i class="fa-solid fa-lock fa-sm ms-2" style="color: #a7a7a7;"></i> | 10 <span class="px-1">$</span></a>   </button>
                                                             
-@*                                                            <button class="btn btn-chat-Project mx-3 border-radius-32">
-                                                                <a href="" class="text-decoration-none text-white">Request Chat </a>
-                                                            </button>
-*@
                                                             <button class="btn btn-chat-Project mx-3 border-radius-32 text-white SendRequest" data-receiver_email="@project.UserEmail" 
                                                                     data-sender_email="@User.Identity.Name" data-PId="@PId" data-title="@project.Title">
                                                                 Request Chat
@@ -90,7 +86,7 @@
                                                 <div class="col-lg-3 col-sm-12">
                                                     <div class="imageProject">
                                                         <div class="image-container">
-                                                            <img src="~/assets/images/Robotics.jpg" alt="Your Image" class="w-100">
+                                                            <img src="~/Files/ProjectAttachments/@project.ProjectName" alt="Your Image" class="w-100" width="250px" height="294px">
                                                         </div>
                                                         <div class="d-flex my-2 justify-content-center align-items-center">
                                                             <h6 class="m-0 mx-2">Price</h6>
@@ -130,7 +126,6 @@
     <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/notification.js"></script>
 
-    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="~/assets/js/ProjectShow.js"></script>
 }

@@ -9,7 +9,7 @@
 
 
 @{
-    ViewData["Title"] = "Chat Page";
+    ViewData["Title"] = "Chat";
     var UserEmail = TempData["UserEmail"].ToString();
     var UserId = userManager.GetUserId(User);
     var CurrentUser = userManager.GetUserName(User).ToString();
@@ -21,6 +21,8 @@
 {
     <link rel="stylesheet" href="~/assets/css/chat.css">
     <link rel="stylesheet" href="~/assets/css/SharedFile.css">
+    <link rel="stylesheet" href="~/assets/css/rate.css">
+
 
 }
 
@@ -41,6 +43,10 @@
             <input type="hidden" id="CurrentUser" value="@UserEmail" />
             <input type="hidden" id="SenderUser" value="@CurrentUser" />
 
+            @foreach (var sender in userManager.Users.Where(a => a.Email == CurrentUser))
+            {
+                <img class="SendPhoto" src="~/Files/ProfilesPictures/@sender.PicName" hidden>
+            }
             @foreach(var user in userManager.Users.Where(a => a.Email == UserEmail))
             {                            
                 <div class="msg online active">
@@ -50,7 +56,7 @@
                     }
                     @if (user.PicName == null)
                     {
-                        <img src="~/assets/images/BoyGratited.png"  style="width: 50px; height: 50px; border-radius: 50%; margin-right: 30px;">
+                        <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/138926-200.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 30px;">
                     }
                     <div class="msg-detail">
                         <div class="msg-username">@user.FirstName @user.LastName</div>
@@ -82,11 +88,11 @@
                                     {
                                         @if (user.PicName != null)
                                         {
-                                            <img class="chat-msg-img SendPhoto" src="~/Files/ProfilesPictures/@user.PicName">
+                                            <img class="chat-msg-img" src="~/Files/ProfilesPictures/@user.PicName">
                                         }
                                         @if (user.PicName == null)
                                         {
-                                            <img class="chat-msg-img DefaultPhoto" src="~/assets/images/Graduated.png" alt="">
+                                            <img class="chat-msg-img DefaultPhoto" src="https://d30y9cdsu7xlg0.cloudfront.net/png/138926-200.png" alt="">
                                         }
                                     }
                                 }
@@ -100,7 +106,7 @@
                                         }
                                         @if (user.PicName == null)
                                         {
-                                            <img class="chat-msg-img" src="~/assets/images/Graduated.png" alt="">
+                                            <img class="chat-msg-img" src="https://d30y9cdsu7xlg0.cloudfront.net/png/138926-200.png" alt="">
                                         }
                                     }
                                 }
@@ -119,25 +125,77 @@
             </div>
 
 
-            <div class="chat-area-footer justify-content-around">
+            <div class="chat-area-footer justify-content-center" style="gap:15px">
                 <input type="hidden" id="userId" value="@User.Identity.Name" />
                 <input type="hidden" id="receiverInput" value="@UserEmail" readonly>
 
                 <input type="text" id="messageInput"  placeholder="Type something here..." />
 
                 <button id="sendButton" class="btn btn-primary BtnSend">Send </button>
+                <button type="button"  class="btn btn-danger" data-toggle="modal" data-target="#form">End Chat</button>
 
             </div>
         </div>
     </div>
 
+    <div class="Notifications position-absolute">
+        <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+
+                <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4 text-main-purble">
+                    <h4>Rate your experience</h4>
+                    <div class="modal-body">
+
+                        <div class="rating">
+                            @foreach(var user in userManager.Users.Where(a => a.Email == UserEmail))
+                            {
+                                <form asp-controller="Home" asp-action="Rate" method="POST">
+                                    <input type="hidden" id="Sender" name="Sender" value="@CurrentUser" />
+                                    <input type="hidden" id="UserId" name="UserId" value="@user.Id" />
+
+
+                                    <div id="full-stars-example-two">
+                                        <div class="rating-group">
+
+                                            <label aria-label="1 star" class="rating__label" for="rating3-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <input class="rating__input" name="Value" id="rating3-1" value="1" type="radio">
+
+                                            <label aria-label="2 stars" class="rating__label" for="rating3-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <input class="rating__input" name="Value" id="rating3-2" value="2" type="radio">
+
+                                            <label aria-label="3 stars" class="rating__label" for="rating3-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <input class="rating__input" name="Value" id="rating3-3" value="3" type="radio">
+
+                                            <label aria-label="4 stars" class="rating__label" for="rating3-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <input class="rating__input" name="Value" id="rating3-4" value="4" type="radio">
+
+                                            <label aria-label="5 stars" class="rating__label" for="rating3-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <input class="rating__input" name="Value" id="rating3-5" value="5" type="radio">
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn ripple btn-warning" type="submit">Rate</button>
+                                        <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Cancel</button>
+                                    </div>
+                                </form>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
 @section js
 {
     <script src="~/assets/js/Chat.js"></script>
-    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 
     <script src="~/lib/jquery/dist/jquery.js"></script>

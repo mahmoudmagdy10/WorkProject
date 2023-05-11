@@ -15,6 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
     <!-- name of website -->
     <link href="~/assets/css/all.min.css" rel="stylesheet">
     <!--calling file of fontawsome  -->
@@ -52,15 +53,15 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center" id="navbar-nav">
 
                         <li class="nav-item mx-4">
-                            <a class="nav-link  navLink active" aria-current="page" asp-controller="Home" asp-action="HomePage">Home</a>
+                            <a class="nav-link  navLink @(ViewBag.Title == "Home" ? "active" : " ")" aria-current="page" asp-controller="Home" asp-action="HomePage" style="font-weight: 500;">Home</a>
                         </li>
 
                         <li class="nav-item mx-4">
-                            <a class="nav-link navLink " asp-controller="Home" asp-action="About" >About Us</a>
+                            <a class="nav-link  navLink @(ViewBag.Title == "About Us" ? "active" : " ")" asp-controller="Home" asp-action="About" style="font-weight: 500;">About Us</a>
                         </li>
 
                         <li class="nav-item mx-4">
-                            <a class="nav-link navLink" asp-controller="Home" asp-action="HowItWork" >How It Work</a>
+                            <a class="nav-link  navLink @(ViewBag.Title == "How It Work" ? "active" : " ")" asp-controller="Home" asp-action="HowItWork" style="font-weight: 500;">How It Work</a>
                         </li>
 
                         @if (signInManager.IsSignedIn(User))
@@ -75,15 +76,15 @@
                                         }
                                         @if (item.PicName == null)
                                         {
-                                            <img src="http://i.pravatar.cc/500?img=7 " alt="" class="ProfilePhoto">
+                                            <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/138926-200.png" alt="" class="ProfilePhoto">
                                         }
                                     }
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item " asp-controller="Home" asp-action="Profile">My Profile </a></li>
+                                    <li><a class="dropdown-item " class="@(ViewBag.Title == "Profile" ? "active" : " ")" asp-controller="Home" asp-action="Profile" style="font-weight: 500;">My Profile </a></li>
                                     <li><hr class="dropdown-divider"></li>
 
-                                    <li><a class="dropdown-item " asp-controller="Account" asp-action="ProfileSettings">Setting </a></li>
+                                    <li><a class="dropdown-item " class="@(ViewBag.Title == "Profile Settings" ? "active" : " ")" asp-controller="Account" asp-action="ProfileSettings" style="font-weight: 500;">Setting </a></li>
                                     <li><hr class="dropdown-divider"></li>
 
                                     <li>

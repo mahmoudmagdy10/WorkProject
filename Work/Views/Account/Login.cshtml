@@ -4,76 +4,75 @@
     Layout = null;
 }
 
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LogIn </title>
-    <!-- name of website -->
+    <title>Login </title>
     <link href="~/assets/css/all.min.css" rel="stylesheet">
-    <!--calling file of fontawsome  -->
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
-    <!-- calling file of css boostrap -->
     <link rel="stylesheet" href="~/assets/css/LoginAndRegister.css">
-    <!-- calling file of style by developer -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/SharedFile.css">
 
 </head>
 
 <body>
-
     <header>
-        <div class="layer vh-100 d-flex align-items-center">
-            <div class="container-lg  py-5">
-                <form asp-controller="Account" asp-action="Login">
-                    <div class="d-flex justify-content-center align-items-start ">
-                        <div class="h-50 w-100 containerOfInputsSignUp">
-                            <div class="container-fluid">
-                                <h1 class="text-center">Log in </h1>
-                                <div class="row py-5">
-
-                                    <div class="col-lg-12">
-                                        <div class="input-group mb-3">
-                                            <input type="email" id="EmailInputes" class="form-control " asp-for="Email" required placeholder="Enter Your Email Address"
-                                                   aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                        </div>
-                                        <span asp-validation-for="Email" class="text-danger"></span>
+        <div class="container py-5 vh-100 justify-content-center align-items-center d-flex">
+            <form asp-controller="Account" asp-action="Login">
+                <div class="d-flex justify-content-center align-items-start ">
+                    <div class="h-50 w-75 containerOfInputsSignUp">
+                        <div class="container-fluid">
+                            <h1 class="text-center">Log in </h1>
+                            <div class="row py-5">
+                                <div class="col-lg-12">
+                                    <div class="input-group mb-3">
+                                        <input type="email" id="EmailInputes" class="form-control " required placeholder="Enter Your Email Address"
+                                               aria-label="Recipient's username" aria-describedby="basic-addon2" asp-for="Email">
                                     </div>
+                                    <span asp-validation-for="Email" class="text-danger"></span>
 
-                                    <div class="col-lg-12">
-                                        <div class="input-group mb-3">
-                                            <input type="password" class="form-control " asp-for="Password" required id="PasswordLogin" placeholder="Enter Your Password"
-                                                   aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                        </div>
-                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="input-group mb-3">
+                                        <input type="password" class="form-control " required id="PasswordLogin" placeholder="Enter Your Password"
+                                               aria-label="Recipient's username" aria-describedby="basic-addon2" asp-for="Password">
                                     </div>
+                                    <span asp-validation-for="Password" class="text-danger"></span>
 
-                                    <div class="col-lg-11 m-auto pt-2 pb-3">
-                                        <input class="btn w-100 rounded-50 main-bg-color text-white" type="submit" value="Login">
-                                        <div class="bg-danger rounded-3 mt-2 pt-1 d-none" id="errorsSubmite">
-                                            <p class="text-light text-center ">Must Enter Data valid in inpute</p>
-                                        </div>
-                                        <p class="text-center main-color">
-                                            Create new account?
-                                            <a asp-controller="Home" asp-action="RegisterAs" class="text-black mx-2 text-decoration-none ">Create new account</a>
-                                        </p>
+                                </div>
+                                <div class="col-lg-11 m-auto pt-2 pb-3">
+                                    <button class="btn w-100 rounded-50 main-bg-color text-white" id="submiteFormOFLogin" type="submit">
+                                        Login
+                                    </button>
+                                    <div class="bg-danger rounded-3 mt-2 pt-1 d-none" id="errorsSubmite">
+                                        <p class="text-light text-center ">Must Enter Data valid in inpute</p>
                                     </div>
+                                    <p class="text-center main-color">
+                                        Create new account?
+                                        <a asp-controller="Home" asp-action="RegisterAs" class="text-black mx-2 text-decoration-none Login_Register">Create new account</a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
 
     </header>
-    <script src="~/assets/js/jqu.js"></script>
-    <script src="~/assets/js/Login.js"></script>
+
+
+
+
+
+    <script src="js/jqu.js"></script>
+    <script src="js/Login.JS"></script>
 </body>
 
 </html>

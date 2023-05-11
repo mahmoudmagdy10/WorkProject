@@ -30,6 +30,7 @@
     <!-- calling file of css boostrap -->
     <link rel="stylesheet" href="~/assets/css/ProfileUser.css">
     <link rel="stylesheet" href="~/assets/css/SharedFile.css">
+    <link rel="stylesheet" href="~/assets/css/rate.css">
 
 }
 
@@ -64,6 +65,15 @@
 
                 <div class="py-4 text-center">
                     <h4>@specialist.Bio</h4>
+                    
+                    @if (specialist.Job != null)
+                    {
+                        <div class="hobies py-3" style="margin-bottom:4px;">
+                            <ul class="list-unstyled">
+                                <li><i class="fa-solid fa-book fa-xl mx-2" style="color: #6f798b; "></i>Job : @specialist.Job</li>
+                            </ul>
+                        </div>
+                    }
 
                     <div id="RateingSection" class="d-flex justify-content-center align-items-center p-2">
                         <button id="RatingButton" class="btn btn-light" type="button" data-toggle="modal" data-target="#Rating" href="#Rating">
@@ -105,17 +115,10 @@
 
                     </div>
 
-                    @if (specialist.Job != null)
-                    {
-                        <div class="hobies py-3">
-                            <ul class="list-unstyled">
-                                <li><i class="fa-solid fa-book fa-xl mx-2" style="color: #6f798b; "></i>Job : @specialist.Job</li>
-                            </ul>
-                        </div>
-                    }
                 </div>
-                <div class="text-center btns-AddQ-ShowProject">
-                    <button class="btn btn-bg-main shadowBtn bg-main-yellow border-radius-32 SendRequest" data-receiver_email="@specialist.Email"
+
+                <div class="text-center btns-AddQ-ShowProject" style="margin-bottom: 20px;">
+                    <button class="btn btn-bg-main shadowBtn bg-main-yellow border-radius-32 text-white SendRequest" data-receiver_email="@specialist.Email"
                             data-sender_email="@User.Identity.Name">
                         Request Chat
                     </button>
