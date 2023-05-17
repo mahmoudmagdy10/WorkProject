@@ -1,7 +1,7 @@
 ﻿using Work.DAL.Extend;
 using Work.BL.Interface;
 using Microsoft.AspNetCore.Identity;
-using Invoices.BL.Models;
+using Work.BL.Models;
 using Work.BL.Models;
 using System.Linq.Expressions;
 using AutoMapper;

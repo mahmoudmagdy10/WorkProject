@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Work.BL.Models;
 using Microsoft.AspNetCore.Authorization;
 using Work.BL.Interface;
+using Work.BL.Models;
+using Work.BL.Helper;
 
 namespace Work.Controllers
 {
@@ -149,6 +151,13 @@ namespace Work.Controllers
 
         #endregion
 
+        #region Edit User Data
+
+        [HttpGet]
+        public IActionResult ProfileSettings()
+        {
+            return View();
+        }
         [HttpPost]
         public async Task<IActionResult> Edit(ApplicationUser obj) 
         {
@@ -171,12 +180,10 @@ namespace Work.Controllers
             }
         }
 
-        [HttpGet]
-        public IActionResult ProfileSettings()
-        {
-            return View();
-        }
+        #endregion
 
+
+        #region Change Password
         [HttpGet]
         public IActionResult ChangePassword()
         {
@@ -223,7 +230,118 @@ namespace Work.Controllers
                 return View();
             }
         }
+        #endregion
 
+
+        #region Forget Password
+        [HttpGet]
+        public IActionResult ForgetPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ForgetPassword(ForgetPasswordVM model)
+        {
+
+            try
+            {
+
+                if (ModelState.IsValid)
+                {
+
+                    // Get User By Email
+                    var user = await userManager.FindByEmailAsync(model.Email);
+
+                    if (user != null)
+                    {
+
+                        // Generate Token
+                        var token = await userManager.GeneratePasswordResetTokenAsync(user);
+
+                        // Generate Reset Link
+                        var passwordResetLink = Url.Action("ResetPassword", "Account", new { Email = model.Email, Token = token }, Request.Scheme);
+
+                        MailSender.SendMail(new MailVM() { Mail = model.Email, Title = "Reset Password", Message = passwordResetLink });
+
+                        return RedirectToAction("ConfirmForgetPassword");
+                    }
+
+                }
+
+                return View(model);
+
+            }
+            catch (Exception)
+            {
+                return View(model);
+            }
+
+        }
+
+        [HttpGet]
+        public IActionResult ConfirmForgetPassword()
+        {
+            return View();
+        }
+
+
+        #endregion
+
+
+        #region Reset Password
+        [HttpGet]
+        public IActionResult ResetPassword(string Email, string Token)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordVM model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var user = await userManager.FindByEmailAsync(model.Email);
+
+                    if (user != null)
+                    {
+                        var result = await userManager.ResetPasswordAsync(user, model.Token, model.NewPassword);
+
+                        if (result.Succeeded)
+                        {
+                            return RedirectToAction("Login");
+                        }
+
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError("", error.Description);
+                        }
+
+                        return View(model);
+                    }
+
+                    return View(model);
+
+                }
+
+                return View(model);
+
+            }
+            catch (Exception)
+            {
+                return View(model);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult ConfirmResetPassword()
+        {
+            return View();
+        }
+
+        #endregion
 
     }
 }
