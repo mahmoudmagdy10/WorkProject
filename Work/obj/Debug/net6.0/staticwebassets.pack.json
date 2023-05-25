@@ -553,6 +553,10 @@
       "PackagePath": "staticwebassets\\assets\\images\\Web 1920 – 1.png"
     },
     {
+      "Id": "E:\\WorkProject\\Work\\wwwroot\\assets\\images\\fav.ico",
+      "PackagePath": "staticwebassets\\assets\\images\\fav.ico"
+    },
+    {
       "Id": "E:\\WorkProject\\Work\\wwwroot\\assets\\images\\investore.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\investore.jpg"
     },

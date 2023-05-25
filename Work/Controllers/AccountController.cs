@@ -71,6 +71,7 @@ namespace Work.Controllers
                         if (RedirectLog.Succeeded)
                         { 
                             return RedirectToAction("ProfileSettings");
+
                         }
                     }
                     else
@@ -82,11 +83,11 @@ namespace Work.Controllers
                     }
                 }
 
-                return View(obj);
+                return RedirectToAction("ProfileSettings", new RouteValueDictionary(new { controller = "Account", action = "Register", role = obj.RegisterAs }));
             }
             catch (Exception)
             {
-                return View(obj);
+                return RedirectToAction("ProfileSettings", new RouteValueDictionary(new { controller = "Account", action = "Register", role = obj.RegisterAs }));
             }
         }
         #endregion
@@ -301,29 +302,24 @@ namespace Work.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+
+                var user = await userManager.FindByEmailAsync(model.Email);
+
+                if (user != null)
                 {
-                    var user = await userManager.FindByEmailAsync(model.Email);
+                    var result = await userManager.ResetPasswordAsync(user, model.Token, model.NewPassword);
 
-                    if (user != null)
+                    if (result.Succeeded)
                     {
-                        var result = await userManager.ResetPasswordAsync(user, model.Token, model.NewPassword);
+                        return RedirectToAction("Login");
+                    }
 
-                        if (result.Succeeded)
-                        {
-                            return RedirectToAction("Login");
-                        }
-
-                        foreach (var error in result.Errors)
-                        {
-                            ModelState.AddModelError("", error.Description);
-                        }
-
-                        return View(model);
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
                     }
 
                     return View(model);
-
                 }
 
                 return View(model);

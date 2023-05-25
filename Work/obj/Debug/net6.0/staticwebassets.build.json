@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Gp2W/Nle7PEh9LFQ7Us4EqoStBOYbAjLqOsloTEizLc=",
+  "Hash": "B91TtsnKbI3qbWthN4YZbnoY7YnAuFzhvcRNZuSkAsc=",
   "Source": "Work",
   "BasePath": "_content/Work",
   "Mode": "Default",
@@ -559,6 +559,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\Eich.jpg"
+    },
+    {
+      "Identity": "E:\\WorkProject\\Work\\wwwroot\\assets\\images\\fav.ico",
+      "SourceId": "Work",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\WorkProject\\Work\\wwwroot\\",
+      "BasePath": "_content/Work",
+      "RelativePath": "assets/images/fav.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\fav.ico"
     },
     {
       "Identity": "E:\\WorkProject\\Work\\wwwroot\\assets\\images\\Girle1.jpg",
